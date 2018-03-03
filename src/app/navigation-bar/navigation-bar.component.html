@@ -1,7 +1,46 @@
-<nav>
-  <ul>
-    <li [class]="navClass">
-      <a routerLink="/dashboard">Dashboard</a>
-    </li>
-  </ul>
-</nav>
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+
+  <span class="example-fill-remainin-space"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <a routerLink="/home" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>Account</span>
+    </button>
+  </a>
+
+  <!-- Hidden menu for vertical dots -->
+  <mat-divider></mat-divider>
+
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create_new_folder</mat-icon>
+      <span>New Project</span>
+    </button>
+  </a>
+
+  <a routerLink="/settings" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a routerLink="/quite" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Exit</span>
+    </button>
+  </a>
+
+</mat-menu>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MenuItemService } from '../menu-item.service';
 
@@ -8,6 +8,10 @@ import { MenuItemService } from '../menu-item.service';
   styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent implements OnInit {
+
+  @Input('appTitle') public title: string
+
+  public docorator = 'none'
 
   private items = []
 

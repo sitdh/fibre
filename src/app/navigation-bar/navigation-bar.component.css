@@ -1,0 +1,14 @@
+.example-fill-remainin-space {
+  flex: 1 1 auto;
+}
+
+mat-menu a button,
+mat-menu a:hover button,
+mat-menu a:visited button {
+  color: white;
+  text-decoration: none !important;
+}
+
+.decorator {
+  text-decoration: none;
+}
