@@ -4,7 +4,6 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -32,7 +31,7 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatDividerModule,
-    FormBuilder, FormGroup, Validators, MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
+    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
     MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
     MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule, 
     MatCardModule, MatExpansionModule, MatGridListModule, MatListModule,
@@ -43,7 +42,7 @@ import { MatTableModule } from '@angular/material/table';
   exports: [
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatDividerModule,
-    FormBuilder, FormGroup, Validators, MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
+    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
     MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
     MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule, 
     MatCardModule, MatExpansionModule, MatGridListModule, MatListModule,
