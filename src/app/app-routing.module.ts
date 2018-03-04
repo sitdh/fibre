@@ -11,9 +11,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
-  { path: 'settings', component: CreateProjectComponent },
-  { path: 'quite', component: CreateProjectComponent },
-  { path: 'home', component: CreateProjectComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'quite', component: QuiteComponent },
+  { path: 'profile/:username', component: HomeComponent },
 ]
 
 @NgModule({
