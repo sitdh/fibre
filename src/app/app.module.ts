@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatComponents } from './mat-components.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { MatComponents } from './mat-components.module';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -13,6 +14,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { SettingsComponent } from './settings/settings.component';
 import { QuiteComponent } from './quite/quite.component';
 import { HomeComponent } from './home/home.component';
+import { PageMetaComponent } from './page-meta/page-meta.component';
 
 
 @NgModule({
@@ -24,9 +26,11 @@ import { HomeComponent } from './home/home.component';
     SettingsComponent,
     QuiteComponent,
     HomeComponent,
+    PageMetaComponent,
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     MatComponents,
     FormsModule,
     AppRoutingModule,

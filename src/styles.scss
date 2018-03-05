@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+$primary-color: #444;
+
+.container-flex,
+.container-flex>div {
+  min-height: 100vh;
+}

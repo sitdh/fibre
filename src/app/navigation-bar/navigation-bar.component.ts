@@ -11,6 +11,8 @@ export class NavigationBarComponent implements OnInit {
 
   @Input('appTitle') public title: string
 
+  public isAuthenticated = true
+
   public docorator = 'none'
 
   private items = []

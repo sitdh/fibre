@@ -2,14 +2,18 @@
   <span>{{title}}</span>
 
   <span class="example-fill-remainin-space"></span>
+  
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" *ngIf="isAuthenticated" aria-label="Open user menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+  <button mat-icon-button [matMenuTriggerFor]="siteMenu" *ngIf="!isAuthenticated" aria-label="Open basic menu">
     <mat-icon>more_vert</mat-icon>
   </button>
 
 </mat-toolbar>
 
-<mat-menu #menu="matMenu">
+<mat-menu #userMenu="matMenu">
   <a routerLink="/profile/sitdh" class="decorator">
     <button mat-menu-item>
       <mat-icon>account_circle</mat-icon>
@@ -36,10 +40,41 @@
 
   <mat-divider></mat-divider>
 
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create_new_folder</mat-icon>
+      <span>Help</span>
+    </button>
+  </a>
+
   <a routerLink="/quite" class="decorator">
     <button mat-menu-item>
       <mat-icon>exit_to_app</mat-icon>
-      <span>Exit</span>
+      <span>Sign-out</span>
+    </button>
+  </a>
+
+</mat-menu>
+
+<mat-menu #siteMenu="matMenu">
+  <a routerLink="/profile/sitdh" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>Signup</span>
+    </button>
+  </a>
+
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create_new_folder</mat-icon>
+      <span>Tour</span>
+    </button>
+  </a>
+
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create_new_folder</mat-icon>
+      <span>Help</span>
     </button>
   </a>
 
