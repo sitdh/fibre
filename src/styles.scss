@@ -7,3 +7,11 @@ $primary-color: #444;
 .container-flex>div {
   min-height: 100vh;
 }
+
+mat-toolbar a,
+mat-toolbar a:hover,
+mat-toolbar a:visited {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
