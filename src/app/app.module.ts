@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { ProjectFetcherService } from './project-fetcher.service';
+
 import { MatComponents } from './mat-components.module';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
@@ -37,7 +39,10 @@ import { PageMetaComponent } from './page-meta/page-meta.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [MenuItemService],
+  providers: [
+		MenuItemService, 
+		ProjectFetcherService
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
