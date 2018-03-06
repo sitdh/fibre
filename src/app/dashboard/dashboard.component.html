@@ -1,3 +1,50 @@
-<p>
-  dashboard works!
-</p>
+<section id="grid-cont">
+  <section class="grid_outer chapter">
+    <h1 class="chapter-title">Project List</h1>
+
+    <div class="chapter-content">
+
+      <div class="project-info">
+        <mat-card class="project-card">
+          <mat-card-header>
+						<mat-card-title>
+							<strong>Create new project</strong>
+						</mat-card-title>
+						<mat-card-title>&nbsp;</mat-card-title>
+          </mat-card-header>
+
+					<mat-card-actions>
+						<a href="/features">
+							<button mat-button>Tour</button>
+						</a>
+						<a href="/project/new">
+							<button mat-button>Create</button>
+						</a>
+					</mat-card-actions>
+
+        </mat-card>
+
+        <mat-card class="project-card" *ngFor="let p of projects">
+          <mat-card-header>
+						<img mat-card-avatar src="http://via.placeholder.com/350x350" alt="">
+						<mat-card-title>{{ p.name }}</mat-card-title>
+						<mat-card-subtitle>Language: {{ p.language }}</mat-card-subtitle>
+          </mat-card-header>
+
+					<mat-card-actions>
+						<a href="/p/sitdh/q-x">
+							<button mat-button>Setting</button>
+						</a>
+						<a href="{{ p.path }}">
+							<button mat-button>View</button>
+						</a>
+					</mat-card-actions>
+
+        </mat-card>
+
+      </div>
+
+    </div>
+
+  </section>
+</section>

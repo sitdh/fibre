@@ -3,10 +3,3 @@
   flex-basis: 100vh;
   flex-flow: column;
 }
-
-app-page-meta {
-  align-self: flex-end;
-  position: fixed;
-  bottom: 0;
-  min-width: 100%;
-}

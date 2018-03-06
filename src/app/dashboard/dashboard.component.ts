@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public projects = [
+		{ name: 'hello', language: 'Java', path: '/p/sitdh/hello' },
+		{ name: 'hello', language: 'Java', path: '/p/sitdh/hello' },
+	]
+
   constructor() { }
 
   ngOnInit() {

@@ -1,17 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "./main.scss";
 
-$primary-color: #444;
-
-.container-flex,
-.container-flex>div {
-  min-height: 100vh;
-}
-
-mat-toolbar a,
-mat-toolbar a:hover,
-mat-toolbar a:visited {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
