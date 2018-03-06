@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectInformation } from '../project-information';
+import { ProjectFetcherService } from '../project-fetcher.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  public projects = [
-		{ name: 'hello', language: 'Java', path: '/p/sitdh/hello' },
-		{ name: 'hello', language: 'Java', path: '/p/sitdh/hello' },
-	]
+  public projects: ProjectInformation[]
 
-  constructor() { }
+  constructor(
+		private projectService: ProjectFetcherService
+	) { }
 
   ngOnInit() {
+		this.fetchProjectInformation()
   }
+
+	fetchProjectInformation(): void {
+		this.projectService.availableProject()
+			.subscribe(projects => this.projects = projects)
+	}
 
 }
