@@ -1,7 +1,7 @@
 export class ProjectInformation {
-  id: int
+  id: number
   name: string
   path: string
-  lang: string
+  language: string
   description: string
 }
