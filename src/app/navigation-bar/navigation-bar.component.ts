@@ -40,9 +40,9 @@ export class NavigationBarComponent implements OnInit {
     this.userInformation.isAuthenticate()
       .subscribe( user => { 
         if (null == user) {
-          this.isAuthenticate = false
+          this.isAuthenticated = false
         } else {
-          this.userInfo = user;
+          this.user = user;
         }
       })
   }
