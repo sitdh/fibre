@@ -6,6 +6,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { HomeComponent } from './home/home.component';
 import { QuiteComponent } from './quite/quite.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
+
+  { path: 'account/new', component: CreateUserAccountComponent },
 ]
 
 @NgModule({
