@@ -71,32 +71,3 @@ mat-toolbar a:visited {
   font-weight: bold;
 }
 
-@media (min-width: 1200px) {
-  #grid-cont section.grid_outer {
-    width: 1160px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  #grid-cont section.grid_outer {
-    width: 900px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  #grid-cont section.grid_outer {
-    width: 700px;
-  }
-}
-
-@media (max-width: 767px) {
-  #grid-cont section.grid_outer {
-    width: 700px;
-  }
-}
-
-@media (max-width: 480px) {
-  #grid-cont section.grid_outer {
-    width: 450px;
-  }
-}

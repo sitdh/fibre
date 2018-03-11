@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 @import "./main.scss";
+
+@import "./media-xl.scss";
+@import "./media-l.scss";
+@import "./media-m.scss";
+@import "./media-xm.scss";
 
