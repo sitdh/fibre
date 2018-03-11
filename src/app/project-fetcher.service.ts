@@ -10,7 +10,6 @@ export class ProjectFetcherService {
     { id: 1, name: 'Class pr', path: '/p/sitdh/class-pr', language: 'Java', description: 'axb' },
     { id: 2, name: 'Class pr', path: '/p/sitdh/class-pr', language: 'Java', description: 'axb' },
     { id: 3, name: 'Class pr', path: '/p/sitdh/class-pr', language: 'Java', description: 'axb' },
-    { id: 4, name: 'Class pr', path: '/p/sitdh/class-pr', language: 'Java', description: 'axb' },
   ]
 
   constructor() { }
