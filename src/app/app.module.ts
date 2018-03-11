@@ -17,6 +17,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { QuiteComponent } from './quite/quite.component';
 import { HomeComponent } from './home/home.component';
 import { PageMetaComponent } from './page-meta/page-meta.component';
+import { UserInformationService } from './user-information.service';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { PageMetaComponent } from './page-meta/page-meta.component';
   ],
   providers: [
 		MenuItemService, 
-		ProjectFetcherService
+		ProjectFetcherService, UserInformationService
 	],
   bootstrap: [AppComponent]
 })
