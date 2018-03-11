@@ -18,6 +18,7 @@ import { QuiteComponent } from './quite/quite.component';
 import { HomeComponent } from './home/home.component';
 import { PageMetaComponent } from './page-meta/page-meta.component';
 import { UserInformationService } from './user-information.service';
+import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { UserInformationService } from './user-information.service';
     QuiteComponent,
     HomeComponent,
     PageMetaComponent,
+    CreateUserAccountComponent,
   ],
   imports: [
     BrowserModule,
