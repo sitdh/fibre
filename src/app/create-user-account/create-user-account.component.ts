@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserAccountComponent implements OnInit {
 
+  pageTitle = 'New user'
+
   constructor() { }
 
   ngOnInit() {
