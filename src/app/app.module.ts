@@ -19,6 +19,8 @@ import { HomeComponent } from './home/home.component';
 import { PageMetaComponent } from './page-meta/page-meta.component';
 import { UserInformationService } from './user-information.service';
 import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { AuthenGuardService } from './authen-guard.service';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
     HomeComponent,
     PageMetaComponent,
     CreateUserAccountComponent,
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
   ],
   providers: [
 		MenuItemService, 
-		ProjectFetcherService, UserInformationService
+		ProjectFetcherService, UserInformationService, AuthenGuardService
 	],
   bootstrap: [AppComponent]
 })

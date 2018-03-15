@@ -42,7 +42,8 @@ export class NavigationBarComponent implements OnInit {
         if (null == user) {
           this.isAuthenticated = false
         } else {
-          this.user = user;
+          this.user = user
+          this.isAuthenticated = true
         }
       })
   }
