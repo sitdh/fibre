@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ProjectInformation } from '../project-information';
 import { ProjectFetcherService } from '../project-fetcher.service';
+import { AuthenGuardService } from '../authen-guard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,12 @@ import { ProjectFetcherService } from '../project-fetcher.service';
 export class DashboardComponent implements OnInit {
 
   public projects: ProjectInformation[]
+  
+  private localStorage = window.localStorage
 
   constructor(
-		private projectService: ProjectFetcherService
+    private projectService: ProjectFetcherService,
+    private authGuardService: AuthenGuardService
 	) { }
 
   ngOnInit() {

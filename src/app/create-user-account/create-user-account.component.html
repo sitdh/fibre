@@ -4,11 +4,32 @@
 
     <div class="chapter-content">
 
-      <form class="form" #userForm="ngForm">
-        <div class="from-group">
-          <label for="name">Name</label>
-        </div>
-      </form>
+      <div class="section">
+        <button (click)="opengit('git')">Sign-up with Github</button>
+      </div>
+      <div class="section">
+        <form #userInfo="ngForm">
+          <div class="from-group">
+            <label for="username">Name</label>
+            <input required [(ngModel)]="userRegister.username" name="username">
+          </div>
+          <div class="from-group">
+            <label for="password">Password</label>
+            <input required type="password" [(ngModel)]="userRegister.password" name="password">
+          </div>
+          <div class="from-group">
+            <label for="confirm">Confirm password</label>
+            <input required type="password" [(ngModel)]="userRegister.confirmPassword" name="confirm">
+          </div>
+          <div class="from-group">
+            <label for="email">email</label>
+            <input required name="email" type="email" [(ngModel)]="userRegister.email" name="email">
+          </div>
+          <div class="from-group">
+            <button type="submit" (click)="submitform(userInfo)">Send</button>
+          </div>
+        </form>
+      </div>
 
     </div>
 
