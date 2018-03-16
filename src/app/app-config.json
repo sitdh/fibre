@@ -1,0 +1,10 @@
+{
+  "services": [
+    {
+      "github": {
+        "client-id": "",
+        "client-secret": ""
+      }
+    }
+  ]
+}
