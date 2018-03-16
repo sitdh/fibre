@@ -21,7 +21,8 @@ export class CreateUserAccountComponent implements OnInit {
   }
 
   submitform(user: any) {
-    console.log(user.controls.email.value)
+    console.log(user)
+    console.log(user.controls.username.value)
   }
 
   opengit(g: any) {

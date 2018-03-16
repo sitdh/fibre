@@ -1,37 +1,67 @@
 <section id="grid-cont">
-  <section class="grid_outer chapter">
-    <h1 class="chapter-title">{{ pageTitle }}</h1>
+  <section class="grid_outer chapter accountaction">
+    <div class="form-container">
+      <mat-tab-group class="user-form">
+        <mat-tab label="New user">
+          <h1>Signup</h1>
 
-    <div class="chapter-content">
+          <div class="service-container">
+            <a href="" class="service-button github">
+              <img src="/assets/image/github.png">
+              <div class="message">
+                Sign up with <strong>Github</strong>
+              </div>
+            </a>
+          </div>
 
-      <div class="section">
-        <button (click)="opengit('git')">Sign-up with Github</button>
-      </div>
-      <div class="section">
-        <form #userInfo="ngForm">
-          <div class="from-group">
-            <label for="username">Name</label>
-            <input required [(ngModel)]="userRegister.username" name="username">
+          <div class="service-container">
+            <div class="message">Or</div>
           </div>
-          <div class="from-group">
-            <label for="password">Password</label>
-            <input required type="password" [(ngModel)]="userRegister.password" name="password">
-          </div>
-          <div class="from-group">
-            <label for="confirm">Confirm password</label>
-            <input required type="password" [(ngModel)]="userRegister.confirmPassword" name="confirm">
-          </div>
-          <div class="from-group">
-            <label for="email">email</label>
-            <input required name="email" type="email" [(ngModel)]="userRegister.email" name="email">
-          </div>
-          <div class="from-group">
-            <button type="submit" (click)="submitform(userInfo)">Send</button>
-          </div>
-        </form>
-      </div>
 
+          <form #userInfo="ngForm">
+            <mat-form-field>
+              <input matInput placeholder="Email" [(ngModel)]="userRegister.email" name="email">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Username" [(ngModel)]="userRegister.username" name="username">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Password" type="password" [(ngModel)]="userRegister.password" name="password">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Confirm password" type="password" [(ngModel)]="userRegister.confirmPassword" name="confirm">
+            </mat-form-field>
+            <div class="form-group">
+              <button mat-button color="secondary" mat-raised-button (click)="submitform(userInfo)">Cancel</button>
+              <button mat-button color="primary" mat-raised-button (click)="submitform(userInfo)">Signup</button>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Sign-in">
+          <h1>Signin</h1>
+
+          <div class="service-container">
+            <a href="" class="service-button github">
+              <img src="/assets/image/github.png">
+              <div class="message">
+                Sign in with <strong>Github</strong>
+              </div>
+            </a>
+          </div>
+
+          <form #userInfo="ngForm">
+            <mat-form-field>
+              <input matInput placeholder="Username" [(ngModel)]="userRegister.username" name="username">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Password" [(ngModel)]="userRegister.password" name="password">
+            </mat-form-field>
+            <div class="from-group">
+              <button mat-button color="primary" mat-raised-button (click)="submitform(userRegister)">Signin</button>
+            </div>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-
   </section>
 </section>
