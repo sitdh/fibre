@@ -21,6 +21,7 @@ import { UserInformationService } from './user-information.service';
 import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthenGuardService } from './authen-guard.service';
+import { AppConfigService } from './app-config.service';
 
 
 @NgModule({
@@ -46,8 +47,8 @@ import { AuthenGuardService } from './authen-guard.service';
     HttpClientModule,
   ],
   providers: [
-		MenuItemService, 
-		ProjectFetcherService, UserInformationService, AuthenGuardService
+    MenuItemService,
+    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService,
 	],
   bootstrap: [AppComponent]
 })
