@@ -22,7 +22,7 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthenGuardService } from './authen-guard.service';
 import { AppConfigService } from './app-config.service';
-import { CredentailService } from './credentail.service';
+import { CredentialService } from './credential.service';
 
 
 @NgModule({
@@ -49,7 +49,7 @@ import { CredentailService } from './credentail.service';
   ],
   providers: [
     MenuItemService,
-    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentailService,
+    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService,
 	],
   bootstrap: [AppComponent]
 })

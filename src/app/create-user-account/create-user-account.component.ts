@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
 import { UserRegistration } from '../user-registration.form';
+import { CredentialService } from '../credential.service';
+import { AppCredential } from '../app-credential';
 
 @Component({
   selector: 'app-create-user-account',
@@ -9,15 +12,24 @@ import { UserRegistration } from '../user-registration.form';
 })
 export class CreateUserAccountComponent implements OnInit {
 
-  pageTitle = 'New user'
-
   userRegister = new UserRegistration()
 
   nameControl = new FormControl();
 
-  constructor() { }
+  appId: string
+
+  state: string
+
+  redirectUrl: string
+
+  scope: string
+
+  constructor(
+    private credentialService: CredentialService
+  ) { }
 
   ngOnInit() {
+    this.fetchAppCredential()
   }
 
   submitform(user: any) {
@@ -25,8 +37,14 @@ export class CreateUserAccountComponent implements OnInit {
     console.log(user.controls.username.value)
   }
 
-  opengit(g: any) {
-    console.log(g)
+  fetchAppCredential() {
+    this.credentialService.fetchCredential('github')
+      .subscribe(credential => {
+        this.appId = credential['app-id']
+        this.redirectUrl = credential['callback']
+        this.scope = credential['scope']
+      })
+    
   }
 
 }
