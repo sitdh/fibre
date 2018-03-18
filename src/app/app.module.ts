@@ -4,6 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
 import { ProjectFetcherService } from './project-fetcher.service';
 
 import { MatComponents } from './mat-components.module';
@@ -24,6 +29,7 @@ import { AuthenGuardService } from './authen-guard.service';
 import { AppConfigService } from './app-config.service';
 import { CredentialService } from './credential.service';
 
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -46,6 +52,8 @@ import { CredentialService } from './credential.service';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
   ],
   providers: [
     MenuItemService,

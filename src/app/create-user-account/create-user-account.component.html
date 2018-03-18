@@ -6,7 +6,10 @@
           <h1>Signup</h1>
 
           <div class="service-container">
+            <!--
             <a href="https://github.com/login/oauth/authorize?client_id={{ appId }}&scope={{ scope }}&&allow_signup=true=redirect_url={{ redirectUrl }}&state=account/verify" class="service-button github">
+            -->
+            <a href="#" (click)="loginWithGithub($event)" class="service-button github">
               <img src="/assets/image/github.png">
               <div class="message">
                 Sign up with <strong>Github</strong>

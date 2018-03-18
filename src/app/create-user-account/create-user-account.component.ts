@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { AngularFireAuth } from 'angularfire2/auth'
+import * as firebase from 'firebase/app'
+
 import { UserRegistration } from '../user-registration.form';
 import { CredentialService } from '../credential.service';
 import { AppCredential } from '../app-credential';
@@ -25,11 +28,40 @@ export class CreateUserAccountComponent implements OnInit {
   scope: string
 
   constructor(
-    private credentialService: CredentialService
-  ) { }
+    private af: AngularFireAuth
+  ) { 
+    // check user exists and redirect
+    // redirect: this.router.navigateByUrl('..some-url..')
+  }
 
   ngOnInit() {
-    this.fetchAppCredential()
+    /// this.fetchAppCredential()
+  }
+
+  loginWithGithub(event: any) {
+		event.preventDefault()
+		let githubAuthProvider = new firebase.auth.GithubAuthProvider()
+		githubAuthProvider.addScope('user:public_repo')
+		githubAuthProvider.setCustomParameters({
+			'allow_signup': 'true'
+		})
+    firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
+			console.log(result)
+		}).catch(error => {
+			console.log(error)
+		})
+
+/**
+			({
+      provider: AuthProviders.Github,
+      method: AuthMethods.Popup,
+      scope: 'user:public_repo'
+    }).then(success => {
+      consle.log(success)
+    }).catch(e => {
+      console.log(e)
+    })
+**/
   }
 
   submitform(user: any) {
@@ -38,12 +70,12 @@ export class CreateUserAccountComponent implements OnInit {
   }
 
   fetchAppCredential() {
-    this.credentialService.fetchCredential('github')
-      .subscribe(credential => {
-        this.appId = credential['app-id']
-        this.redirectUrl = credential['callback']
-        this.scope = credential['scope']
-      })
+    // this.credentialService.fetchCredential('github')
+    //   .subscribe(credential => {
+    //     this.appId = credential['app-id']
+    //     this.redirectUrl = credential['callback']
+    //     this.scope = credential['scope']
+    //   })
     
   }
 
