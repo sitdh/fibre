@@ -53,7 +53,7 @@ export class NavigationBarComponent implements OnInit {
 
   removeCurrentUser(e) {
     e.preventDefault()
-    this.ag.signout('/')
+    this.ag.signout()
   }
 
 }

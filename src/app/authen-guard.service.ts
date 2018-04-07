@@ -33,10 +33,9 @@ export class AuthenGuardService {
     return this.af.authState
   }
 
-  signout(destination) {
-    console.log('hello')
+  signout() {
     this.af.auth.signOut()
-    this.route.navigate([destination])
+    this.route.navigate(['/home'])
   }
 
 }
