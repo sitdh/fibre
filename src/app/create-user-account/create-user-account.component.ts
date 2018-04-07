@@ -37,11 +37,13 @@ export class CreateUserAccountComponent implements OnInit {
   constructor(
     private af: AngularFireAuth,
     private http: HttpClient,
-    private router: Router,
+    private route: Router,
     private ag: AuthenGuardService
   ) { 
     ag.currentObservedUser().subscribe(u => {
-      console.log(u)
+      if (null != u) {
+        route.navigate(['/dashboard'])
+      }
     })
   }
 
@@ -81,17 +83,6 @@ export class CreateUserAccountComponent implements OnInit {
 			console.log(error)
 		})
 
-/**
-			({
-      provider: AuthProviders.Github,
-      method: AuthMethods.Popup,
-      scope: 'user:public_repo'
-    }).then(success => {
-      consle.log(success)
-    }).catch(e => {
-      console.log(e)
-    })
-**/
   }
 
   submitform(user: any) {
