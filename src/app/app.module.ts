@@ -46,13 +46,13 @@ import { environment } from './../environments/environment';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,
     MatComponents,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
   ],
   providers: [
@@ -62,3 +62,5 @@ import { environment } from './../environments/environment';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+import * as firebase from 'firebase';

@@ -1,21 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
+import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+@Injectable()
 export class AuthenGuardService {
 
   private localStorage
 
-  constructor() { }
+  private authState: any
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) {
+  constructor(
+    private af: AngularFireAuth
+  ) { 
+    this.af.authState.subscribe(auth => {
+      this.authState = auth
+    });
+  }
+
+  ngOnInit() { 
   }
 
   isAuthenticated(): boolean {
-    let rememberToken = window.localStorage.getItem('remember-token')
-    return (typeof rememberToken !== null)
+    return this.authState != null
+  }
+
+  currentObservedUser(): any {
+    return this.af.authState
   }
 
 }

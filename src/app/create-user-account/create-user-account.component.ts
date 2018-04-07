@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { AngularFireAuth } from 'angularfire2/auth'
-import * as firebase from 'firebase/app'
+import { Observable } from 'rxjs/Rx';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 import { UserRegistration } from '../user-registration.form';
 import { CredentialService } from '../credential.service';
 import { AppCredential } from '../app-credential';
+import { AuthenGuardService } from '../authen-guard.service';
 
 @Component({
   selector: 'app-create-user-account',
@@ -27,15 +32,20 @@ export class CreateUserAccountComponent implements OnInit {
 
   scope: string
 
+  user: Observable<firebase.User>
+
   constructor(
-    private af: AngularFireAuth
+    private af: AngularFireAuth,
+    private http: HttpClient,
+    private router: Router,
+    private ag: AuthenGuardService
   ) { 
-    // check user exists and redirect
-    // redirect: this.router.navigateByUrl('..some-url..')
+    ag.currentObservedUser().subscribe(u => {
+      console.log(u)
+    })
   }
 
   ngOnInit() {
-    /// this.fetchAppCredential()
   }
 
   loginWithGithub(event: any) {
@@ -45,8 +55,28 @@ export class CreateUserAccountComponent implements OnInit {
 		githubAuthProvider.setCustomParameters({
 			'allow_signup': 'true'
 		})
+
     firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
-			console.log(result)
+      const userInfo = result.additionalUserInfo
+      const params = new HttpParams()
+        .set('isnewuser', result.additionalUserInfo.isNewUser)
+        .set('email', result.additionalUserInfo.profile.email)
+        .set('username', result.additionalUserInfo.username)
+        .set('provider', 'github')
+
+      this.http.post('/api/account/create', {
+        'newUser': result.additionalUserInfo.isNewUser,
+        'email': result.additionalUserInfo.profile.email,
+        'user': result.additionalUserInfo.username,
+        'provider': 'github',
+      }).subscribe( res => {
+        console.log(res)
+        // this.router.navigate(['dashboard'])
+      }, err => {
+        console.log('Error')
+        console.log(err)
+      })
+
 		}).catch(error => {
 			console.log(error)
 		})
