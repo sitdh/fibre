@@ -6,9 +6,22 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
+
+// Custom Project info
+export interface Project {
+  name: string;
+  describe: string;
+  repository: string;
+  branch: string;
+  commitId: string;
+  fetchTimestamp: Date;
+  createDate: Date;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -17,19 +30,21 @@ import * as firebase from 'firebase/app';
 })
 export class DashboardComponent implements OnInit {
 
-  public projects: ProjectInformation[]
-
   private localStorage = window.localStorage
 
   user: Observable<firebase.User>
 
-  authState: any = null
+  authState: any
+
+  projectCollection: AngularFirestoreCollection<Project>;
+  projects: Project[];
 
   constructor(
     private location: Location,
     private af: AngularFireAuth,
     private route: Router,
     private projectService: ProjectFetcherService,
+    db: AngularFirestore,
     ag: AuthenGuardService
   ) {
     ag.currentObservedUser().subscribe(u => {
@@ -37,14 +52,22 @@ export class DashboardComponent implements OnInit {
         route.navigate(['/account/new'])
       }
     })
+
+    this.projectCollection = db.collection<Project>('Project')
+    this.projectCollection.valueChanges().subscribe(ps => {
+      this.projects = ps
+    })
   }
 
   ngOnInit() {
   }
 
-	fetchProjectInformation(): void {
-		this.projectService.availableProject()
-			.subscribe(projects => this.projects = projects)
-	}
+  featureTour() {
+    return false;
+  }
+
+  newProject() {
+    this.route.navigate(['/project/new'])
+  }
 
 }

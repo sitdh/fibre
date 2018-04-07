@@ -13,11 +13,11 @@
 						<mat-card-subtitle>&nbsp;</mat-card-subtitle>
           </mat-card-header>
 					<mat-card-actions>
-						<a href="/features">
-							<button mat-button>Tour</button>
+						<a routeLink="/features">
+							<button (click)="featureTour()" mat-button>Tour</button>
 						</a>
-						<a href="/project/new">
-							<button mat-button>Create</button>
+						<a routeLink="/project/new">
+							<button (click)="newProject()" mat-button>Create</button>
 						</a>
 					</mat-card-actions>
 
