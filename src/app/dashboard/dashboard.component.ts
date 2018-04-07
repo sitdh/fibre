@@ -59,9 +59,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-  }
-
   featureTour() {
     return false;
   }
