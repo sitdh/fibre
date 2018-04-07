@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MenuItemService } from '../menu-item.service';
 import { UserInformationService } from '../user-information.service';
 import { UserInformation } from '../user-information.entity';
+import { AuthenGuardService } from '../authen-guard.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -24,7 +25,12 @@ export class NavigationBarComponent implements OnInit {
   constructor(
     private menuItemService: MenuItemService,
     private userInformation: UserInformationService,
-  ) { }
+    private ag: AuthenGuardService
+  ) { 
+    this.ag.currentObservedUser().subscribe(u => {
+      this.isAuthenticated = this.ag.isAuthenticated()
+    })
+  }
 
   ngOnInit() {
     this.retrieveRegisteredItems()
@@ -39,13 +45,15 @@ export class NavigationBarComponent implements OnInit {
   authenticateCheck() {
     this.userInformation.isAuthenticate()
       .subscribe( user => { 
-        if (null == user) {
-          this.isAuthenticated = false
-        } else {
+        if (null != user) {
           this.user = user
-          this.isAuthenticated = true
         }
       })
+  }
+
+  removeCurrentUser(e) {
+    e.preventDefault()
+    this.ag.signout('/')
   }
 
 }

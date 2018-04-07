@@ -14,7 +14,8 @@ export class AuthenGuardService {
   private authState: any
 
   constructor(
-    private af: AngularFireAuth
+    private af: AngularFireAuth,
+    private route: Router
   ) { 
     this.af.authState.subscribe(auth => {
       this.authState = auth
@@ -30,6 +31,12 @@ export class AuthenGuardService {
 
   currentObservedUser(): any {
     return this.af.authState
+  }
+
+  signout(destination) {
+    console.log('hello')
+    this.af.auth.signOut()
+    this.route.navigate([destination])
   }
 
 }

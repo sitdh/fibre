@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
 
-  { path: 'account/new', component: CreateUserAccountComponent },
+  { path: 'account/:action', component: CreateUserAccountComponent },
 ]
 
 @NgModule({

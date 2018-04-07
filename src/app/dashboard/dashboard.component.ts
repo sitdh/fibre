@@ -7,8 +7,8 @@ import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
 
-import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   ) {
     ag.currentObservedUser().subscribe(u => {
       if (null == u) {
-        route.navigate(['/create/new'])
+        route.navigate(['/account/new'])
       }
     })
   }

@@ -51,7 +51,7 @@
 
   <mat-divider></mat-divider>
 
-  <a routerLink="/quite" class="decorator">
+  <a class="decorator" (click)="removeCurrentUser($event)">
     <button mat-menu-item>
       <mat-icon>exit_to_app</mat-icon>
       <span>Sign-out</span>
