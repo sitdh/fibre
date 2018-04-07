@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
+import { AuthenGuardService } from '../authen-guard.service';
 
 @Component({
   selector: 'app-home',
@@ -22,13 +24,20 @@ export class HomeComponent implements OnInit {
 	showFiller = false
 
   constructor(
-    private route: ActivatedRoute
-  ) { }
+    private route: Router,
+    private ag: AuthenGuardService
+  ) { 
+    ag.currentObservedUser().subscribe(u => {
+      if (null != u) {
+        route.navigate(['/dashboard'])
+      }
+    })
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.username = params['username']
-    })
+    // this.route.params.subscribe(params => {
+    //   this.username = params['username']
+    // })
   }
 
 }

@@ -9,13 +9,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
-
   { path: 'account/:action', component: CreateUserAccountComponent },
 ]
 
