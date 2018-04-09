@@ -30,6 +30,7 @@ import { AppConfigService } from './app-config.service';
 import { CredentialService } from './credential.service';
 
 import { environment } from './../environments/environment';
+import { RepositoryService } from './repository.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { environment } from './../environments/environment';
   ],
   providers: [
     MenuItemService,
-    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService,
+    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService, RepositoryService,
 	],
   bootstrap: [AppComponent]
 })
