@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { RepositoryService } from '../repository.service';
+import { AuthenGuardService } from '../authen-guard.service';
 
 @Component({
   selector: 'app-create-project',
@@ -11,24 +12,29 @@ import { RepositoryService } from '../repository.service';
 })
 export class CreateProjectComponent implements OnInit {
 
-  isLinear: true
-  firstStepControlGroup: FormGroup
-  secondStepControlGroup: FormGroup
+  repositories: any[]
 
   constructor(
-    _formBuilder: FormBuilder,
-    repoService: RepositoryService,
-    http: HttpClient
-  ) { }
+    private _formBuilder: FormBuilder,
+    private repoService: RepositoryService,
+    private http: HttpClient,
+    private ag: AuthenGuardService
+  ) { 
+
+  }
 
   ngOnInit() {
-    this.firstStepControlGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.ag.currentObservedUser().subscribe(u => {
+      if (null != u) {
+        this.fetchUserRepositories('sitdh')
+      }
     })
+  }
 
-    this.secondStepControlGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    })
+  fetchUserRepositories(user: string) {
+    this.repoService.fetchRepositories(user).subscribe(u => {
+      console.log(u)
+    });
   }
 
   cancelProjectSubmit() {
