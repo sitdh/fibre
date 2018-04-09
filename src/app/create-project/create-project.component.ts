@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
+import { RepositoryService } from '../repository.service';
 
 @Component({
   selector: 'app-create-project',
@@ -13,7 +16,9 @@ export class CreateProjectComponent implements OnInit {
   secondStepControlGroup: FormGroup
 
   constructor(
-    private _formBuilder: FormBuilder
+    _formBuilder: FormBuilder,
+    repoService: RepositoryService,
+    http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -26,4 +31,10 @@ export class CreateProjectComponent implements OnInit {
     })
   }
 
+  cancelProjectSubmit() {
+  }
+
+  createNewProject(projectInfo) {
+    console.log(projectInfo)
+  }
 }

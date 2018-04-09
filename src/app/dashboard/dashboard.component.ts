@@ -12,23 +12,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 
-// Custom Project info
-export interface Project {
-  name: string;
-  describe: string;
-  repository: string;
-  branch: string;
-  commitId: string;
-  fetchTimestamp: Date;
-  createDate: Date;
-}
+import { Project } from '../project.entity';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   private localStorage = window.localStorage
 
@@ -56,6 +47,7 @@ export class DashboardComponent implements OnInit {
     this.projectCollection = db.collection<Project>('Project')
     this.projectCollection.valueChanges().subscribe(ps => {
       this.projects = ps
+      console.log(ps)
     })
   }
 
