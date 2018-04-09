@@ -16,7 +16,7 @@ export class RepositoryService {
     private http: HttpClient
   ) { }
 
-  fetchRepositories(u: string): Observable<any[]> {
+  fetchRepositories(u: string): Observable<any> {
     return this.http.get(`https://api.github.com/users/${u}/repos`);
   }
 

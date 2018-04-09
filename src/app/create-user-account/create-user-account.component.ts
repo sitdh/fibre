@@ -6,12 +6,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 
 import { UserRegistration } from '../user-registration.form';
 import { CredentialService } from '../credential.service';
 import { AppCredential } from '../app-credential';
 import { AuthenGuardService } from '../authen-guard.service';
+
+import { UserMeta } from '../user-meta.entity';
 
 @Component({
   selector: 'app-create-user-account',
@@ -24,18 +27,19 @@ export class CreateUserAccountComponent implements OnInit {
 
   nameControl = new FormControl();
 
-  appId: string
+  appId: string;
 
-  state: string
+  state: string;
 
-  redirectUrl: string
+  redirectUrl: string;
 
-  scope: string
+  scope: string;
 
-  user: Observable<firebase.User>
+  user: Observable<firebase.User>;
 
   constructor(
     private af: AngularFireAuth,
+    private afs: AngularFirestore,
     private http: HttpClient,
     private route: Router,
     private ag: AuthenGuardService
@@ -59,24 +63,19 @@ export class CreateUserAccountComponent implements OnInit {
 		})
 
     firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
-      const userInfo = result.additionalUserInfo
-      const params = new HttpParams()
-        .set('isnewuser', result.additionalUserInfo.isNewUser)
-        .set('email', result.additionalUserInfo.profile.email)
-        .set('username', result.additionalUserInfo.username)
-        .set('provider', 'github')
-
-      this.http.post('/api/account/create', {
-        'newUser': result.additionalUserInfo.isNewUser,
-        'email': result.additionalUserInfo.profile.email,
-        'user': result.additionalUserInfo.username,
-        'provider': 'github',
-      }).subscribe( res => {
-        console.log(res)
-        // this.router.navigate(['dashboard'])
-      }, err => {
-        console.log('Error')
-        console.log(err)
+      this.afs.collection('/usermeta').doc(result.user.email).set({
+        username     : result.additionalUserInfo.username,
+        provider     : result.additionalUserInfo.providerId,
+        avatar_url   : result.additionalUserInfo.profile.avatar_url,
+        blog         : result.additionalUserInfo.profile.blog,
+        bio          : result.additionalUserInfo.profile.bio,
+        repos_url    : result.additionalUserInfo.profile.repos_url,
+        profile_url  : result.additionalUserInfo.profile.html_url,
+        display_name : result.user.displayName,
+      }).then(() => {
+        console.log('Document was created')
+      }).catch(e => {
+        console.error('Error while create document ', e)
       })
 
 		}).catch(error => {
@@ -91,12 +90,6 @@ export class CreateUserAccountComponent implements OnInit {
   }
 
   fetchAppCredential() {
-    // this.credentialService.fetchCredential('github')
-    //   .subscribe(credential => {
-    //     this.appId = credential['app-id']
-    //     this.redirectUrl = credential['callback']
-    //     this.scope = credential['scope']
-    //   })
     
   }
 
