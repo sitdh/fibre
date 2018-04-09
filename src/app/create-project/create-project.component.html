@@ -5,20 +5,24 @@
         <h1>New Project</h1>
         <form #projectInformation="ngForm" class="form-pad">
           <mat-form-field>
-            <input matInput placeholder="Project name" name="name">
+            <input matInput placeholder="Project name" 
+              required
+              [(ngModel)]="projectInformation.name" name="name">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Description" name="describe">
+            <input matInput placeholder="Description" required 
+            name="describe" 
+            [(ngModel)]="projectInformation.describe">
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Repository">
+            <mat-select placeholder="Repository" (change)="selectedRepositoryChanged($event)" name="repository">
               <mat-option *ngFor="let repo of repositories || None" value="{{ repo.id }}">
                 {{ repo.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Branch">
+            <mat-select placeholder="Branch" name="branch">
               <mat-option value="branch">Branch</mat-option>
             </mat-select>
           </mat-form-field>

@@ -8,6 +8,8 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
 
+import { UserMeta } from '../user-meta.entity';
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -15,7 +17,7 @@ import { AuthenGuardService } from '../authen-guard.service';
 })
 export class CreateProjectComponent implements OnInit {
 
-  repositories: any[];
+  repositories;
 
   selectedRepo: {};
 
@@ -37,8 +39,10 @@ export class CreateProjectComponent implements OnInit {
 
   fetchUserRepositories(user) {
     this.afs.collection('/usermeta').doc(user.email).valueChanges().subscribe(meta => {
-      this.http.get(meta.repos_url).subscribe(repo => {
-        this.repositories = repo
+      var userMeta: UserMeta = meta
+      this.http.get(userMeta.repos_url + '?page=2').subscribe(repo => {
+        console.log(repo)
+        this.repositories = repo // .filter(r => r.language == 'Java')
       })
     });
   }
@@ -48,5 +52,11 @@ export class CreateProjectComponent implements OnInit {
 
   createNewProject(projectInfo) {
     console.log(projectInfo)
+  }
+
+  selectedRepositoryChanged(event: any) {
+    console.log(event)
+    let repo = this.repositories.filter(e => e.id == event.value)
+    console.log(repo[0])
   }
 }
