@@ -1,4 +1,5 @@
 $primary-color: #444;
+$box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
 
 .grid-container {
   height: 100vh;
@@ -71,3 +72,11 @@ mat-toolbar a:visited {
   font-weight: bold;
 }
 
+.form-pad {
+  display: flex;
+  flex-basis: 80%;
+  flex-direction: column;
+  padding: 30px;
+  border: 1px solid rgba(0,0,0,0.3);
+  box-shadow: $box-shadow;
+}
