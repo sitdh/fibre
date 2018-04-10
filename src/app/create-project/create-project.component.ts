@@ -17,7 +17,7 @@ import { UserMeta } from '../user-meta.entity';
 })
 export class CreateProjectComponent implements OnInit {
 
-  repositories = [];
+  repositories: any[];
 
   selectedRepo: {};
 
@@ -54,8 +54,11 @@ export class CreateProjectComponent implements OnInit {
             }
           }
         ).subscribe(repo => {
-          if (repo.length > 0) {
-            this.repositories = this.repositories.concat(repo.filter(r => r.language == 'Java'))
+          let repos = repo as []
+          if (repos.length > 0) {
+            this.repositories = this.repositories.concat(
+              repos // .filter(r => r.language == 'Java')
+            )
           }
         })
       })
@@ -73,7 +76,6 @@ export class CreateProjectComponent implements OnInit {
 
   selectedRepositoryChanged(event: any) {
     console.log(event)
-    let repo = this.repositories.filter(e => e.id == event.value)
-    console.log(repo[0])
+    // let repo = this.repositories.filter(e => e.id == event.value)
   }
 }

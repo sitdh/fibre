@@ -63,18 +63,23 @@ export class CreateUserAccountComponent implements OnInit {
 		})
 
     firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
+      console.log(result)
       this.afs.collection('/usermeta').doc(result.user.uid).set({
+        uid           : result.additionalUserInfo.profile.id,
+        avatar_url    : result.additionalUserInfo.profile.avatar_url,
+        bio           : result.additionalUserInfo.profile.bio,
+        blog          : result.additionalUserInfo.profile.blog,
+        profile       : result.additionalUserInfo.profile.url,
+        profile_url   : result.additionalUserInfo.profile.html_url,
+        repos_url     : result.additionalUserInfo.profile.repos_url,
         username      : result.additionalUserInfo.username,
         provider      : result.additionalUserInfo.providerId,
-        avatar_url    : result.additionalUserInfo.profile.avatar_url,
-        blog          : result.additionalUserInfo.profile.blog,
-        bio           : result.additionalUserInfo.profile.bio,
-        repos_url     : result.additionalUserInfo.profile.repos_url,
-        profile_url   : result.additionalUserInfo.profile.html_url,
+        public_repos  : result.additionalUserInfo.public_repos,
         display_name  : result.user.displayName,
         access_token  : result.credential.accessToken,
       }).then(() => {
         console.log('Document was created')
+        // this.setUpUserEnvironment(result)
       }).catch(e => {
         console.error('Error while create document ', e)
       })
@@ -94,4 +99,6 @@ export class CreateUserAccountComponent implements OnInit {
     
   }
 
+  setUpUserEnvironment() {
+  }
 }
