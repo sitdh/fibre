@@ -12,5 +12,9 @@ export const environment = {
     projectId: "",
     storageBucket: "",
     messagingSenderId: ""
+  },
+  github: {
+    appId: "",
+    secret: ""
   }
 };
