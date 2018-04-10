@@ -17,7 +17,7 @@ import { UserMeta } from '../user-meta.entity';
 })
 export class CreateProjectComponent implements OnInit {
 
-  repositories;
+  repositories = [];
 
   selectedRepo: {};
 
@@ -38,13 +38,30 @@ export class CreateProjectComponent implements OnInit {
   }
 
   fetchUserRepositories(user) {
-    this.afs.collection('/usermeta').doc(user.email).valueChanges().subscribe(meta => {
+    let i = 1
+    this.afs.collection('/usermeta').doc(user.uid).valueChanges().subscribe(meta => {
       var userMeta: UserMeta = meta
-      this.http.get(userMeta.repos_url + '?page=2').subscribe(repo => {
-        console.log(repo)
-        this.repositories = repo // .filter(r => r.language == 'Java')
+
+      var dim = ['1', '2', '3']
+
+      dim.forEach(e => {
+        this.http.get(
+          userMeta.repos_url + `?page=${e}`,
+          {
+            headers: {
+              'Accept': 'application/vnd.github.v3+json',
+              'Authorization': `bearer ${userMeta.access_token}`
+            }
+          }
+        ).subscribe(repo => {
+          if (repo.length > 0) {
+            this.repositories = this.repositories.concat(repo.filter(r => r.language == 'Java'))
+          }
+        })
       })
+
     });
+
   }
 
   cancelProjectSubmit() {
