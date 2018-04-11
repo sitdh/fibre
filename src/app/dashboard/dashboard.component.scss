@@ -17,12 +17,38 @@
 }
 
 .hero {
-  background: green;
+  background: #673ab7;
   height: 200px;
 }
 
 .image-hero {
   display: block;
+  margin: 0 auto;
+  text-align: center;
   height: 100px;
-  animation: rotating 2s linear infinite; 
+  max-height: 100px;
+  max-width: 100px;
 }
+
+.rotating {
+  transform: rotate(0deg);
+  animation: rotor 4s infinite;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out; 
+}
+
+@keyframes rotor {
+  0% {
+    transform: rotate(0deg);
+  }
+  33.33% {
+    transform: rotate(120deg);
+  }
+  66.66% {
+    transform: rotate(120deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

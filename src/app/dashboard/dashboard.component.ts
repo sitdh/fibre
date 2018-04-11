@@ -1,23 +1,24 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ProjectInformation } from '../project-information';
-import { ProjectFetcherService } from '../project-fetcher.service';
-import { AuthenGuardService } from '../authen-guard.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { trigger, keyframes, animate, transition, style } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 
+import { ProjectInformation } from '../project-information';
+import { ProjectFetcherService } from '../project-fetcher.service';
+import { AuthenGuardService } from '../authen-guard.service';
 import { Project } from '../project.entity';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: []
 })
 export class DashboardComponent {
 
