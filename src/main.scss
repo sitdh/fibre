@@ -1,4 +1,12 @@
-$primary-color: #444;
+$primary: #283593;
+$primary-light: #5f5fc4;
+$primary-dark: #001064;
+
+$secondary: #e0e0e0;
+$secondary-light: #fff;
+$secondary-dark: #aeaeae;
+
+$primary-color: $primary;
 $box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
 $box-header-color: rgb(74, 20, 140);
 
