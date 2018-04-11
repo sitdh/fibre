@@ -54,12 +54,12 @@ export class CreateProjectComponent implements OnInit {
             }
           }
         ).subscribe(repo => {
-          let repos = repo as []
-          if (repos.length > 0) {
-            this.repositories = this.repositories.concat(
-              repos // .filter(r => r.language == 'Java')
-            )
-          }
+          // let repos = repo as []
+          // if (repos.length > 0) {
+          //   this.repositories = this.repositories.concat(
+          //     repos // .filter(r => r.language == 'Java')
+          //   )
+          // }
         })
       })
 

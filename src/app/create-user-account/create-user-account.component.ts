@@ -13,6 +13,7 @@ import { UserRegistration } from '../user-registration.form';
 import { CredentialService } from '../credential.service';
 import { AppCredential } from '../app-credential';
 import { AuthenGuardService } from '../authen-guard.service';
+import { RepositoryService } from '../repository.service';
 
 import { UserMeta } from '../user-meta.entity';
 
@@ -37,15 +38,18 @@ export class CreateUserAccountComponent implements OnInit {
 
   user: Observable<firebase.User>;
 
+  autoNavigate = true;
+
   constructor(
     private af: AngularFireAuth,
     private afs: AngularFirestore,
     private http: HttpClient,
     private route: Router,
+    private repositoryService: RepositoryService,
     private ag: AuthenGuardService
   ) { 
     ag.currentObservedUser().subscribe(u => {
-      if (null != u) {
+      if (null != u && true == this.autoNavigate) {
         route.navigate(['/dashboard'])
       }
     })
@@ -57,15 +61,15 @@ export class CreateUserAccountComponent implements OnInit {
   loginWithGithub(event: any) {
 		event.preventDefault()
 		let githubAuthProvider = new firebase.auth.GithubAuthProvider()
-		githubAuthProvider.addScope('user:public_repo')
+		githubAuthProvider.addScope('repo,read:user,read:user:email')
 		githubAuthProvider.setCustomParameters({
 			'allow_signup': 'true'
 		})
 
     firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
-      console.log(result)
-      this.afs.collection('/usermeta').doc(result.user.uid).set({
-        uid           : result.additionalUserInfo.profile.id,
+      this.autoNavigate = false
+      let userMetaInformation = {
+       uid           : result.additionalUserInfo.profile.id,
         avatar_url    : result.additionalUserInfo.profile.avatar_url,
         bio           : result.additionalUserInfo.profile.bio,
         blog          : result.additionalUserInfo.profile.blog,
@@ -74,15 +78,29 @@ export class CreateUserAccountComponent implements OnInit {
         repos_url     : result.additionalUserInfo.profile.repos_url,
         username      : result.additionalUserInfo.username,
         provider      : result.additionalUserInfo.providerId,
-        public_repos  : result.additionalUserInfo.public_repos,
+        public_repos  : result.additionalUserInfo.profile.public_repos,
         display_name  : result.user.displayName,
         access_token  : result.credential.accessToken,
-      }).then(() => {
-        console.log('Document was created')
-        // this.setUpUserEnvironment(result)
-      }).catch(e => {
-        console.error('Error while create document ', e)
-      })
+      }
+
+      this.afs.collection('/usermeta').doc(result.user.uid).set(userMetaInformation)
+        .then(() => {
+          this.repositoryService.updateUserRepositories(userMetaInformation)
+            .subscribe(repos => {
+              let filteredRepo = repos.filter(r => r.language == 'Java')
+              console.log(filteredRepo)
+              filteredRepo.forEach( r => {
+                console.log('Log ' + r.id)
+                this.afs.collection('/repositories').doc(result.user.uid)
+                  .collection('/repo').doc(`${r.id}`).set(r)
+                  .then(() => {
+                    this.route.navigate(['/dashboard'])
+                  })
+              })
+            })
+        }).catch(e => {
+          console.error('Error while create document ', e)
+        })
 
 		}).catch(error => {
 			console.log(error)

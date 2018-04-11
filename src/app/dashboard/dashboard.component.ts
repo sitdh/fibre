@@ -47,7 +47,6 @@ export class DashboardComponent {
     this.projectCollection = db.collection<Project>('Project')
     this.projectCollection.valueChanges().subscribe(ps => {
       this.projects = ps
-      console.log(ps)
     })
   }
 
