@@ -25,8 +25,8 @@ export class DashboardComponent {
 
   authState: any;
 
-  projectCollection: AngularFirestoreCollection<Project>;
-  projects: Project[];
+  projectCollection;
+  projects = [];
 
   constructor(
     private location: Location,
@@ -40,7 +40,7 @@ export class DashboardComponent {
       if (null == u) 
         route.navigate(['/account/new'])
 
-      this.projectCollection = db.collection<Project>('/projects').doc(u.uid)
+      this.projectCollection = db.collection('/projects').doc(u.uid)
       this.projectCollection.valueChanges().subscribe(ps => {
         this.projects = ps == null ? [] : ps ;
       })
