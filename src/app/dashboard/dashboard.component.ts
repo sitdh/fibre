@@ -21,11 +21,9 @@ import { Project } from '../project.entity';
 })
 export class DashboardComponent {
 
-  private localStorage = window.localStorage
+  user: Observable<firebase.User>;
 
-  user: Observable<firebase.User>
-
-  authState: any
+  authState: any;
 
   projectCollection: AngularFirestoreCollection<Project>;
   projects: Project[];
@@ -39,15 +37,15 @@ export class DashboardComponent {
     ag: AuthenGuardService
   ) {
     ag.currentObservedUser().subscribe(u => {
-      if (null == u) {
+      if (null == u) 
         route.navigate(['/account/new'])
-      }
+
+      this.projectCollection = db.collection<Project>('/projects').doc(u.uid)
+      this.projectCollection.valueChanges().subscribe(ps => {
+        this.projects = ps == null ? [] : ps ;
+      })
     })
 
-    this.projectCollection = db.collection<Project>('Project')
-    this.projectCollection.valueChanges().subscribe(ps => {
-      this.projects = ps
-    })
   }
 
   featureTour() {

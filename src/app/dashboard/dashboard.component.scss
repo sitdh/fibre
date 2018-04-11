@@ -8,3 +8,23 @@
 	width: 160px;
 	margin: 0 5px auto;
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+.rotating {
+
+.hero {
+  background: green;
+  height: 200px;
+}
+
+.image-hero {
+  display: block;
+  height: 100px;
+  animation: rotating 2s linear infinite; 
+}

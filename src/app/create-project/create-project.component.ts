@@ -39,32 +39,10 @@ export class CreateProjectComponent implements OnInit {
 
   fetchUserRepositories(user) {
     let i = 1
-    this.afs.collection('/usermeta').doc(user.uid).valueChanges().subscribe(meta => {
-      var userMeta: UserMeta = meta
-
-      var dim = ['1', '2', '3']
-
-      dim.forEach(e => {
-        this.http.get(
-          userMeta.repos_url + `?page=${e}`,
-          {
-            headers: {
-              'Accept': 'application/vnd.github.v3+json',
-              'Authorization': `bearer ${userMeta.access_token}`
-            }
-          }
-        ).subscribe(repo => {
-          // let repos = repo as []
-          // if (repos.length > 0) {
-          //   this.repositories = this.repositories.concat(
-          //     repos // .filter(r => r.language == 'Java')
-          //   )
-          // }
-        })
+    this.afs.collection('/repositories').doc(user.uid).collection('/repo')
+      .valueChanges().subscribe(repos => {
+        this.repositories = repos
       })
-
-    });
-
   }
 
   cancelProjectSubmit() {
