@@ -32,6 +32,7 @@ import { CredentialService } from './credential.service';
 
 import { environment } from './../environments/environment';
 import { RepositoryService } from './repository.service';
+import { ProjectManagementComponent } from './project-management/project-management.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RepositoryService } from './repository.service';
     PageMetaComponent,
     CreateUserAccountComponent,
     AuthenticationComponent,
+    ProjectManagementComponent,
   ],
   imports: [
     BrowserModule,
