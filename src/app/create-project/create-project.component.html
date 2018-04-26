@@ -15,20 +15,26 @@
             [(ngModel)]="projectInformation.describe">
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Repository" (change)="selectedRepositoryChanged($event)" name="repository">
+            <mat-select placeholder="Repository" 
+              (change)="selectedRepositoryChanged($event)" 
+              [(ngModel)]="projectInformation.repository"
+              name="repository">
               <mat-option *ngFor="let repo of repositories || None" value="{{ repo.id }}">
                 {{ repo.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Master" name="branch" disabled>
+            <mat-select placeholder="Master" 
+              name="branch" 
+              [(ngModel)]="projectInformation.branch"
+              disabled>
               <mat-option value="master" selected="selected">Master</mat-option>
             </mat-select>
           </mat-form-field>
           <div class="form-group">
             <button mat-button color="secondary" mat-raised-button (click)="cancelProjectSubmit($event)">Cancel</button>
-            <button mat-button color="primary" mat-raised-button (click)="createNewProject(projectInformation)">Signup</button>
+            <button mat-button color="primary" mat-raised-button (click)="createNewProject(projectInformation)">Create</button>
           </div>
         </form>
       </div>
