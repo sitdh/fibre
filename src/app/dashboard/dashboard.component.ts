@@ -41,7 +41,7 @@ export class DashboardComponent {
       if (null == u) 
         route.navigate(['/account/new'])
 
-      this.projectCollection = db.collection('/projects').doc(u.uid)
+      this.projectCollection = db.collection('/projects').doc(u.uid).collection('/repo')
       this.projectCollection.valueChanges().subscribe(ps => {
         this.projects = ps == null ? [] : ps ;
       })
@@ -55,6 +55,10 @@ export class DashboardComponent {
 
   newProject() {
     this.route.navigate(['/project/new'])
+  }
+
+  openProject(p) {
+    this.route.navigate([p])
   }
 
 }

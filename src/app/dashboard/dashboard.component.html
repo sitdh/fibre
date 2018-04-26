@@ -35,10 +35,10 @@
           </mat-card-header>
 
 					<mat-card-actions>
-						<a href="/p/sitdh/q-x">
+						<a href="#">
 							<button mat-button>Setting</button>
 						</a>
-						<a href="{{ p.path }}">
+            <a (click)="openProject(p.project_location)">
 							<button mat-button>View</button>
 						</a>
 					</mat-card-actions>
