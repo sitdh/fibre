@@ -19,7 +19,7 @@
               (change)="selectedRepositoryChanged($event)" 
               [(ngModel)]="projectInformation.repository"
               name="repository">
-              <mat-option *ngFor="let repo of repositories || None" value="{{ repo.id }}">
+              <mat-option *ngFor="let repo of repositories | async" [value]="repo">
                 {{ repo.name }}
               </mat-option>
             </mat-select>

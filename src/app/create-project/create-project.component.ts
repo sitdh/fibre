@@ -6,10 +6,14 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
+import { Observable } from 'rxjs/Rx';
+
 import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
 
 import { UserMeta } from '../user-meta.entity';
+import { Repository } from '../repository.entity';
+import { Project } from '../project.entity';
 
 @Component({
   selector: 'app-create-project',
@@ -18,11 +22,13 @@ import { UserMeta } from '../user-meta.entity';
 })
 export class CreateProjectComponent implements OnInit {
 
-  repositories: any[];
-
   selectedRepo: {};
 
   user: any;
+
+  repositoryCollection: any
+  repositories: Observable<Repository[]> 
+  selectedRepository: Repository
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -32,8 +38,9 @@ export class CreateProjectComponent implements OnInit {
     private repoService: RepositoryService,
     private http: HttpClient,
     private ag: AuthenGuardService,
-  ) { 
+  ) {
     this.ag.currentObservedUser().subscribe(u => {
+      this.user = u;
       this.fetchUserRepositories(u)
     })
   }
@@ -42,45 +49,39 @@ export class CreateProjectComponent implements OnInit {
   }
 
   fetchUserRepositories(user) {
-    let i = 1
-    this.afs.collection('/repositories').doc(user.uid).collection('/repo')
-      .valueChanges().subscribe(repos => {
-        this.repositories = repos
-      })
-
-    this.user = user;
+    this.repositoryCollection = this.afs.collection('/repos')
+    this.repositories = this.repositoryCollection.valueChanges()
   }
 
   cancelProjectSubmit() {
   }
 
   createNewProject(projectInfo) {
-    var repo = this.selectedRepo[0]
     var projectAlias = projectInfo.name.toLowerCase().replace(' ', '-')
-    var projectName = (this.user.uid + " " + projectAlias)
-      .toLowerCase()
-      .replace(' ', '-')
 
-    var data = {
-      name: projectInfo.name,
-      language: repo.language,
-      description: projectInfo.describe,
-      repo: repo.git_url,
-      htmlurl: repo.html_url,
+    var data: Project = {
+      project_name: String(projectInfo.name),
+      name: String(projectInfo.name),
+      slag: projectAlias,
+      git_name: projectInfo.repository.full_name,
+      describe: projectInfo.describe,
+      repo: projectInfo.repository.html_url,
+      repo_ssh: this.selectedRepository.git_url,
+      repo_doc: '/repos/' + String(projectInfo.repository.id),
+      language: this.selectedRepository.language,
       project_location: '/p/' + projectAlias,
+      owner: this.user.uid,
+      branch: 'master',
     }
 
     this.afs.collection('/projects')
-      .doc(this.user.uid)
-      .collection('/repo')
-      .doc(projectName)
-      .set(data)
+      .add(data)
       .then(() => {
         this.route.navigate([data.project_location])
     })
   }
 
   selectedRepositoryChanged(event: any) {
-    this.selectedRepo = this.repositories.filter(e => e.id == event.value)
+    this.selectedRepository = event.value
   }
 }
