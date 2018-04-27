@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.ag.currentObservedUser().subscribe(u => {
       if (null == u) 
-        route.navigate(['/account/new'])
+        this.route.navigate(['/account/new'])
 
       this.projectCollection = this.db.collection('projects', ref => {
         return ref.where('owner', '==', u.uid)
