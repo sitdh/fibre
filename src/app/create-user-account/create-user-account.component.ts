@@ -16,6 +16,7 @@ import { AuthenGuardService } from '../authen-guard.service';
 import { RepositoryService } from '../repository.service';
 
 import { UserMeta } from '../user-meta.entity';
+import { Repository } from '../repository.entity';
 
 @Component({
   selector: 'app-create-user-account',
@@ -68,19 +69,20 @@ export class CreateUserAccountComponent implements OnInit {
 
     firebase.auth().signInWithPopup(githubAuthProvider).then(result => {
       this.autoNavigate = false
-      let userMetaInformation = {
-       uid           : result.additionalUserInfo.profile.id,
+      let userMetaInformation: UserMeta = {
+        access_token  : result.credential.accessToken,
         avatar_url    : result.additionalUserInfo.profile.avatar_url,
         bio           : result.additionalUserInfo.profile.bio,
         blog          : result.additionalUserInfo.profile.blog,
+        display_name  : result.user.displayName,
         profile       : result.additionalUserInfo.profile.url,
         profile_url   : result.additionalUserInfo.profile.html_url,
         repos_url     : result.additionalUserInfo.profile.repos_url,
-        username      : result.additionalUserInfo.username,
         provider      : result.additionalUserInfo.providerId,
         public_repos  : result.additionalUserInfo.profile.public_repos,
-        display_name  : result.user.displayName,
-        access_token  : result.credential.accessToken,
+        uid           : result.additionalUserInfo.profile.id,
+        username      : result.additionalUserInfo.username,
+        owner         : result.user.uid,
       }
 
       this.afs.collection('/usermeta').doc(result.user.uid).set(userMetaInformation)
@@ -88,11 +90,11 @@ export class CreateUserAccountComponent implements OnInit {
           this.repositoryService.updateUserRepositories(userMetaInformation)
             .subscribe(repos => {
               let filteredRepo = repos.filter(r => r.language == 'Java')
-              console.log(filteredRepo)
               filteredRepo.forEach( r => {
-                console.log('Log ' + r.id)
-                this.afs.collection('/repositories').doc(result.user.uid)
-                  .collection('/repo').doc(`${r.id}`).set(r)
+                var repo: Repository = r
+                repo.repo_owner = result.user.uid
+                this.afs.collection('/repos')
+                  .doc(String(repo.id)).set(repo)
                   .then(() => {
                     this.route.navigate(['/dashboard'])
                   })
@@ -119,4 +121,5 @@ export class CreateUserAccountComponent implements OnInit {
 
   setUpUserEnvironment() {
   }
+
 }

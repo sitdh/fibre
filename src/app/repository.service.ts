@@ -21,7 +21,6 @@ export class RepositoryService {
   }
 
   updateUserRepositories(userMeta: any): Observable<any> {
-
     return this.http.get(
       userMeta.repos_url + "?per_page=" + userMeta.public_repos,
       {
