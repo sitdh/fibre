@@ -20,33 +20,36 @@ import { Project } from '../project.entity';
   styleUrls: ['./dashboard.component.scss'],
   animations: []
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   user: Observable<firebase.User>;
 
   authState: any;
 
-  projectCollection;
-  projects = [];
+  projects: Observable<Project[]>;
+  projectCollection: AngularFirestoreCollection<Project>;
+
+  currentUser: firebase.UserInfo;
 
   constructor(
     private location: Location,
     private af: AngularFireAuth,
     private route: Router,
     private projectService: ProjectFetcherService,
-    db: AngularFirestore,
-    ag: AuthenGuardService
-  ) {
-    ag.currentObservedUser().subscribe(u => {
+    private db: AngularFirestore,
+    private ag: AuthenGuardService
+  ) { }
+
+  ngOnInit() {
+    this.ag.currentObservedUser().subscribe(u => {
       if (null == u) 
         route.navigate(['/account/new'])
 
-      this.projectCollection = db.collection('/projects').doc(u.uid).collection('/repo')
-      this.projectCollection.valueChanges().subscribe(ps => {
-        this.projects = ps == null ? [] : ps ;
+      this.projectCollection = this.db.collection('projects', ref => {
+        return ref.where('owner', '==', u.uid)
       })
+      this.projects = this.projectCollection.valueChanges()
     })
-
   }
 
   featureTour() {
