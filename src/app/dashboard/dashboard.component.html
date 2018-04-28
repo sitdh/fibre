@@ -17,10 +17,10 @@
 						<mat-card-subtitle>&nbsp;</mat-card-subtitle>
           </mat-card-header>
 					<mat-card-actions>
-						<a routeLink="/features">
+						<a [routerLink]="['/features']">
 							<button (click)="featureTour()" mat-button>Tour</button>
 						</a>
-						<a routeLink="/project/new">
+						<a [routerLink]="['/project', 'new']">
 							<button (click)="newProject()" mat-button>Create</button>
 						</a>
 					</mat-card-actions>
@@ -40,7 +40,7 @@
 						<a href="#">
 							<button mat-button>Setting</button>
 						</a>
-            <a (click)="openProject('/p/' + p.slug)">
+            <a [routerLink]="['/p', p.slug]">
 							<button mat-button>View</button>
 						</a>
 					</mat-card-actions>

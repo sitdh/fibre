@@ -1,26 +1,15 @@
-<section id="hero" class="project-header hero">
-  <h1 class="hero-title">{{ project.project_name || "Project name" }}</h1>
-  <small>{{ project.describe || "N/A" }}</small>
-</section>
-
-<section id="grid-cont" class="content">
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a cursus lectus. Etiam commodo quam id dapibus tincidunt. Nulla sed massa nunc. Curabitur interdum felis eget ultrices hendrerit. Suspendisse interdum urna luctus augue dapibus, id dignissim sapien pharetra. Curabitur imperdiet odio lorem, et tincidunt nisi suscipit vitae. Aliquam erat volutpat. Etiam a turpis sed justo aliquam vulputate sed eget neque. Suspendisse rutrum elit sed nibh tempus auctor ac nec massa.
-  </p>
-
-  <p>
-  Nulla tempus velit at elit sodales viverra. Aliquam nunc lorem, malesuada ac pretium a, aliquam suscipit purus. Sed congue hendrerit est sit amet dignissim. Pellentesque accumsan ultrices nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce accumsan consectetur elementum. Nunc sed orci diam. Maecenas vitae leo ac nisl feugiat porta. Maecenas semper vehicula pulvinar. Suspendisse sit amet dolor nec velit commodo vulputate. Sed vehicula sollicitudin massa, id sagittis ante tempus sed. Nulla malesuada, nulla eu viverra tincidunt, dui elit scelerisque tortor, et lobortis ligula mauris in dui. Aliquam quis elit a nisl sodales aliquet. Nullam porta purus odio, eget porttitor arcu suscipit ut. Cras sit amet libero ac dui posuere auctor. Vestibulum pretium arcu nulla, sit amet mattis velit rhoncus id.
-  </p>
-
-<p>
-Nam dignissim lacus ac lacus dignissim efficitur at ac velit. Vestibulum tempor erat non lorem consequat dictum. Phasellus aliquet congue quam. Sed lobortis maximus nisl eget efficitur. Phasellus vel vestibulum est, ac dapibus turpis. Aliquam venenatis neque finibus, sollicitudin ipsum a, feugiat libero. Etiam ac mi magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec blandit feugiat quam, quis egestas quam rutrum vel. Ut sed ante vitae diam porttitor venenatis.
-</p>
-
-<p>
-Proin dolor nunc, luctus at congue cursus, auctor eu turpis. Ut rutrum risus iaculis, luctus augue sed, volutpat magna. Cras vestibulum purus at mauris facilisis commodo. Mauris nisl augue, pulvinar rutrum cursus lacinia, aliquam vitae arcu. Nulla eget laoreet dolor. Vestibulum ac euismod velit. Quisque sollicitudin convallis neque, ut interdum nunc egestas imperdiet. Proin porttitor pellentesque neque vel imperdiet. Etiam gravida gravida tristique. Vivamus tincidunt tincidunt dui, sit amet tincidunt nunc lacinia eget.
-</p>
-
-<p>
-Aliquam erat volutpat. Nulla facilisi. Fusce sit amet semper massa. Maecenas pulvinar erat sit amet metus consequat fermentum. Nam sed congue dolor. Suspendisse ultricies diam vel sapien feugiat posuere nec in urna. Nunc non accumsan sapien. Phasellus mi ligula, tincidunt eget porta sit amet, consectetur ac nulla. Maecenas id sodales ante, ac scelerisque neque. Phasellus ac urna ex. Phasellus tristique scelerisque lacinia.
-</p>
-</section>
+<mat-sidenav-container class="project-container">
+  <mat-sidenav class="project-nav" #sidenav mode="side" opened>
+    <ul>
+      <li>
+        <h2>{{ project?.project_name }}</h2>
+      </li>
+      <li *ngFor="let menu of projectCommand">
+        <a routerLink="{{ menu.route }}">{{ menu.title }}</a>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,16 +1,16 @@
 export interface Project {
-  slug: string;
+  branch?: string;
   name: string;
+  describe: any;
   git_name: string;
-  describe: string;
-  repo: string;
-  repo_ssh: string;
-  repo_doc: any;
   language: string;
+  owner: string;
   project_location: string;
   project_name: string;
-  owner: string;
-  branch?: string;
+  repo: string;
+  repo_doc: any;
+  repo_ssh: string;
+  slug: string;
   commitId?: string;
   fetchTimestamp?: Date;
   createDate?: Date;

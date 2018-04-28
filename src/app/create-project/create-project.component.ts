@@ -60,8 +60,8 @@ export class CreateProjectComponent implements OnInit {
     var projectAlias = projectInfo.name.toLowerCase().replace(' ', '-')
 
     var data: Project = {
-      project_name: String(projectInfo.name),
-      name: String(projectInfo.name),
+      project_name: projectInfo.name,
+      name: projectInfo.name,
       slug: projectAlias,
       git_name: projectInfo.repository.full_name,
       describe: projectInfo.describe,

@@ -33,6 +33,8 @@ import { CredentialService } from './credential.service';
 import { environment } from './../environments/environment';
 import { RepositoryService } from './repository.service';
 import { ProjectManagementComponent } from './project-management/project-management.component';
+import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
+import { ProjectSettingComponent } from './project-setting/project-setting.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { ProjectManagementComponent } from './project-management/project-managem
     CreateUserAccountComponent,
     AuthenticationComponent,
     ProjectManagementComponent,
+    ProjectDashboardComponent,
+    ProjectSettingComponent,
   ],
   imports: [
     BrowserModule,

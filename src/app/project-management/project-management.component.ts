@@ -7,9 +7,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 
-import { AuthenGuardService } from '../authen-guard.service';
 import { Project } from '../project.entity';
-import { UserMeta } from '../user-meta.entity';
+
+interface MenuAction {
+  title: string;
+  route: string;
+}
 
 @Component({
   selector: 'app-project-management',
@@ -18,34 +21,32 @@ import { UserMeta } from '../user-meta.entity';
 })
 export class ProjectManagementComponent implements OnInit {
 
-  project: Project
+  project
 
   projectTitle: string
 
-  currentUser: firebase.UserInfo 
+  projectCommand
 
   constructor(
     private route: ActivatedRoute,
     private af: AngularFireAuth,
-    private afs: AngularFirestore,
-    private ag: AuthenGuardService
+    private afs: AngularFirestore
   ) { 
-    this.ag.currentObservedUser().subscribe(u => {
-      this.currentUser = u
-      this.fetchingProjectInformation(u)
-    })
+    this.projectCommand = [
+      { title: 'Dashboard', route: ['./dashboard'] },
+      { title: 'Setting', route: ['./settings'] },
+    ]
   }
 
   ngOnInit() {
-  }
 
-  fetchingProjectInformation(user) {
-    var q = this.afs.collection('projects', ref => {
-      return ref.where('slug', '==', 'hello-world').where('owner', '==', user.uid)
-    })
-    console.log(q)
-    q.valueChanges().subscribe(p => {
-      this.project = p.pop()
+    this.route.params.subscribe(p => {
+      this.projectTitle = p.pid;
+      this.afs.collection('projects', ref => {
+        return ref.where('slug', '==', 'hello-world')
+      }).valueChanges().subscribe(p => {
+        this.project = p.pop()
+      })
     })
   }
 
