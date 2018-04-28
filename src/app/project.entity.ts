@@ -1,5 +1,5 @@
 export interface Project {
-  slag: string;
+  slug: string;
   name: string;
   git_name: string;
   describe: string;
