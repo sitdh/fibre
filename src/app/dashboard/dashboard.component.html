@@ -30,7 +30,9 @@
         <mat-card class="project-card" *ngFor="let p of projects | async">
           <mat-card-header>
 						<img mat-card-avatar src="http://via.placeholder.com/350x350" alt="">
-						<mat-card-title>{{ p.name }}</mat-card-title>
+						<mat-card-title>
+              <strong>{{ p.project_name }}</strong>
+						</mat-card-title>
 						<mat-card-subtitle>Language: {{ p.language }}</mat-card-subtitle>
           </mat-card-header>
 
@@ -38,7 +40,7 @@
 						<a href="#">
 							<button mat-button>Setting</button>
 						</a>
-            <a (click)="openProject(p.project_location)">
+            <a (click)="openProject('/p/' + p.slug)">
 							<button mat-button>View</button>
 						</a>
 					</mat-card-actions>
