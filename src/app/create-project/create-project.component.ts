@@ -62,7 +62,7 @@ export class CreateProjectComponent implements OnInit {
     var data: Project = {
       project_name: String(projectInfo.name),
       name: String(projectInfo.name),
-      slag: projectAlias,
+      slug: projectAlias,
       git_name: projectInfo.repository.full_name,
       describe: projectInfo.describe,
       repo: projectInfo.repository.html_url,
