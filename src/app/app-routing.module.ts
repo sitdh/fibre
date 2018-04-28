@@ -8,13 +8,23 @@ import { QuiteComponent } from './quite/quite.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CreateUserAccountComponent } from './create-user-account/create-user-account.component';
 import { ProjectManagementComponent } from './project-management/project-management.component';
+import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
+import { ProjectSettingComponent } from './project-setting/project-setting.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
-  { path: 'p/:pid', component: ProjectManagementComponent },
+  { 
+    path: 'p/:pid', 
+    component: ProjectManagementComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: ProjectDashboardComponent },
+      { path: 'settings', component: ProjectSettingComponent },
+    ]
+  },
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
