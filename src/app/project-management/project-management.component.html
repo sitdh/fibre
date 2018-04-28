@@ -4,12 +4,26 @@
       <li>
         <h2>{{ project?.project_name }}</h2>
       </li>
-      <li *ngFor="let menu of projectCommand">
-        <a routerLink="{{ menu.route }}">{{ menu.title }}</a>
+      <li>
+        <a class="nav-link" 
+           id="projnav"
+           (click)="projectMenuLinkNav($event)"
+           [routerLink]="['./dashboard']">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" 
+           id="projsettings"
+           (click)="projectMenuLinkNav($event)"
+          [routerLink]="['./settings']">
+          Settings
+        </a>
       </li>
     </ul>
   </mat-sidenav>
   <mat-sidenav-content>
+    {{ dashboardMessage }}
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectDashboardComponent implements OnInit {
 
+  message: string
+
   constructor() { }
 
   ngOnInit() {
+    this.message = 'appeared'
   }
 
 }

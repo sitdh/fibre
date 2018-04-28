@@ -42,6 +42,8 @@ $border-width: 4px;
 .project-nav a {
   padding-left: $border-thinkness;
   border-left: $border-width solid $primary;
+  border-top: 0.5 solid #ccc;
+  border-bottom: 0.5 solid #ccc;
 }
 
 .project-nav a,
@@ -57,5 +59,6 @@ $border-width: 4px;
 
 .project-nav a:hover,
 .project-nav a.activate {
+  background-color: #354199;
   border-left: $border-width solid white;
 }
