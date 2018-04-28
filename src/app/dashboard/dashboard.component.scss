@@ -13,25 +13,9 @@
 }
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  justify-content: center;
-}
-
-.hero {
   background: $primary;
-  height: 200px;
 }
 
-.image-hero {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  height: 100px;
-  max-height: 100px;
-  max-width: 100px;
-}
 
 .rotating {
   transform: rotate(0deg);

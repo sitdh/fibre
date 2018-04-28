@@ -102,3 +102,27 @@ mat-toolbar a:visited {
   background-color: $box-header-color;
   color: white;
 }
+
+.hero {
+  color: white;
+  background: $primary;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  justify-content: center;
+  padding: auto 20px;
+}
+
+.image-hero {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.content {
+  padding: 80px;
+}
