@@ -16,5 +16,10 @@ export const environment = {
   github: {
     appId: "",
     secret: ""
+  },
+  jenkins: {
+    server: '',
+    user: '',
+    password: ''
   }
 };
