@@ -15,7 +15,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  message: string
+	message: string;
 
   displayedColumns = ['buildNumb', 'startDate']
   buildDataSource = new MatTableDataSource<BuildInfo>(BUILD_INFO)
@@ -24,13 +24,14 @@ export class ProjectDashboardComponent implements OnInit {
     private http: HttpClient,
     private jenkins: JenkinsBuildService
   ) { 
-		let headers = new Headers()
-		headers.append('Authorization', btoa('username:password'))
-		console.log(headers)
-  }
+		this.message = 'dashboard'
+		// this.jenkins.requestForServerConfig()
+		// 		.subscribe(r => {
+		// 			console.log('eeee')
+		// 		})
+	}
 
   ngOnInit() {
-    this.message = 'appeared'
   }
 
   ngAfterViewInit() {

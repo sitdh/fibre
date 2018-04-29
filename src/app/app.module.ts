@@ -56,13 +56,13 @@ import { JenkinsBuildService } from './jenkins-build.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,
     MatComponents,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
 		AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
   ],
   providers: [

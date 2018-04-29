@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectSettingComponent implements OnInit {
 
+  message: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.message = 'setting'
   }
 
 }
