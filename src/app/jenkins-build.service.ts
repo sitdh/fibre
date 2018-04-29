@@ -27,10 +27,8 @@ export class JenkinsBuildService {
 		
 		return this.http.get(
 			url, 
-			{
-				headers: headersOptions, 
-				responseType: 'application/xml'
-			}
+			// { headers: headersOptions, responseType: 'xml' }
+			{ headers: headersOptions }
 		)
   }
 
