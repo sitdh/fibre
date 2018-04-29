@@ -36,6 +36,7 @@ import { ProjectManagementComponent } from './project-management/project-managem
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
 import { JenkinsBuildService } from './jenkins-build.service';
+import { JenkinsSettingsDialogComponent } from './jenkins-settings-dialog/jenkins-settings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { JenkinsBuildService } from './jenkins-build.service';
     ProjectManagementComponent,
     ProjectDashboardComponent,
     ProjectSettingComponent,
+    JenkinsSettingsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,12 @@ import { JenkinsBuildService } from './jenkins-build.service';
     AppRoutingModule,
 		AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
   ],
+	exports: [
+    JenkinsSettingsDialogComponent,
+	],
+	entryComponents: [
+    JenkinsSettingsDialogComponent,
+	],
   providers: [
     MenuItemService,
     ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService, RepositoryService, JenkinsBuildService,
