@@ -1,0 +1,48 @@
+@import './src/styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.dashboard-container {
+	margin-bottom: 10px;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 -20px;
+}
+
+.project-process-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+  margin: 20px;
+}
+
+.service-image {
+  text-align: center;
+}
+
+.mat-card-image {
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  max-height: 150px;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

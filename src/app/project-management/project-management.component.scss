@@ -59,6 +59,12 @@ $border-width: 4px;
 
 .project-nav a:hover,
 .project-nav a.activate {
-  background-color: #354199;
+  background-color: $primary-light;
   border-left: $border-width solid white;
+}
+
+.grid-content {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
 }

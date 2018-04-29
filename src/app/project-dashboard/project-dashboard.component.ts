@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+
+import { JenkinsBuildService } from '../jenkins-build.service';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Headers } from '@angular/http';
 
 @Component({
   selector: 'app-project-dashboard',
@@ -7,12 +13,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectDashboardComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   message: string
 
-  constructor() { }
+  displayedColumns = ['buildNumb', 'startDate']
+  buildDataSource = new MatTableDataSource<BuildInfo>(BUILD_INFO)
+
+  constructor(
+    private http: HttpClient,
+    private jenkins: JenkinsBuildService
+  ) { 
+		let headers = new Headers()
+		headers.append('Authorization', btoa('username:password'))
+		console.log(headers)
+  }
 
   ngOnInit() {
     this.message = 'appeared'
   }
 
+  ngAfterViewInit() {
+    this.buildDataSource.paginator = this.paginator;
+  }
+
 }
+
+export interface BuildInfo {
+  buildNumb: number;
+  buildStatus: string;
+  startDate: Date;
+}
+
+const BUILD_INFO: BuildInfo[] = [
+  { buildNumb: 1, buildStatus: 'fail', startDate: new Date() },
+  { buildNumb: 2, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 3, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 4, buildStatus: 'fail', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+]

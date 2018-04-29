@@ -35,6 +35,7 @@ import { RepositoryService } from './repository.service';
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
+import { JenkinsBuildService } from './jenkins-build.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { ProjectSettingComponent } from './project-setting/project-setting.compo
   ],
   providers: [
     MenuItemService,
-    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService, RepositoryService,
+    ProjectFetcherService, UserInformationService, AuthenGuardService, AppConfigService, CredentialService, RepositoryService, JenkinsBuildService,
 	],
   bootstrap: [AppComponent]
 })

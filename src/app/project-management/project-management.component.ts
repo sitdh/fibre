@@ -34,7 +34,6 @@ export class ProjectManagementComponent {
     private af: AngularFireAuth,
     private afs: AngularFirestore
   ) { 
-    console.log(this.route.component)
     this.route.params.subscribe(p => {
       this.projectTitle = p.pid;
       this.afs.collection('projects', ref => {
@@ -46,7 +45,11 @@ export class ProjectManagementComponent {
   }
 
   projectMenuLinkNav(event: any) {
-    console.log(event)
   }
 
+  syncProjectInformation(event: any) {
+  }
+
+  rebuildProject(event: any) {
+  }
 }
