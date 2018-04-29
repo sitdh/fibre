@@ -1,12 +1,11 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
+import { JenkinsSettingsDialogComponent } from '../jenkins-settings-dialog/jenkins-settings-dialog.component';
 import { JenkinsBuildService } from '../jenkins-build.service';
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Headers } from '@angular/http';
 
 @Component({
   selector: 'app-project-dashboard',
@@ -41,8 +40,8 @@ export class ProjectDashboardComponent implements OnInit {
   }
 
 	openJenkinsSettingDialog(): void {
-		let dialogRef = this.settingDialog.open(ProjectDashboardJenkinsSettingDialog, {
-			width: '250px',
+		let dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
+			width: '550px',
 			data: { name: this.name, animal: this.animal }
 		})
 
@@ -81,22 +80,3 @@ const BUILD_INFO: BuildInfo[] = [
   { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
   { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
 ]
-
-
-@Component({
-  selector: 'project-dashboard-jenkins-setting-dialog',
-  templateUrl: './project-dashboard-jenkins-setting.dialog.html',
-  styleUrls: ['./project-dashboard-jenkins-setting.dialog.scss'],
-	entryComponents: [ProjectDashboardJenkinsSettingDialog]
-})
-export class ProjectDashboardJenkinsSettingDialog {
-
-	constructor(
-		public dialogRef: MatDialogRef<ProjectDashboardJenkinsSettingDialog>,
-		@Inject(MAT_DIALOG_DATA) public data: any
-	) { }
-
-	onNoClick(): void {
-		this.dialogRef.close()
-	}
-}
