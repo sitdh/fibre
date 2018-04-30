@@ -16,15 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
-  { 
-    path: 'p/:pid', 
-    component: ProjectManagementComponent,
-    children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: ProjectDashboardComponent },
-      { path: 'settings', component: ProjectSettingComponent },
-    ]
-  },
+  { path: 'p/:pid/:section', component: ProjectManagementComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
