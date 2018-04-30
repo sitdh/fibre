@@ -8,7 +8,7 @@
         <a class="nav-link" 
            id="projnav"
            (click)="projectMenuLinkNav($event)"
-           [routerLink]="['./dashboard']">
+           [routerLink]="['../dashboard']">
           Dashboard
         </a>
       </li>
@@ -16,7 +16,7 @@
         <a class="nav-link" 
            id="projsettings"
            (click)="projectMenuLinkNav($event)"
-          [routerLink]="['./settings']">
+          [routerLink]="['../settings']">
           Settings
         </a>
       </li>
@@ -24,7 +24,15 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="grid-content">
-      <router-outlet></router-outlet>
+      <app-project-dashboard 
+         [project]="project"
+         (jenkinsconfig)="jenkinsConfigUpdate($event)"
+        *ngIf="isCurrentComponent('dashboard')">
+      </app-project-dashboard>
+      <app-project-setting 
+         [project]="project"
+        *ngIf="isCurrentComponent('settings')">
+      </app-project-setting>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

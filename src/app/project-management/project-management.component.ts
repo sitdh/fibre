@@ -1,4 +1,6 @@
-import { AfterViewInit, OnInit, Component, ViewChild, forwardRef } from '@angular/core';
+import { AfterViewInit, OnInit, Component, 
+  ViewChildren, forwardRef, QueryList
+} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -30,6 +32,10 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
   projectTitle: string;
 	message: string;
 
+  currentSection: string;
+
+  @ViewChildren(ProjectDashboardComponent) dashboardComponent: QueryList<ProjectDashboardComponent>;
+
   constructor(
     private route: ActivatedRoute,
     private af: AngularFireAuth,
@@ -37,18 +43,19 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 		private dialog: MatDialog 
   ) { 
     this.route.params.subscribe(p => {
-      this.projectTitle = p.pid;
+      this.projectTitle = p.pid
+      this.currentSection = p.section
+
       this.afs.collection('projects', ref => {
-        return ref.where('slug', '==', 'hello-world')
+        return ref.where('slug', '==', p.pid)
       }).valueChanges().subscribe(p => {
         this.project = p.pop()
       })
     })
+
   }
 
-	ngOnInit() { 
-		this.setupLink()
-	}
+	ngOnInit() { }
 
 	ngAfterViewInit() {
 		this.setupLink()
@@ -78,4 +85,11 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 		angular.element(element).addClass('activate')
 	}
 
+  public isCurrentComponent(tag: string): boolean {
+    return this.currentSection == tag;
+  }
+
+  jenkinsConfiguUpdate(event: any): void {
+    console.log(event)
+  }
 }

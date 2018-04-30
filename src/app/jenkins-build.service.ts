@@ -1,33 +1,51 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
 
 import { environment as env } from './../environments/environment';
+import { Project } from './project.entity';
+import { JenkinsConfiguration } from './jenkins-configuration.entity';
+import { AuthenGuardService } from './authen-guard.service';
 
 @Injectable()
 export class JenkinsBuildService {
 
 	jenkinsServer: string;
-	username: string;
+	userInfo: firebase.UserInfo;
 	password: string;
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private ag: AuthenGuardService,
+    private db: AngularFirestore
+  ) { 
+    this.ag.currentObservedUser().subscribe(u => {
+      if (null != u) this.userInfo = u;
+    })
+  }
 
-  requestForServerConfig(): Observable<any> {
-		let url = `${env.jenkins.server}/api/xml`
+  isJenkinsServerSetup(project: Project): Observable<JenkinsConfiguration[]> {
+    var jenkinsConfigRef = this.db.collection<JenkinsConfiguration>('jenkinsconf', ref => {
+      return ref.where('project_slug', '==', project.slug) 
+    })
+    return jenkinsConfigRef.valueChanges()
+  }
+
+  requestForServerConfig(jenkinsConfig: JenkinsConfiguration): Observable<any> {
+    const jenkinsServer = jenkinsConfig.server + '/api/xml';
+    const credential = btoa(jenkinsConfig.username + ':' + jenkinsConfig.password)
 		const headersOptions = new HttpHeaders({
-			'Authorization': 'Basic ' + btoa('sitdh:asdfjklo'),
+			'Authorization': 'Basic ' + credential,
 			'Content-Type': 'application/xml'
 		})
 		
 		return this.http.get(
-			url, 
-			// { headers: headersOptions, responseType: 'xml' }
+			jenkinsServer, 
 			{ headers: headersOptions }
 		)
   }

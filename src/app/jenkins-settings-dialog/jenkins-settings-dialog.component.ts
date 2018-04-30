@@ -7,11 +7,19 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./jenkins-settings-dialog.component.scss']
 })
 export class JenkinsSettingsDialogComponent implements OnInit {
+  user: string
+  password: string
+  jobsname: string
+  color = 'primary'
+  mode = 'determinate'
+  value = 0
+  isHidden = true
 
   constructor(
     public dialogRef: MatDialogRef<JenkinsSettingsDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
   }
@@ -19,4 +27,13 @@ export class JenkinsSettingsDialogComponent implements OnInit {
 	onNoClick(): void {
 		this.dialogRef.close()
 	}
+
+  performTestConnectionToJenkins(event: any): void {
+    this.mode = "indeterminate"
+  }
+
+  cancelAllSettings(event: any) {
+    this.dialogRef.close()
+    this.mode = "deteminate"
+  }
 }

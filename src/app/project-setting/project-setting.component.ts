@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Project } from '../project.entity';
 
 @Component({
   selector: 'app-project-setting',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectSettingComponent implements OnInit {
 
-  message: string;
+  @Input('project') projectInformation: Project;
 
   constructor() { }
 
