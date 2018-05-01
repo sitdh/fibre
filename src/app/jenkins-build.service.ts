@@ -18,6 +18,7 @@ export class JenkinsBuildService {
 	jenkinsServer: string;
 	userInfo: firebase.UserInfo;
 	password: string;
+  jenkinsConfigRef: any;
 
   constructor(
     private http: HttpClient,
@@ -30,10 +31,15 @@ export class JenkinsBuildService {
   }
 
   isJenkinsServerSetup(project: Project): Observable<JenkinsConfiguration[]> {
-    var jenkinsConfigRef = this.db.collection<JenkinsConfiguration>('jenkinsconf', ref => {
+    this.jenkinsConfigRef = this.db.collection<JenkinsConfiguration>('jenkinsconf', ref => {
       return ref.where('project_slug', '==', project.slug) 
     })
-    return jenkinsConfigRef.valueChanges()
+    return this.jenkinsConfigRef.valueChanges()
+  }
+
+  saveJenkinsConfiguration(config: JenkinsConfiguration) {
+    var uid = this.ag.createId()
+    console.log(uid)
   }
 
   requestForServerConfig(jenkinsConfig: JenkinsConfiguration): Observable<any> {
