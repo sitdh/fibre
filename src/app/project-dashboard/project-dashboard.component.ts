@@ -67,6 +67,7 @@ export class ProjectDashboardComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('Dialog was closed')
       console.log(result)
+      this.jenkins.saveJenkinsConfiguration({})
 		})
 	}
 
