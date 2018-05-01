@@ -46,7 +46,7 @@ export class JenkinsBuildService {
 		
 		return this.http.get(
 			jenkinsServer, 
-			{ headers: headersOptions }
+			{ headers: headersOptions, responseType: 'text' }
 		)
   }
 

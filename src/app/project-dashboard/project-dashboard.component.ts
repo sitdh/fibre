@@ -40,6 +40,7 @@ export class ProjectDashboardComponent implements OnInit {
   displayedColumns = ['buildNumb', 'startDate']
   buildDataSource = new MatTableDataSource<BuildInfo>(BUILD_INFO)
 
+  userConfigJenkins: JenkinsConfiguration
 
   constructor(
     private http: HttpClient,
@@ -52,33 +53,44 @@ export class ProjectDashboardComponent implements OnInit {
 
   ngAfterViewInit() {
     this.buildDataSource.paginator = this.paginator;
-
   }
 
 	openJenkinsSettingDialog(): void {
 		let dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
 			width: '550px',
-			data: { name: this.name, animal: this.animal }
+      data: { 
+        jenkins_config: this.userConfigJenkins, 
+        jenkins_build: this.jenkins 
+      }
 		})
 
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('Dialog was closed')
-			this.animal = result
+      console.log(result)
 		})
 	}
 
   @Input('project')
-  set projectInformation(project: Project): void {
-    if (null != project) {
-      this.fetchJenkinsConnectionStatus(
-        project 
-      )
-    }
+  set projectInformation(project: Project) {
+    if (null != project) this.fetchJenkinsConnectionStatus( project )
   }
 
   fetchJenkinsConnectionStatus(projectInfo: Project) {
     this.jenkins.isJenkinsServerSetup(projectInfo).subscribe(p => {
-      this.jenkinsStatus = (0 == p.length) ? 'jenkins-fire' : 'jenkins' 
+       
+      if(p.length == 1) {
+        this.jenkinsStatus = 'jenkins' 
+        this.userConfigJenkins = p.pop()
+      } else {
+        this.userConfigJenkins = {
+          project: projectInfo.project_name,
+          project_slug: projectInfo.slug,
+          server: '',
+          username: '',
+          password: '',
+          jobsname: projectInfo.slug
+        }
+      }
     })
   }
 }

@@ -8,43 +8,46 @@
   </mat-progress-bar>
 
   <h1>Jenkins server configuration</h1>
-  <form #jenkinsSetting="ngForm">
+  <form #jenkins="ngForm">
     <mat-form-field class="form-input">
-      <input matInput
+      <input matInput required
         type="url"
-        name="jenkinsurl"
+        name="server"
         placeholder="Jenkins server location" 
-        [(ngModel)]="mode" 
+        [(ngModel)]="data.jenkins_config.server" 
         value="">
+      <span matPrefix>http://</span>
     </mat-form-field>
 
     <mat-form-field class="form-input">
-      <input matInput 
+      <input matInput required
         name="username"
         placeholder="Username"
-        [(ngModel)]="mode">
+        [(ngModel)]="data.jenkins_config.username">
     </mat-form-field>
 
     <mat-form-field class="form-input">
-      <input matInput 
+      <input matInput required
         name="password" 
+        placeholder="Password"
         type="password" 
-        [(ngModel)]="password"
-        placeholder="Password">
+        [(ngModel)]="data.jenkins_config.password">
     </mat-form-field>
 
     <mat-form-field class="form-input">
-      <input matInput 
+      <input matInput required
         name="jobsname"
-        [(ngModel)]="jobsname"
-        placeholder="Job name">
+        placeholder="Job name"
+        [(ngModel)]="data.jenkins_config.jobsname">
     </mat-form-field>
 
     <div class="form-input">
-      <button mat-button (click)="performTestConnectionToJenkins($event)">Test connection</button>
+      <button mat-button (click)="performTestConnectionToJenkins(jenkins, data.jenkins_build)">
+        Test connection
+      </button>
       <button mat-button (click)="cancelAllSettings($event)">Cancel</button>
       <button mat-button>Apply</button>
-      <button mat-button>Save</button>
+      <button mat-button [mat-dialog-close]="jenkins">Save</button>
     </div>
 
   </form>

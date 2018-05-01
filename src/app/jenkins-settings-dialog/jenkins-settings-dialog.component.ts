@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { JenkinsBuildService } from '../jenkins-build.service';
 
 @Component({
   selector: 'app-jenkins-settings-dialog',
@@ -7,6 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./jenkins-settings-dialog.component.scss']
 })
 export class JenkinsSettingsDialogComponent implements OnInit {
+
   user: string
   password: string
   jobsname: string
@@ -28,8 +31,25 @@ export class JenkinsSettingsDialogComponent implements OnInit {
 		this.dialogRef.close()
 	}
 
-  performTestConnectionToJenkins(event: any): void {
+  performTestConnectionToJenkins(connectionInfo, jenkinsBuildService: JenkinsBuildService): void {
     this.mode = "indeterminate"
+    var config: JenkinsConfiguration = {
+      server: 'http://' + connectionInfo.value.server,
+      username: connectionInfo.value.username,
+      password: connectionInfo.value.password
+      project: '',
+      project_slug: '',
+      jobsname: ''
+    }
+    jenkinsBuildService.requestForServerConfig(config).subscribe(p => {
+      // OK
+      this.mode = "determinate"
+      console.log(p)
+    }, e => {
+      // error
+      this.mode = "determinate"
+      console.log(e)
+    })
   }
 
   cancelAllSettings(event: any) {
