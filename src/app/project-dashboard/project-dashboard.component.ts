@@ -13,6 +13,7 @@ import { of } from 'rxjs/observable/of';
 
 import { JenkinsSettingsDialogComponent } from '../jenkins-settings-dialog/jenkins-settings-dialog.component';
 import { JenkinsBuildService } from '../jenkins-build.service';
+import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 import { ProjectFetcherService } from '../project-fetcher.service';
 import { JenkinsConfiguration } from '../jenkins-configuration.entity';
 import { Project } from '../project.entity';
@@ -46,7 +47,8 @@ export class ProjectDashboardComponent implements OnInit {
     private http: HttpClient,
     private jenkins: JenkinsBuildService,
 		private settingDialog: MatDialog,
-		private projectFetcher: ProjectFetcherService 
+		private projectFetcher: ProjectFetcherService
+		private jenkinsConfService: JenkinsConfigurationService
   ) { }
 
   ngOnInit() { }
@@ -75,7 +77,12 @@ export class ProjectDashboardComponent implements OnInit {
 
         this.jenkins
           .createJenkinsJobs(result.jenkins_config, template)
-          .subscribe(r => { if (null == r) console.log('Jobs was created') })
+          .subscribe(r => { 
+            if (null == r) console.log('Jobs was created') 
+            this.jenkins.firstBuildForJob(result.jenkins_config).subscribe(r => {
+              console.log('First build was fired')
+            })
+          })
       })
     })
 	}
@@ -107,7 +114,19 @@ export class ProjectDashboardComponent implements OnInit {
   }
 
   buildJenkinsProjectJob(event: any) {
-    // this.jenkins.forceJenkinsToBuild()
+    this.jenkinsConfService
+      .findConfigurationForProjectId(this.projectInfo.uid)
+      .subscribe(p => {
+        if (1 == p.length) {
+          let jenkinsConfig: JenkinsConfiguration = p.pop()
+          this.jenkins
+            .forceJenkinsToBuild(jenkinsConfig)
+            .subscribe(
+              build => console.log(build),
+              console.log("Not build")
+            )
+        }
+      })
   }
 
   rebuildProject(event: any) {

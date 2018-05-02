@@ -68,7 +68,7 @@ export class CreateProjectComponent implements OnInit {
       git_name: projectInfo.repository.full_name,
       describe: projectInfo.describe,
       repo: projectInfo.repository.html_url,
-      repo_ssh: this.selectedRepository.git_url,
+      repo_ssh: this.selectedRepository.ssh_url,
       repo_doc: '/repos/' + String(projectInfo.repository.id),
       language: this.selectedRepository.language,
       project_location: '/p/' + projectAlias,
