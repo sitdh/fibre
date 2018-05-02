@@ -47,7 +47,7 @@ export class ProjectDashboardComponent implements OnInit {
     private http: HttpClient,
     private jenkins: JenkinsBuildService,
 		private settingDialog: MatDialog,
-		private projectFetcher: ProjectFetcherService
+		private projectFetcher: ProjectFetcherService,
 		private jenkinsConfService: JenkinsConfigurationService
   ) { }
 
