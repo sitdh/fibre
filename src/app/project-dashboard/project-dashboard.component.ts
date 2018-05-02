@@ -37,7 +37,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   jenkinsStatus = 'jenkins-fire'
 
-  displayedColumns = ['buildNumb', 'startDate']
+  displayedColumns = ['buildNumb', 'buildStatus', 'startDate', 'duration']
   buildDataSource = new MatTableDataSource<BuildInfo>(BUILD_INFO)
 
   userConfigJenkins: JenkinsConfiguration
@@ -112,27 +112,28 @@ export class ProjectDashboardComponent implements OnInit {
 export interface BuildInfo {
   buildNumb: number;
   buildStatus: string;
+  duration: number;
   startDate: Date;
 }
 
 const BUILD_INFO: BuildInfo[] = [
-  { buildNumb: 1, buildStatus: 'fail', startDate: new Date() },
-  { buildNumb: 2, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 3, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 4, buildStatus: 'fail', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', startDate: new Date() },
+  { buildNumb: 1, buildStatus: 'fail',    duration: 5, startDate: new Date() },
+  { buildNumb: 2, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 3, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 4, buildStatus: 'fail',    duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
+  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
 ]
