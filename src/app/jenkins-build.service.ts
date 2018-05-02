@@ -33,22 +33,22 @@ export class JenkinsBuildService {
 
   isJenkinsServerSetup(project: Project): Observable<JenkinsConfiguration[]> {
     this.jenkinsConfigRef = this.db.collection<JenkinsConfiguration>('jenkinsconf', ref => {
-      return ref.where('project_slug', '==', project.slug) 
+      return ref.where('project', '==', project.uid) 
     })
     return this.jenkinsConfigRef.valueChanges()
   }
 
-  saveJenkinsConfiguration(config: JenkinsConfiguration, uid) {
-    config.uid = uid || this.db.createId()
-    console.log(config.uid)
+  saveJenkinsConfiguration(config: JenkinsConfiguration, data) {
+    config.uid = data.jenkins_jobs_uid || this.db.createId()
+    config.project = config.project || data.project_uid
     return this.db.collection('jenkinsconf')
       .doc(config.uid)
       .set(config)
   }
 
-  createJenkinsJobs(config: JenkinsConfiguration, template): Observable<string> {
+  createJenkinsJobs(config: JenkinsConfiguration, template): Observable<any> {
     const createItem = `http://${config.server}/createItem?name=fibre-${config.jobsname}`
-		return this.http.post(
+    return this.http.post<any>(
 			createItem, 
       template,
       { headers: this.authenticationHeader(config) }

@@ -13,8 +13,6 @@ export class ProjectSettingComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.message = 'setting'
-  }
+  ngOnInit() { }
 
 }

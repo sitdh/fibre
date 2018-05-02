@@ -62,8 +62,11 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 	}
 
   projectMenuLinkNav(event: any) {
-		angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
-		angular.element(event.srcElement).addClass('activate')
+
+    if (null != angular) {
+      angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
+      angular.element(event.srcElement).addClass('activate')
+    }
   }
 
   syncProjectInformation(event: any) {
@@ -73,7 +76,8 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
   }
 
 	setupLink() {
-		angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
+    angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
+
 		var href = window.location.href
 		var element = null
 		if (href.endsWith('settings')) {
@@ -82,7 +86,7 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 			element = document.querySelector('#projnav')
 		}
 
-		angular.element(element).addClass('activate')
+    angular.element(element).addClass('activate')
 	}
 
   public isCurrentComponent(tag: string): boolean {

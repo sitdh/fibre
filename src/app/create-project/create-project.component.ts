@@ -57,9 +57,11 @@ export class CreateProjectComponent implements OnInit {
   }
 
   createNewProject(projectInfo) {
+    var uid = this.afs.createId()
     var projectAlias = projectInfo.name.toLowerCase().replace(' ', '-')
 
     var data: Project = {
+      uid: uid,
       project_name: projectInfo.name,
       name: projectInfo.name,
       slug: projectAlias,
@@ -75,7 +77,8 @@ export class CreateProjectComponent implements OnInit {
     }
 
     this.afs.collection('/projects')
-      .add(data)
+      .doc(uid)
+      .set(data)
       .then(() => {
         this.route.navigate([data.project_location])
     })

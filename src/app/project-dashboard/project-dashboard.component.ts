@@ -60,6 +60,7 @@ export class ProjectDashboardComponent implements OnInit {
 			width: '550px',
       data: { 
         jenkins_jobs_uid: this.userConfigJenkins.uid, 
+        project_uid: this.projectInfo.uid, 
         jenkins_config: this.userConfigJenkins, 
         jenkins_build: this.jenkins,
         project_repo: this.projectInfo.repo_ssh
@@ -106,17 +107,15 @@ export class ProjectDashboardComponent implements OnInit {
   }
 
   buildJenkinsProjectJob(event: any) {
-    this.jenkins
+    // this.jenkins.forceJenkinsToBuild()
   }
 
   rebuildProject(event: any) {
-    console.log(this.projectInfo)
-    this.jenkins.createJenkinsJobs().subscribe(template => {
-      const projectTemplate = template
-        .replace('[jenkins-user]', this.userConfigJenkins.username)
-        .replace('[project-git-remote]', this.projectInfo.repo_ssh)
-      console.log(projectTemplate)
-    })
+    // this.jenkins.createJenkinsJobs().subscribe(template => {
+    //   const projectTemplate = template
+    //     .replace('[jenkins-user]', this.userConfigJenkins.username)
+    //     .replace('[project-git-remote]', this.projectInfo.repo_ssh)
+    // })
   }
 }
 
