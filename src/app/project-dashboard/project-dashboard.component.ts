@@ -59,18 +59,24 @@ export class ProjectDashboardComponent implements OnInit {
 		let dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
 			width: '550px',
       data: { 
+        jenkins_jobs_uid: this.userConfigJenkins.uid, 
         jenkins_config: this.userConfigJenkins, 
-        jenkins_build: this.jenkins 
+        jenkins_build: this.jenkins,
+        project_repo: this.projectInfo.repo_ssh
       }
 		})
 
-		dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
-      var connectionConfig = {
-      }
-      // this.jenkins.saveJenkinsConfiguration({
-      // })
-		})
+    dialogRef.afterClosed().subscribe(result => {
+      this.jenkins.fetchJenkinsJobsTemplate().subscribe(template => {
+        template = template
+          .replace('[jenkins-user]', result.jenkins_config.username)
+          .replace('[project-git-remote]', result.project_repo)
+
+        this.jenkins
+          .createJenkinsJobs(result.jenkins_config, template)
+          .subscribe(r => { if (null == r) console.log('Jobs was created') })
+      })
+    })
 	}
 
   @Input('project')
@@ -86,6 +92,7 @@ export class ProjectDashboardComponent implements OnInit {
         this.jenkinsStatus = 'jenkins' 
         this.userConfigJenkins = p.pop()
       } else {
+        this.jenkinsStatus = 'jenkins-fire' 
         this.userConfigJenkins = {
           project: projectInfo.project_name,
           project_slug: projectInfo.slug,
@@ -96,6 +103,10 @@ export class ProjectDashboardComponent implements OnInit {
         }
       }
     })
+  }
+
+  buildJenkinsProjectJob(event: any) {
+    this.jenkins
   }
 
   rebuildProject(event: any) {

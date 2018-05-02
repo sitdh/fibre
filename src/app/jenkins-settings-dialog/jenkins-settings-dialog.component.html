@@ -10,6 +10,7 @@
   <h1>Jenkins server configuration</h1>
   <form #jenkins="ngForm">
     <input type="hidden" name="project" [(ngModel)]="data.jenkins_config.project_slug">
+    <input type="hidden" name="project_repo" [(ngModel)]="data.project_repo">
     <mat-form-field class="form-input">
       <input matInput required
         type="url"
@@ -48,7 +49,10 @@
         Test connection
       </button>
       <button mat-button [mat-dialog-close]="" (click)="cancelAllSettings($event)">Cancel</button>
-      <button mat-button [mat-dialog-close]="" (click)="saveConnectionConfig(jenkins, data.jenkins_build)">Save</button>
+      <button mat-button [mat-dialog-close]="data" (click)="cancelAllSettings($event)">Save</button>
+      <button mat-button [mat-dialog-close]="data" (click)="saveConnectionConfig(jenkins, data.jenkins_build, data.jenkins_jobs_uid)">
+        Create new Job
+      </button>
     </div>
 
   </form>

@@ -22,8 +22,7 @@ export class JenkinsSettingsDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<JenkinsSettingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { 
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -57,9 +56,9 @@ export class JenkinsSettingsDialogComponent implements OnInit {
     this.mode = "deteminate"
   }
 
-  saveConnectionConfig(config, buildService) {
+  saveConnectionConfig(config, buildService, uid) {
     var jenkinsConfig: JenkinsConfiguration = {
-      jobsname: 'fibre-' + config.value.jobsname,
+      jobsname: config.value.jobsname,
       password: config.value.password,
       project: config.value.project,
       project_slug: config.value.project,
@@ -67,6 +66,6 @@ export class JenkinsSettingsDialogComponent implements OnInit {
       username: config.value.username
     }
 
-    buildService.saveJenkinsConfiguration(jenkinsConfig)
+    buildService.saveJenkinsConfiguration(jenkinsConfig, uid)
   }
 }

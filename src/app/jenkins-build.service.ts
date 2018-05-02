@@ -38,13 +38,24 @@ export class JenkinsBuildService {
     return this.jenkinsConfigRef.valueChanges()
   }
 
-  saveJenkinsConfiguration(config: JenkinsConfiguration) {
-    var uid = this.db.createId()
-    config.uid = uid
-    return this.db.collection('jenkinsconf').doc(uid).set(config)
+  saveJenkinsConfiguration(config: JenkinsConfiguration, uid) {
+    config.uid = uid || this.db.createId()
+    console.log(config.uid)
+    return this.db.collection('jenkinsconf')
+      .doc(config.uid)
+      .set(config)
   }
 
-  createJenkinsJobs(): Observable<string> {
+  createJenkinsJobs(config: JenkinsConfiguration, template): Observable<string> {
+    const createItem = `http://${config.server}/createItem?name=fibre-${config.jobsname}`
+		return this.http.post(
+			createItem, 
+      template,
+      { headers: this.authenticationHeader(config) }
+		)
+  }
+  
+  fetchJenkinsJobsTemplate(): Observable<string> {
     return this.http.get(
       this.jenkinsTemplateURL,
       { responseType: 'text' }
@@ -52,17 +63,20 @@ export class JenkinsBuildService {
   }
 
   requestForServerConfig(jenkinsConfig: JenkinsConfiguration): Observable<any> {
-    const jenkinsServer = jenkinsConfig.server + '/api/xml';
-    const credential = btoa(jenkinsConfig.username + ':' + jenkinsConfig.password)
-		const headersOptions = new HttpHeaders({
-			'Authorization': 'Basic ' + credential,
-			'Content-Type': 'application/xml'
-		})
-		
+    const jenkinsServer = `http://${jenkinsConfig.server}/api/xml`;
 		return this.http.get(
 			jenkinsServer, 
-			{ headers: headersOptions, responseType: 'text' }
+			{ headers: this.authenticationHeader(jenkinsConfig), responseType: 'text' }
 		)
   }
 
+  forceJenkinsToBuild(jenkinsConfig: JenkinsConfiguration) {
+  }
+
+  private authenticationHeader(config: JenkinsConfiguration): HttpHeaders {
+		const headersOptions = new HttpHeaders();
+    return headersOptions
+      .append('Authorization', 'Basic ' + btoa(`${config.username}:${config.password}`))
+      .append('Content-Type', 'application/xml')
+  }
 }
