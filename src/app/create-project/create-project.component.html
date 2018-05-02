@@ -1,0 +1,43 @@
+<section id="grid-cont">
+  <section class="grid_outer chapter accountaction">
+    <div class="form-container container">
+      <div class="user-form form-pad">
+        <h1 class="header">New Project</h1>
+        <form #projectInformation="ngForm" class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Project name" 
+              required
+              [(ngModel)]="projectInformation.name" name="name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Description" required 
+            name="describe" 
+            [(ngModel)]="projectInformation.describe">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Repository" 
+              (change)="selectedRepositoryChanged($event)" 
+              [(ngModel)]="projectInformation.repository"
+              name="repository">
+              <mat-option *ngFor="let repo of repositories | async" [value]="repo">
+                {{ repo.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Master" 
+              name="branch" 
+              [(ngModel)]="projectInformation.branch"
+              disabled>
+              <mat-option value="master" selected="selected">Master</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="form-group">
+            <button mat-button color="secondary" mat-raised-button (click)="cancelProjectSubmit($event)">Cancel</button>
+            <button mat-button color="primary" mat-raised-button (click)="createNewProject(projectInformation)">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>

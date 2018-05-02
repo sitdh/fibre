@@ -1,0 +1,59 @@
+<div class="jenkins-settings-container">
+  <mat-progress-bar 
+    id="progress" 
+    [hidden]="isHidden" 
+    [mode]="mode"
+    [value]="value"
+    [color]="color">
+  </mat-progress-bar>
+
+  <h1>Jenkins server configuration</h1>
+  <form #jenkins="ngForm">
+    <input type="hidden" name="project" [(ngModel)]="data.project_uid">
+    <input type="hidden" name="project_repo" [(ngModel)]="data.project_repo">
+    <mat-form-field class="form-input">
+      <input matInput required
+        type="url"
+        name="server"
+        placeholder="Jenkins server location" 
+        [(ngModel)]="data.jenkins_config.server" 
+        value="">
+      <span matPrefix>http://</span>
+    </mat-form-field>
+
+    <mat-form-field class="form-input">
+      <input matInput required
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="data.jenkins_config.username">
+    </mat-form-field>
+
+    <mat-form-field class="form-input">
+      <input matInput required
+        name="password" 
+        placeholder="Password"
+        type="password" 
+        [(ngModel)]="data.jenkins_config.password">
+    </mat-form-field>
+
+    <mat-form-field class="form-input">
+      <input matInput required
+        name="jobsname"
+        placeholder="Job name"
+        [(ngModel)]="data.jenkins_config.jobsname">
+      <span matPrefix>fibre-</span>
+    </mat-form-field>
+
+    <div class="form-input">
+      <button mat-button (click)="performTestConnectionToJenkins(jenkins, data.jenkins_build)">
+        Test connection
+      </button>
+      <button mat-button [mat-dialog-close]="" (click)="cancelAllSettings($event)">Cancel</button>
+      <button mat-button [mat-dialog-close]="data" (click)="cancelAllSettings($event)">Save</button>
+      <button mat-button [mat-dialog-close]="data" (click)="saveConnectionConfig(jenkins, data.jenkins_build, data)">
+        Create new Job
+      </button>
+    </div>
+
+  </form>
+</div>

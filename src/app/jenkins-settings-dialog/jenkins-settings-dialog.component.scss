@@ -1,0 +1,9 @@
+.jenkins-settings-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.jenkins-settings-container .form-input {
+  width: 100%;
+}

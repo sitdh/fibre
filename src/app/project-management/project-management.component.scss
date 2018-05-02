@@ -1,0 +1,70 @@
+@import './src/styles.scss';
+
+.project-header {
+  text-align: center;
+}
+
+h1.hero-title {
+  margin-bottom: 0;
+}
+
+.project-container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.project-nav {
+  background-color: $primary;
+  width: 200px;
+  color: white;
+}
+
+.project-nav h2 {
+  text-align: center;
+}
+
+.project-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.project-nav li {
+  display: block;
+}
+
+$border-thinkness: 20px;
+$border-width: 4px;
+
+.project-nav a {
+  padding-left: $border-thinkness;
+  border-left: $border-width solid $primary;
+  border-top: 0.5 solid #ccc;
+  border-bottom: 0.5 solid #ccc;
+}
+
+.project-nav a,
+.project-nav a:hover,
+.project-nav a:link,
+.project-nav a:visited {
+  display: block;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.project-nav a:hover,
+.project-nav a.activate {
+  background-color: $primary-light;
+  border-left: $border-width solid white;
+}
+
+.grid-content {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,90 @@
+<div class="build-history dashboard-container">
+  <h2>Build history</h2>
+	<div class="dashboard-table-container mat-elevation-z2">
+		<mat-table #table [dataSource]="buildDataSource">
+			<!-- Name Column -->
+			<ng-container matColumnDef="buildNumb">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buildNumb }} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="buildStatus">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Build status </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buildStatus }} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="duration">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.duration }} sec.</mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="startDate">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Build date </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.startDate | date : "short" }} </mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+		</mat-table>
+
+		<mat-paginator #paginator
+								 [pageSize]="5"
+								 [pageSizeOptions]="[5, 10, 20]"
+								 [showFirstLastButtons]="true">
+		</mat-paginator>
+	</div>
+
+</div>
+
+<div class="dashboard-container">
+	<h2>Project actions</h2>
+	<div class="dashboard-actions card-wrapper">
+		<mat-card class="project-process-card">
+			<mat-card-header class="service-image">
+				<mat-card-title>Jenkins</mat-card-title>
+        <img mat-card-image src="/assets/image/{{ jenkinsStatus }}.svg" alt="Jenkins' Job">
+			</mat-card-header>
+			<mat-card-actions>
+				<button mat-button (click)="openJenkinsSettingDialog($event)">Setting</button>
+				<button mat-button (click)="buildJenkinsProjectJob($event)">Build</button>
+			</mat-card-actions>
+		</mat-card>
+
+		<mat-card class="project-process-card">
+			<mat-card-header class="service-image">
+				<mat-card-title>Code structure</mat-card-title>
+				<img mat-card-image src="/assets/image/graph-analytics.svg" alt="Source code structure">
+			</mat-card-header>
+			<mat-card-actions>
+				<button mat-button (clic)="syncProjectInformation($event)">Refresh</button>
+				<button mat-button (clic)="rebuildProject($event)">Review</button>
+			</mat-card-actions>
+		</mat-card>
+
+		<mat-card class="project-process-card">
+			<mat-card-header class="service-image">
+				<mat-card-title>Test cases</mat-card-title>
+				<img mat-card-image src="/assets/image/test-case-review.svg" alt="Test case review">
+			</mat-card-header>
+			<mat-card-actions>
+				<button mat-button (clic)="syncProjectInformation($event)">Refresh</button>
+				<button mat-button (clic)="rebuildProject($event)">Review</button>
+			</mat-card-actions>
+		</mat-card>
+
+		<mat-card class="project-process-card">
+			<mat-card-header class="service-image">
+				<mat-card-title>Execution report</mat-card-title>
+				<img mat-card-image src="/assets/image/execution-report.svg" alt="Test report">
+			</mat-card-header>
+			<mat-card-actions>
+				<button mat-button (clic)="syncProjectInformation($event)">Execute</button>
+				<button mat-button (clic)="rebuildProject($event)">View</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>

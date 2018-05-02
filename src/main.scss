@@ -1,0 +1,128 @@
+$primary: #689f38;
+$primary-light: #99d066;
+$primary-dark: #387002;
+
+$secondary: #ffcc80;
+$secondary-light: #ffffb0;
+$secondary-dark: #ca9b52;
+
+$primary-color: #689f38;
+$box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+$box-header-color: rgb(74, 20, 140);
+
+app-navigation-bar { z-index: 20; }
+
+.grid-container {
+  height: 100vh;
+	display: flex;
+	flex-basis: 100%;
+	flex-flow: column;
+}
+
+#grid-cont section.grid_outer {
+  width: 1160px;
+  margin: auto;
+}
+
+#grid-cont section.grid_outer:before {
+  content: " ";
+  display: table;
+}
+
+#grid-cont section.grid_outer:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+#grid-cont .chapter {
+  padding: 80px 0;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  margin-left: 0 -5px;
+}
+
+.header-image img {
+}
+
+.chapter-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-basis: flow;
+  align-items: left;
+  flex-direction: row;
+  flex-flow: row;
+}
+
+.container-flex,
+.container-flex>div {
+  min-height: 100vh;
+}
+
+.project-card mat-card {
+  margin: 0 5px;
+}
+
+mat-card a,
+mat-card a:hover,
+mat-card a:visited {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+mat-toolbar a,
+mat-toolbar a:hover,
+mat-toolbar a:visited {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-pad {
+  box-shadow: $box-shadow;
+}
+
+.form-container {
+  display: flex;
+  flex-basis: 80%;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.container .header {
+  display: flex;
+  padding: 18px;
+  margin: 0;
+  background-color: $box-header-color;
+  color: white;
+}
+
+.hero {
+  color: white;
+  background: $primary;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  justify-content: center;
+  padding: auto 20px;
+}
+
+.image-hero {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.content {
+  padding: 80px;
+}

@@ -1,0 +1,96 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">
+      {{title}}
+    </a>
+  </span>
+
+  <span class="example-fill-remainin-space"></span>
+
+  <button mat-icon-button *ngIf="isAuthenticated">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" *ngIf="isAuthenticated" aria-label="Open user menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="siteMenu" *ngIf="!isAuthenticated" aria-label="Open basic menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create_new_folder</mat-icon>
+      <span>New Project</span>
+    </button>
+  </a>
+
+  <!-- Hidden menu for vertical dots -->
+  <mat-divider></mat-divider>
+
+  <a routerLink="/profile/sitdh" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>Account</span>
+    </button>
+  </a>
+
+  <a routerLink="/dashboard" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+  </a>
+
+  <a routerLink="/settings" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+  </a>
+
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <a class="decorator" (click)="removeCurrentUser($event)">
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign-out</span>
+    </button>
+  </a>
+
+</mat-menu>
+
+<mat-menu #siteMenu="matMenu">
+  <a routerLink="/account/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>create</mat-icon>
+      <span>Signup</span>
+    </button>
+  </a>
+
+  <a routerLink="/features" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>assistant_photo</mat-icon>
+      <span>Tour</span>
+    </button>
+  </a>
+
+  <a routerLink="/project/new" class="decorator">
+    <button mat-menu-item>
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </a>
+
+</mat-menu>

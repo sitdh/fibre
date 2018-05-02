@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/theming";
+
+@include mat-core();
+@import "./main.scss";
+
+$fibre-primary: mat-palette($mat-light-green, 700);
+$fibre-primary-light: mat-palette($mat-light-green, 900);
+$fibre-primary-dark: mat-palette($mat-light-green, 700);
+
+$fibre-secondary: mat-palette($mat-grey, 300);
+$fibre-secondary-light: mat-palette($mat-grey, 50);
+$fibre-secondary-dark: mat-palette($mat-grey, 600);
+
+$fibre-accent: mat-palette($mat-blue-grey, A100);
+
+$fibre-app-warn: mat-palette($mat-red);
+
+$fibre-app-theme: mat-light-theme($fibre-primary, $fibre-secondary, $fibre-app-warn);
+
+@include angular-material-theme($fibre-app-theme);
+
+
+@import "./media-xl.scss";
+@import "./media-l.scss";
+@import "./media-m.scss";
+@import "./media-xm.scss";
+

@@ -1,0 +1,38 @@
+<mat-sidenav-container class="project-container">
+  <mat-sidenav class="project-nav" #sidenav mode="side" opened>
+    <ul>
+      <li>
+        <h2>{{ project?.project_name }}</h2>
+      </li>
+      <li>
+        <a class="nav-link" 
+           id="projnav"
+           (click)="projectMenuLinkNav($event)"
+           [routerLink]="['../dashboard']">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" 
+           id="projsettings"
+           (click)="projectMenuLinkNav($event)"
+          [routerLink]="['../settings']">
+          Settings
+        </a>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="grid-content">
+      <app-project-dashboard 
+         [project]="project"
+         (jenkinsconfig)="jenkinsConfigUpdate($event)"
+        *ngIf="isCurrentComponent('dashboard')">
+      </app-project-dashboard>
+      <app-project-setting 
+         [project]="project"
+        *ngIf="isCurrentComponent('settings')">
+      </app-project-setting>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
