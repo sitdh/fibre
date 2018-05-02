@@ -65,9 +65,11 @@ export class ProjectDashboardComponent implements OnInit {
 		})
 
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('Dialog was closed')
       console.log(result)
-      this.jenkins.saveJenkinsConfiguration({})
+      var connectionConfig = {
+      }
+      // this.jenkins.saveJenkinsConfiguration({
+      // })
 		})
 	}
 
@@ -78,7 +80,8 @@ export class ProjectDashboardComponent implements OnInit {
 
   fetchJenkinsConnectionStatus(projectInfo: Project) {
     this.jenkins.isJenkinsServerSetup(projectInfo).subscribe(p => {
-       
+      this.projectInfo = projectInfo
+
       if(p.length == 1) {
         this.jenkinsStatus = 'jenkins' 
         this.userConfigJenkins = p.pop()
@@ -92,6 +95,16 @@ export class ProjectDashboardComponent implements OnInit {
           jobsname: projectInfo.slug
         }
       }
+    })
+  }
+
+  rebuildProject(event: any) {
+    console.log(this.projectInfo)
+    this.jenkins.createJenkinsJobs().subscribe(template => {
+      const projectTemplate = template
+        .replace('[jenkins-user]', this.userConfigJenkins.username)
+        .replace('[project-git-remote]', this.projectInfo.repo_ssh)
+      console.log(projectTemplate)
     })
   }
 }

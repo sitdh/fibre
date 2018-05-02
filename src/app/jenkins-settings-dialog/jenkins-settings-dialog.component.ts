@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { JenkinsBuildService } from '../jenkins-build.service';
+import { JenkinsConfiguration } from '../jenkins-configuration.entity';
 
 @Component({
   selector: 'app-jenkins-settings-dialog',
@@ -20,7 +21,7 @@ export class JenkinsSettingsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<JenkinsSettingsDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
   }
 
@@ -36,7 +37,7 @@ export class JenkinsSettingsDialogComponent implements OnInit {
     var config: JenkinsConfiguration = {
       server: 'http://' + connectionInfo.value.server,
       username: connectionInfo.value.username,
-      password: connectionInfo.value.password
+      password: connectionInfo.value.password,
       project: '',
       project_slug: '',
       jobsname: ''
@@ -44,7 +45,6 @@ export class JenkinsSettingsDialogComponent implements OnInit {
     jenkinsBuildService.requestForServerConfig(config).subscribe(p => {
       // OK
       this.mode = "determinate"
-      console.log(p)
     }, e => {
       // error
       this.mode = "determinate"
@@ -55,5 +55,18 @@ export class JenkinsSettingsDialogComponent implements OnInit {
   cancelAllSettings(event: any) {
     this.dialogRef.close()
     this.mode = "deteminate"
+  }
+
+  saveConnectionConfig(config, buildService) {
+    var jenkinsConfig: JenkinsConfiguration = {
+      jobsname: 'fibre-' + config.value.jobsname,
+      password: config.value.password,
+      project: config.value.project,
+      project_slug: config.value.project,
+      server: config.value.server,
+      username: config.value.username
+    }
+
+    buildService.saveJenkinsConfiguration(jenkinsConfig)
   }
 }

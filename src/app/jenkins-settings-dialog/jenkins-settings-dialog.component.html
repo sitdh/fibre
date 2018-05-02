@@ -9,6 +9,7 @@
 
   <h1>Jenkins server configuration</h1>
   <form #jenkins="ngForm">
+    <input type="hidden" name="project" [(ngModel)]="data.jenkins_config.project_slug">
     <mat-form-field class="form-input">
       <input matInput required
         type="url"
@@ -39,15 +40,15 @@
         name="jobsname"
         placeholder="Job name"
         [(ngModel)]="data.jenkins_config.jobsname">
+      <span matPrefix>fibre-</span>
     </mat-form-field>
 
     <div class="form-input">
       <button mat-button (click)="performTestConnectionToJenkins(jenkins, data.jenkins_build)">
         Test connection
       </button>
-      <button mat-button (click)="cancelAllSettings($event)">Cancel</button>
-      <button mat-button>Apply</button>
-      <button mat-button [mat-dialog-close]="jenkins">Save</button>
+      <button mat-button [mat-dialog-close]="" (click)="cancelAllSettings($event)">Cancel</button>
+      <button mat-button [mat-dialog-close]="" (click)="saveConnectionConfig(jenkins, data.jenkins_build)">Save</button>
     </div>
 
   </form>

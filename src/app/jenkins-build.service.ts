@@ -19,6 +19,7 @@ export class JenkinsBuildService {
 	userInfo: firebase.UserInfo;
 	password: string;
   jenkinsConfigRef: any;
+  jenkinsTemplateURL = '/assets/statics/templates/jenkins-blueocean.template'
 
   constructor(
     private http: HttpClient,
@@ -38,8 +39,16 @@ export class JenkinsBuildService {
   }
 
   saveJenkinsConfiguration(config: JenkinsConfiguration) {
-    var uid = this.ag.createId()
-    console.log(uid)
+    var uid = this.db.createId()
+    config.uid = uid
+    return this.db.collection('jenkinsconf').doc(uid).set(config)
+  }
+
+  createJenkinsJobs(): Observable<string> {
+    return this.http.get(
+      this.jenkinsTemplateURL,
+      { responseType: 'text' }
+    )
   }
 
   requestForServerConfig(jenkinsConfig: JenkinsConfiguration): Observable<any> {
