@@ -1,4 +1,5 @@
 export interface Project {
+  uid: string;
   branch?: string;
   name: string;
   describe: any;
