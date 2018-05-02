@@ -70,7 +70,13 @@ export class JenkinsBuildService {
 		)
   }
 
-  forceJenkinsToBuild(jenkinsConfig: JenkinsConfiguration) {
+  forceJenkinsToBuild(config: JenkinsConfiguration): Observable<any> {
+    let headerOptions = this.authenticationHeader(config)
+    let buildUrl = `http://${config.server}/job/fibre-${config.jobsname}/build`
+    return this.http.post<any>(
+      buildUrl,
+      { headers: headerOptions, responseType: 'text' }
+    )
   }
 
   private authenticationHeader(config: JenkinsConfiguration): HttpHeaders {
