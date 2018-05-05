@@ -1,4 +1,10 @@
-FROM node:9
+FROM node:9 as preview
+WORKDIR /fibre-app
+COPY . /fibre-app
+RUN npm install
+RUN npm start
+
+FROM node:9 as build
 WORKDIR /fibre-app
 COPY package.json /fibre-app
 RUN npm install
