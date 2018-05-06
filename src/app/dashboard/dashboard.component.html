@@ -29,7 +29,7 @@
 
         <mat-card class="project-card" *ngFor="let p of projects | async">
           <mat-card-header>
-						<img mat-card-avatar src="http://via.placeholder.com/350x350" alt="">
+            <img mat-card-avatar src="./assets/image/{{ p.language }}-icon.svg" alt="">
 						<mat-card-title>
               <strong>{{ p.project_name }}</strong>
 						</mat-card-title>

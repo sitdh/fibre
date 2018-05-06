@@ -21,7 +21,6 @@ $fibre-app-theme: mat-light-theme($fibre-primary, $fibre-secondary, $fibre-app-w
 
 @include angular-material-theme($fibre-app-theme);
 
-
 @import "./media-xl.scss";
 @import "./media-l.scss";
 @import "./media-m.scss";

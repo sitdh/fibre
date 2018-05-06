@@ -15,7 +15,7 @@ export class JenkinsConfigurationService {
     private afs: AngularFirestore,
   ) { }
 
-  findConfigurationForProjectId(pid: string): Observable<JenkinsConfiguration> {
+  findConfigurationForProjectId(pid: string): Observable<JenkinsConfiguration[]> {
     var jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
       return ref.where('project', '==', pid).limit(1)
     })

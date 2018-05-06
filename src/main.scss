@@ -10,6 +10,11 @@ $primary-color: #689f38;
 $box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
 $box-header-color: rgb(74, 20, 140);
 
+$fibre-info-error: #d84315; /** Deep orange 800 **/
+$fibre-info-warning: #ff8f00; /** Amber 800 **/
+$fibre-info-fine: #2e7d32; /** Green 800 **/
+$fibre-info-disabled: #bdbdbd; /** Grey 400 **/
+
 app-navigation-bar { z-index: 20; }
 
 .grid-container {

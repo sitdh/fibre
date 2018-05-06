@@ -62,11 +62,7 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 	}
 
   projectMenuLinkNav(event: any) {
-
-    if (null != angular) {
-      angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
-      angular.element(event.srcElement).addClass('activate')
-    }
+    this.clearElement(event.srcElement)
   }
 
   syncProjectInformation(event: any) {
@@ -76,7 +72,7 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
   }
 
 	setupLink() {
-    angular.element(document.querySelectorAll('.nav-link')).removeClass('activate')
+    this.deactivateElement()
 
 		var href = window.location.href
 		var element = null
@@ -86,7 +82,7 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 			element = document.querySelector('#projnav')
 		}
 
-    angular.element(element).addClass('activate')
+    this.activateElement(element)
 	}
 
   public isCurrentComponent(tag: string): boolean {
@@ -95,5 +91,19 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 
   jenkinsConfiguUpdate(event: any): void {
     console.log(event)
+  }
+
+  clearElement(element: any) {
+    this.deactivateElement()
+    this.activateElement(element)
+  }
+
+  private deactivateElement() {
+    let navElements = document.querySelectorAll('.nav-link')
+    for(var i = 0; i < navElements.length; i++) { navElements[i].classList.remove('activate') }
+  }
+
+  private activateElement(element: any) {
+    element.classList.add('activate')
   }
 }

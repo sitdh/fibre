@@ -1,18 +1,18 @@
-import { Component, ViewChild, OnInit, 
-  Inject, Input, EventEmitter,
-  Output
+import { 
+  Component, OnInit, EventEmitter,
+  Inject, Input, Output
 } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 import { Observable } from 'rxjs/Rx';
 import { of } from 'rxjs/observable/of';
 
 import { JenkinsSettingsDialogComponent } from '../jenkins-settings-dialog/jenkins-settings-dialog.component';
 import { JenkinsBuildService } from '../jenkins-build.service';
+import { SourceCodeStructureAnalyzerService } from '../source-code-structure-analyzer.service';
 import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 import { ProjectFetcherService } from '../project-fetcher.service';
 import { JenkinsConfiguration } from '../jenkins-configuration.entity';
@@ -25,8 +25,6 @@ import { Project } from '../project.entity';
 })
 export class ProjectDashboardComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   projectInfo: Project
   _projectInfo = null
 
@@ -38,24 +36,19 @@ export class ProjectDashboardComponent implements OnInit {
 
   jenkinsStatus = 'jenkins-fire'
 
-  displayedColumns = ['buildNumb', 'buildStatus', 'startDate', 'duration']
-  buildDataSource = new MatTableDataSource<BuildInfo>(BUILD_INFO)
-
   userConfigJenkins: JenkinsConfiguration
 
   constructor(
+    private route: Router,
     private http: HttpClient,
     private jenkins: JenkinsBuildService,
 		private settingDialog: MatDialog,
 		private projectFetcher: ProjectFetcherService,
-		private jenkinsConfService: JenkinsConfigurationService
+		private jenkinsConfService: JenkinsConfigurationService,
+		private sourceAnalyzerService: SourceCodeStructureAnalyzerService
   ) { }
 
   ngOnInit() { }
-
-  ngAfterViewInit() {
-    this.buildDataSource.paginator = this.paginator;
-  }
 
 	openJenkinsSettingDialog(): void {
 		let dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
@@ -123,10 +116,37 @@ export class ProjectDashboardComponent implements OnInit {
             .forceJenkinsToBuild(jenkinsConfig)
             .subscribe(
               build => console.log(build),
-              console.log("Not build")
+              (error: any) => { console.error(error) }
             )
         }
       })
+  }
+
+  // Code structure
+  refreshCodeStructure(event: any) {
+    this.sourceAnalyzerService.analyzeSourceStructure()
+  }
+
+  reviewSourceCodeStructure(event: any) {
+    console.log(event)
+  }
+
+  // Test case
+  reviewAndCreateTestCases(event: any) {
+    console.log(event)
+  }
+
+  executionTestCase(event: any) {
+    console.log(event)
+  }
+
+  // Report
+  fetchLastestExecutionsResult(event: any) {
+    console.log(event)
+  }
+
+  reviewExecutionResult(event: any) {
+    console.log(event)
   }
 
   rebuildProject(event: any) {
@@ -137,32 +157,3 @@ export class ProjectDashboardComponent implements OnInit {
     // })
   }
 }
-
-export interface BuildInfo {
-  buildNumb: number;
-  buildStatus: string;
-  duration: number;
-  startDate: Date;
-}
-
-const BUILD_INFO: BuildInfo[] = [
-  { buildNumb: 1, buildStatus: 'fail',    duration: 5, startDate: new Date() },
-  { buildNumb: 2, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 3, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 4, buildStatus: 'fail',    duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-  { buildNumb: 5, buildStatus: 'success', duration: 5, startDate: new Date() },
-]

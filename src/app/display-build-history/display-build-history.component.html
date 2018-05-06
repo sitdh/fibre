@@ -1,0 +1,41 @@
+<div class="build-history dashboard-container">
+  <h2>Build history</h2>
+	<div class="dashboard-table-container mat-elevation-z2">
+		<mat-table #table [dataSource]="buildDataSource">
+			<!-- Name Column -->
+			<ng-container matColumnDef="buildNumb">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buildNumb }} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="buildStatus">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Build status </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buildStatus }} </mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="duration">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.duration }} sec.</mat-cell>
+			</ng-container>
+
+			<!-- Name Column -->
+			<ng-container matColumnDef="startDate">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Build date </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.startDate | date : "short" }} </mat-cell>
+			</ng-container>
+
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+		</mat-table>
+
+		<mat-paginator #paginator
+								 [pageSize]="5"
+								 [pageSizeOptions]="[5, 10, 20]"
+								 [showFirstLastButtons]="true">
+		</mat-paginator>
+	</div>
+
+</div>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
@@ -38,6 +37,10 @@ import { ProjectSettingComponent } from './project-setting/project-setting.compo
 import { JenkinsBuildService } from './jenkins-build.service';
 import { JenkinsConfigurationService } from './jenkins-configuration.service';
 import { JenkinsSettingsDialogComponent } from './jenkins-settings-dialog/jenkins-settings-dialog.component';
+import { SourceCodeStructureAnalyzerService } from './source-code-structure-analyzer.service';
+import { ProjectSourcecodeStrutureAnalysisComponent } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
+import { DisplayBuildHistoryComponent } from './display-build-history/display-build-history.component';
+import { ProjectBuildInformationService } from './project-build-information.service';
 
 @NgModule({
   declarations: [
@@ -55,13 +58,14 @@ import { JenkinsSettingsDialogComponent } from './jenkins-settings-dialog/jenkin
     ProjectDashboardComponent,
     ProjectSettingComponent,
     JenkinsSettingsDialogComponent,
+    ProjectSourcecodeStrutureAnalysisComponent,
+    DisplayBuildHistoryComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FlexLayoutModule,
     MatComponents,
     FormsModule,
     ReactiveFormsModule,
@@ -78,7 +82,7 @@ import { JenkinsSettingsDialogComponent } from './jenkins-settings-dialog/jenkin
     MenuItemService,
     ProjectFetcherService, UserInformationService, AuthenGuardService, 
     AppConfigService, CredentialService, RepositoryService, 
-    JenkinsBuildService, JenkinsConfigurationService,
+    JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
 	],
   bootstrap: [AppComponent]
 })

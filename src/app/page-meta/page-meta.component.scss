@@ -1,3 +1,5 @@
+@import './src/styles.scss';
+
 :host {
 	align-self: flex-end;
 	width: 100%;
@@ -9,7 +11,7 @@
 }
 
 mat-grid-tile-footer {
-  background-color: lightblue;
+  background-color: $fibre-info-disabled;
 }
 
 .site-meta-box {
@@ -17,9 +19,9 @@ mat-grid-tile-footer {
 }
 
 .footer-meta-left {
-  background-color: lightblue;
+  background-color: $fibre-info-disabled;
 }
 
 .footer-meta-right {
-  background-color: lightpink;
+  background-color: $secondary;
 }
