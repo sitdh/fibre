@@ -6,17 +6,51 @@
   <span>Source code structure: Review</span>
 </mat-toolbar>
 
-<h1>Source code structure</h1>
-<p>
-<img src="http://placekitten.com/g/900/400" alt="">
-</p>
+<mat-grid-list cols="12" class="data-block">
+  <mat-grid-tile colspan="10" rowspan="8" style="background-color: magenta;">
+    <mat-grid-tile-header>
+      Source code structure: {{ investigatedPackage }}
+    </mat-grid-tile-header>
 
-<h1>Constants</h1>
-<p>
-<img src="http://placekitten.com/g/900/400" alt="">
-</p>
+    <!-- Structure -->
+    <app-source-code-structure-analyzer>
+    </app-source-code-structure-analyzer>
 
-<h1>Test path</h1>
-<p>
-<img src="http://placekitten.com/g/900/400" alt="">
-</p>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="8" style="background-color: green;">
+    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()">Sync</button>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="12" class="data-block">
+  <!-- Constants -->
+  <mat-grid-tile colspan="12" rowspan="10">
+    <mat-grid-tile-header>
+      Constants
+    </mat-grid-tile-header>
+    <mat-grid-tile-footer class="fibre-toolbar source-code-structure">
+      <button mat-button>Sync</button>
+    </mat-grid-tile-footer>
+
+    <!-- Constants collection -->
+    <app-source-code-constants-collection>
+    </app-source-code-constants-collection>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="12" class="data-block">
+  <mat-grid-tile colspan="12" rowspan="10">
+    <mat-grid-tile-header>
+      Test paths
+    </mat-grid-tile-header>
+    <mat-grid-tile-footer class="fibre-toolbar source-code-structure">
+      <button mat-button>Sync</button>
+    </mat-grid-tile-footer>
+
+    <!-- Test paths -->
+    <app-source-code-test-paths-analyzer>
+    </app-source-code-test-paths-analyzer>
+
+  </mat-grid-tile>
+</mat-grid-list>

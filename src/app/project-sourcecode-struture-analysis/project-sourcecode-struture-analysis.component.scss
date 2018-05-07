@@ -1,6 +1,15 @@
 @import './src/styles.scss';
 
+:host {
+  width: 100%;
+}
+
+.data-block {
+  margin-bottom: 20px;
+}
+
 .fibre-breadcrumb {
   background-color: $secondary;
   border-radius: 6px;
+  margin-bottom: 10px;
 }

@@ -41,6 +41,9 @@ import { SourceCodeStructureAnalyzerService } from './source-code-structure-anal
 import { ProjectSourcecodeStrutureAnalysisComponent } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
 import { DisplayBuildHistoryComponent } from './display-build-history/display-build-history.component';
 import { ProjectBuildInformationService } from './project-build-information.service';
+import { SourceCodeStructureAnalyzerComponent } from './source-code-structure-analyzer/source-code-structure-analyzer.component';
+import { SourceCodeConstantsCollectionComponent } from './source-code-constants-collection/source-code-constants-collection.component';
+import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-analyzer/source-code-test-paths-analyzer.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,9 @@ import { ProjectBuildInformationService } from './project-build-information.serv
     JenkinsSettingsDialogComponent,
     ProjectSourcecodeStrutureAnalysisComponent,
     DisplayBuildHistoryComponent,
+    SourceCodeStructureAnalyzerComponent,
+    SourceCodeConstantsCollectionComponent,
+    SourceCodeTestPathsAnalyzerComponent,
   ],
   imports: [
     BrowserModule,
