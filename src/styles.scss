@@ -5,19 +5,27 @@
 @include mat-core();
 @import "./main.scss";
 
-$fibre-primary: mat-palette($mat-light-green, 700);
-$fibre-primary-light: mat-palette($mat-light-green, 900);
-$fibre-primary-dark: mat-palette($mat-light-green, 700);
+$fibre-primary: mat-palette($mat-green, 700);
+$fibre-primary-light: mat-palette($mat-green, 500);
+$fibre-primary-dark: mat-palette($mat-green, 900);
 
-$fibre-secondary: mat-palette($mat-grey, 300);
-$fibre-secondary-light: mat-palette($mat-grey, 50);
-$fibre-secondary-dark: mat-palette($mat-grey, 600);
+$fibre-secondary: mat-palette($mat-blue-grey, 400);
+$fibre-secondary-light: mat-palette($mat-blue-grey, 200);
+$fibre-secondary-dark: mat-palette($mat-blue-grey, 600);
 
 $fibre-accent: mat-palette($mat-blue-grey, A100);
 
 $fibre-app-warn: mat-palette($mat-red);
 
 $fibre-app-theme: mat-light-theme($fibre-primary, $fibre-secondary, $fibre-app-warn);
+
+$primary: #388e3c;
+$primary-light: #6abf69;
+$primary-dark: #00600f;
+
+$secondary: #78909c;
+$secondary-light: #a7c0cd;
+$secondary-dark: #4b636e;
 
 @include angular-material-theme($fibre-app-theme);
 

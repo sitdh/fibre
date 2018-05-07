@@ -1,5 +1,5 @@
 <mat-sidenav-container class="project-container">
-  <mat-sidenav class="project-nav" #sidenav mode="side" opened>
+  <mat-sidenav class="project-nav" #sidenav mode="side" opened  color="primary">
     <ul>
       <li>
         <h2>{{ project?.project_name }}</h2>
@@ -24,15 +24,22 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="grid-content">
+
       <app-project-dashboard 
          [project]="project"
          (jenkinsconfig)="jenkinsConfigUpdate($event)"
         *ngIf="isCurrentComponent('dashboard')">
       </app-project-dashboard>
+
+        <app-project-sourcecode-struture-analysis 
+          *ngIf="isCurrentComponent('structure')">
+        </app-project-sourcecode-struture-analysis>
+
       <app-project-setting 
          [project]="project"
         *ngIf="isCurrentComponent('settings')">
       </app-project-setting>
+
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

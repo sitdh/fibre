@@ -74,9 +74,9 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 	setupLink() {
     this.deactivateElement()
 
-		var href = window.location.href
+    var href = window.location.href.split('#')[1].split('/')[3]
 		var element = null
-		if (href.endsWith('settings')) {
+		if ('settins' == href) {
 			element = document.querySelector('#projsettings')
 		} else if (href.endsWith('dashboard')) {
 			element = document.querySelector('#projnav')
@@ -86,7 +86,14 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
 	}
 
   public isCurrentComponent(tag: string): boolean {
-    return this.currentSection == tag;
+    var compareResult = false
+
+    if (window.location.href.split('#')[1].split('/').length > 4) {
+      compareResult = window.location.href.endsWith(tag)
+    } else {
+      compareResult = this.currentSection == tag
+    }
+    return compareResult
   }
 
   jenkinsConfiguUpdate(event: any): void {

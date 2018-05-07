@@ -10,13 +10,18 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
+import { 
+  ProjectSourcecodeStrutureAnalysisComponent 
+} from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
-  { path: 'p/:pid/:section', component: ProjectManagementComponent },
+  { path: 'p/:pid/:section', component: ProjectManagementComponent},
+  { path: 'p/:pid/:section/structure', component: ProjectManagementComponent, children: [
+  ]},
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },

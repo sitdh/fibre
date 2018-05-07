@@ -1,10 +1,10 @@
-$primary: #689f38;
-$primary-light: #99d066;
-$primary-dark: #387002;
-
-$secondary: #ffcc80;
-$secondary-light: #ffffb0;
-$secondary-dark: #ca9b52;
+/** $primary: #689f38;
+/** $primary-light: #99d066;
+/** $primary-dark: #387002;
+/** 
+/** $secondary: #ffcc80;
+/** $secondary-light: #ffffb0;
+/** $secondary-dark: #ca9b52; **/
 
 $primary-color: #689f38;
 $box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
@@ -110,7 +110,6 @@ mat-toolbar a:visited {
 
 .hero {
   color: white;
-  background: $primary;
   height: 200px;
   display: flex;
   flex-direction: column;

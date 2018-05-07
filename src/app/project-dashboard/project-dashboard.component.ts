@@ -150,10 +150,5 @@ export class ProjectDashboardComponent implements OnInit {
   }
 
   rebuildProject(event: any) {
-    // this.jenkins.createJenkinsJobs().subscribe(template => {
-    //   const projectTemplate = template
-    //     .replace('[jenkins-user]', this.userConfigJenkins.username)
-    //     .replace('[project-git-remote]', this.projectInfo.repo_ssh)
-    // })
   }
 }
