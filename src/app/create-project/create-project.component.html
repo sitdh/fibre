@@ -2,20 +2,25 @@
   <section class="grid_outer chapter accountaction">
     <div class="form-container container">
       <div class="user-form form-pad">
-        <h1 class="header">New Project</h1>
+        <h1 class="header" i18n>New Project</h1>
         <form #projectInformation="ngForm" class="form-container">
           <mat-form-field>
-            <input matInput placeholder="Project name" 
+            <input matInput i18n="placeholder" placeholder="Project name" 
               required
               [(ngModel)]="projectInformation.name" name="name">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Description" required 
+            <input matInput i18n="placeholder" placeholder="Description" required 
             name="describe" 
             [(ngModel)]="projectInformation.describe">
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Repository" 
+            <input matInput i18n="placeholder" placeholder="Interested package" required 
+            name="interested_package" 
+            [(ngModel)]="projectInformation.interested_package">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select i18n="placeholder" placeholder="Repository" 
               (change)="selectedRepositoryChanged($event)" 
               [(ngModel)]="projectInformation.repository"
               name="repository">
@@ -33,8 +38,8 @@
             </mat-select>
           </mat-form-field>
           <div class="form-group">
-            <button mat-button color="secondary" mat-raised-button (click)="cancelProjectSubmit($event)">Cancel</button>
-            <button mat-button color="primary" mat-raised-button (click)="createNewProject(projectInformation)">Create</button>
+            <button mat-button mat-raised-button (click)="cancelProjectSubmit($event)" i18n>Cancel</button>
+            <button mat-button color="primary" mat-raised-button (click)="createNewProject(projectInformation)" i18n>Create</button>
           </div>
         </form>
       </div>

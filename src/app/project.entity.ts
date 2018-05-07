@@ -4,6 +4,7 @@ export interface Project {
   name: string;
   describe: any;
   git_name: string;
+  interested_package: string;
   language: string;
   owner: string;
   project_location: string;

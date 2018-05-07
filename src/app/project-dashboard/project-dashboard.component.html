@@ -5,45 +5,45 @@
 	<div class="dashboard-actions card-wrapper">
 		<mat-card class="project-process-card">
 			<mat-card-header class="service-image">
-				<mat-card-title>Jenkins</mat-card-title>
+				<mat-card-title i18n>Jenkins</mat-card-title>
         <img mat-card-image src="/assets/image/{{ jenkinsStatus }}.svg" alt="Jenkins' Job">
 			</mat-card-header>
 			<mat-card-actions>
-				<button mat-button (click)="openJenkinsSettingDialog($event)">Setting</button>
-				<button mat-button (click)="buildJenkinsProjectJob($event)">Build</button>
+				<button mat-button (click)="openJenkinsSettingDialog($event)" i18n>Setting</button>
+				<button mat-button (click)="buildJenkinsProjectJob($event)" i18n>Build</button>
 			</mat-card-actions>
 		</mat-card>
 
 		<mat-card class="project-process-card">
 			<mat-card-header class="service-image">
-				<mat-card-title>Code structure</mat-card-title>
-				<img mat-card-image src="/assets/image/graph-analytics.svg" alt="Source code structure">
+				<mat-card-title i18n>Code structure</mat-card-title>
+				<img mat-card-image src="/assets/image/graph-analytics.svg" i18n-alt alt="Source code structure">
 			</mat-card-header>
 			<mat-card-actions>
-				<button mat-button (click)="refreshCodeStructure($event)">Refresh</button>
-				<button mat-button routerLink="./structure">Review</button>
+				<button mat-button (click)="refreshCodeStructure($event)" i18n>Refresh</button>
+				<button mat-button routerLink="./structure" i18n>Review</button>
 			</mat-card-actions>
 		</mat-card>
 
 		<mat-card class="project-process-card">
 			<mat-card-header class="service-image">
-				<mat-card-title>Test cases</mat-card-title>
-				<img mat-card-image src="/assets/image/test-case-review.svg" alt="Test case review">
+				<mat-card-title i18n>Test cases</mat-card-title>
+				<img mat-card-image src="/assets/image/test-case-review.svg" i18n-alt alt="Test case review">
 			</mat-card-header>
 			<mat-card-actions>
-				<button mat-button (click)="reviewAndCreateTestCases($event)">Refresh</button>
-				<button mat-button (click)="executionTestCase($event)">Review</button>
+				<button mat-button (click)="reviewAndCreateTestCases($event)" i18n>Refresh</button>
+				<button mat-button (click)="executionTestCase($event)" i18n>Review</button>
 			</mat-card-actions>
 		</mat-card>
 
 		<mat-card class="project-process-card">
 			<mat-card-header class="service-image">
-				<mat-card-title>Execution report</mat-card-title>
-				<img mat-card-image src="/assets/image/execution-report.svg" alt="Test report">
+				<mat-card-title i18n>Execution report</mat-card-title>
+				<img mat-card-image src="/assets/image/execution-report.svg" i18n-alt alt="Test report">
 			</mat-card-header>
 			<mat-card-actions>
-				<button mat-button (click)="syncProjectInformation($event)">Execute</button>
-				<button mat-button (click)="reviewExecutionResult($event)">View</button>
+				<button mat-button (click)="syncProjectInformation($event)" i18n>Execute</button>
+				<button mat-button (click)="reviewExecutionResult($event)" i18n>View</button>
 			</mat-card-actions>
 		</mat-card>
 	</div>

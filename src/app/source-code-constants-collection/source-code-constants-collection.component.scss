@@ -8,3 +8,12 @@
   align-items: top !important;
   justify-content: left !important;
 }
+
+.fibre-data {
+  display: flex;
+  flex-basis: 100%;
+}
+
+.fibre-data mat-list {
+  width: calc(100% / 3);
+}

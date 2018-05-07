@@ -3,11 +3,11 @@
     <a [routerLink]="['../']">Dashboard</a>
   </span>
   <mat-icon>chevron_right</mat-icon>
-  <span>Source code structure: Review</span>
+  <span i18n>Source code structure: Review</span>
 </mat-toolbar>
 
 <mat-card class="data-card">
-  <mat-card-title>Source code structure: {{ investigatedPackage }}</mat-card-title>
+  <mat-card-title i18n>Source code structure: {{ investigatedPackage }}</mat-card-title>
 
   <mat-card-content>
     <!-- Structure -->
@@ -16,12 +16,12 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()">Refresh</button>
+    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()" i18n>Refresh</button>
   </mat-card-actions>
 </mat-card>
 
 <mat-card class="data-card">
-  <mat-card-title>
+  <mat-card-title i18n>
     Constants
   </mat-card-title>
 
@@ -32,12 +32,12 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()">Refresh</button>
+    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()" i18n>Refresh</button>
   </mat-card-actions>
 </mat-card>
 
 <mat-card class="data-card">
-  <mat-card-title>
+  <mat-card-title i18n>
     Test paths
   </mat-card-title>
 
@@ -48,6 +48,6 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()">Refresh</button>
+    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()" i18n>Refresh</button>
   </mat-card-actions>
 </mat-card>

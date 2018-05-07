@@ -7,7 +7,7 @@
     [color]="color">
   </mat-progress-bar>
 
-  <h1>Jenkins server configuration</h1>
+  <h1 i18n>Jenkins server configuration</h1>
   <form #jenkins="ngForm">
     <input type="hidden" name="project" [(ngModel)]="data.project_uid">
     <input type="hidden" name="project_repo" [(ngModel)]="data.project_repo">
@@ -15,6 +15,7 @@
       <input matInput required
         type="url"
         name="server"
+        i18n-placeholder
         placeholder="Jenkins server location" 
         [(ngModel)]="data.jenkins_config.server" 
         value="">
@@ -24,6 +25,7 @@
     <mat-form-field class="form-input">
       <input matInput required
         name="username"
+        i18n-placeholder
         placeholder="Username"
         [(ngModel)]="data.jenkins_config.username">
     </mat-form-field>
@@ -31,6 +33,7 @@
     <mat-form-field class="form-input">
       <input matInput required
         name="password" 
+        i18n-placeholder
         placeholder="Password"
         type="password" 
         [(ngModel)]="data.jenkins_config.password">
@@ -39,18 +42,19 @@
     <mat-form-field class="form-input">
       <input matInput required
         name="jobsname"
+        i18n-placeholder
         placeholder="Job name"
         [(ngModel)]="data.jenkins_config.jobsname">
       <span matPrefix>fibre-</span>
     </mat-form-field>
 
     <div class="form-input">
-      <button mat-button (click)="performTestConnectionToJenkins(jenkins, data.jenkins_build)">
+      <button mat-button (click)="performTestConnectionToJenkins(jenkins, data.jenkins_build)" i18n>
         Test connection
       </button>
-      <button mat-button [mat-dialog-close]="" (click)="cancelAllSettings($event)">Cancel</button>
-      <button mat-button [mat-dialog-close]="data" (click)="cancelAllSettings($event)">Save</button>
-      <button mat-button [mat-dialog-close]="data" (click)="saveConnectionConfig(jenkins, data.jenkins_build, data)">
+      <button mat-button [mat-dialog-close]="" (click)="cancelAllSettings($event)" i18n>Cancel</button>
+      <button mat-button [mat-dialog-close]="data" (click)="cancelAllSettings($event)" i18n>Save</button>
+      <button mat-button [mat-dialog-close]="data" (click)="saveConnectionConfig(jenkins, data.jenkins_build, data)" i18n>
         Create new Job
       </button>
     </div>
