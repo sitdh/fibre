@@ -58,8 +58,9 @@ export class CreateProjectComponent implements OnInit {
   }
 
   createNewProject(projectInfo) {
+    var replaceSpaces = new RegExp(' ', 'g')
     var uid = this.afs.createId()
-    var projectAlias = projectInfo.name.toLowerCase().replace(' ', '-')
+    var projectAlias = projectInfo.name.toLowerCase().replace(replaceSpaces, '-')
 
     var data: Project = {
       uid: uid,
@@ -67,7 +68,7 @@ export class CreateProjectComponent implements OnInit {
       name: projectInfo.name,
       slug: projectAlias,
       git_name: projectInfo.repository.full_name,
-      interested_package: projectInfo.repository.interested_package,
+      interested_package: projectInfo.interested_package,
       describe: projectInfo.describe,
       repo: projectInfo.repository.html_url,
       repo_ssh: this.selectedRepository.ssh_url,
