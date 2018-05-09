@@ -22,4 +22,11 @@ export class JenkinsConfigurationService {
     return jenkinsConfRef.valueChanges()
   }
 
+  findConfigurationForUserId(uid: string): Observable<JenkinsConfiguration[]> {
+    var jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
+      return ref.where('owner', '==', uid)
+    })
+    return jenkinsConfRef.valueChanges()
+  }
+
 }
