@@ -10,9 +10,9 @@ import { AuthenGuardService } from '../authen-guard.service';
 })
 export class HomeComponent implements OnInit {
 
-  private username: string
+  private username: string;
 
-	events = []
+  events = [];
 
   tiles = [
     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
@@ -21,17 +21,15 @@ export class HomeComponent implements OnInit {
     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
 
-	showFiller = false
+  showFiller = false;
 
   constructor(
     private route: Router,
     private ag: AuthenGuardService
-  ) { 
+  ) {
     ag.currentObservedUser().subscribe(u => {
-      if (null != u) {
-        route.navigate(['/dashboard'])
-      }
-    })
+      if (null != u) { route.navigate(['/dashboard']); }
+    });
   }
 
   ngOnInit() {

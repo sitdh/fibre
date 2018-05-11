@@ -16,17 +16,17 @@ export class JenkinsConfigurationService {
   ) { }
 
   findConfigurationForProjectId(pid: string): Observable<JenkinsConfiguration[]> {
-    var jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
-      return ref.where('project', '==', pid).limit(1)
-    })
-    return jenkinsConfRef.valueChanges()
+    const jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
+      return ref.where('project', '==', pid).limit(1);
+    });
+    return jenkinsConfRef.valueChanges();
   }
 
   findConfigurationForUserId(uid: string): Observable<JenkinsConfiguration[]> {
-    var jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
-      return ref.where('owner', '==', uid)
-    })
-    return jenkinsConfRef.valueChanges()
+    const jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
+      return ref.where('owner', '==', uid);
+    });
+    return jenkinsConfRef.valueChanges();
   }
 
 }

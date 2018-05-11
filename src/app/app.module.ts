@@ -38,7 +38,11 @@ import { JenkinsBuildService } from './jenkins-build.service';
 import { JenkinsConfigurationService } from './jenkins-configuration.service';
 import { JenkinsSettingsDialogComponent } from './jenkins-settings-dialog/jenkins-settings-dialog.component';
 import { SourceCodeStructureAnalyzerService } from './source-code-structure-analyzer.service';
-import { ProjectSourcecodeStrutureAnalysisComponent } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
+
+import {
+  ProjectSourcecodeStrutureAnalysisComponent
+} from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
+
 import { DisplayBuildHistoryComponent } from './display-build-history/display-build-history.component';
 import { ProjectBuildInformationService } from './project-build-information.service';
 import { SourceCodeStructureAnalyzerComponent } from './source-code-structure-analyzer/source-code-structure-analyzer.component';
@@ -76,20 +80,20 @@ import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-a
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-		AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
+    AngularFireAuthModule, AngularFirestoreModule, AngularFireStorageModule
   ],
-	exports: [
+  exports: [
     JenkinsSettingsDialogComponent,
-	],
-	entryComponents: [
+  ],
+  entryComponents: [
     JenkinsSettingsDialogComponent,
-	],
+  ],
   providers: [
     MenuItemService,
-    ProjectFetcherService, UserInformationService, AuthenGuardService, 
-    AppConfigService, CredentialService, RepositoryService, 
+    ProjectFetcherService, UserInformationService, AuthenGuardService,
+    AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-	],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

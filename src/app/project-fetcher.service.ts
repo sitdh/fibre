@@ -11,25 +11,25 @@ import { Project } from './project.entity';
 @Injectable()
 export class ProjectFetcherService {
 
-  projects: Project[]
+  projects: Project[];
 
   constructor(
     private db: AngularFirestore
   ) { }
 
   public availableProject(): Observable<Project[]> {
-    return of(this.projects)
+    return of(this.projects);
   }
 
   fetchProjectInformationWithSlug(slug: string): Observable<Project[]> {
     return this.db.collection<Project>('projecct', ref => {
-      return ref.where('slug', '==', slug)
+      return ref.where('slug', '==', slug);
     }).valueChanges();
   }
 
   fetchProjectInformationWithSlugOfOwner(slug: string, ownerId: string): Observable<Project[]> {
     return this.db.collection<Project>('projecct', ref => {
-      return ref.where('slug', '==', slug).where('owner', '==', ownerId)
+      return ref.where('slug', '==', slug).where('owner', '==', ownerId);
     }).valueChanges();
   }
 

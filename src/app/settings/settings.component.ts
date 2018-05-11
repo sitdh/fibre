@@ -15,37 +15,36 @@ import { JenkinsConfiguration } from '../jenkins-configuration.entity';
 })
 export class SettingsComponent implements OnInit {
 
-  existingConfPanelOpenedState: boolean = true;
+  existingConfPanelOpenedState = true;
   userInfo: firebase.UserInfo;
 
-  jenkinsConfigCollection: JenkinsConfiguration[]
+  jenkinsConfigCollection: JenkinsConfiguration[];
 
   constructor(
     private ag: AuthenGuardService,
     private jenkinConfService: JenkinsConfigurationService
-  ) { 
-    this.ag.currentObservedUser().subscribe(u => {
-      this.userInfo = u
-      jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
-        this.existingConfPanelOpenedState = (null != q)
-        this.jenkinsConfigCollection = q
-      })
-    })
-  }
+  ) { }
 
   ngOnInit() {
+    this.ag.currentObservedUser().subscribe(u => {
+      this.userInfo = u;
+      jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
+        this.existingConfPanelOpenedState = (null != q);
+        this.jenkinsConfigCollection = q;
+      });
+    });
   }
 
   jenkinsConfigurationChange(event: any) {
-    console.log(event.value)
+    console.log(event.value);
   }
 
   switchedPanel() {
-    this.existingConfPanelOpenedState = !this.existingConfPanelOpenedState
-    return this.existingConfPanelOpenedState
+    this.existingConfPanelOpenedState = !this.existingConfPanelOpenedState;
+    return this.existingConfPanelOpenedState;
   }
 
   fetchJenkinsConfig(p) {
-    console.log(p)
+    console.log(p);
   }
 }

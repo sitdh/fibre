@@ -9,7 +9,7 @@ import { Project } from '../project.entity';
 })
 export class ProjectSettingComponent implements OnInit {
 
-  @Input('project') projectInformation: Project;
+  @Input() project: Project;
 
   constructor() { }
 

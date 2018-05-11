@@ -12,48 +12,48 @@ import { AuthenGuardService } from '../authen-guard.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  @Input('appTitle') public title: string
+  @Input() public appTitle: string;
 
-  public isAuthenticated = false
+  public isAuthenticated = false;
 
-  public docorator = 'none'
+  public docorator = 'none';
 
-  private items = []
+  private items = [];
 
-  private user: UserInformation
+  private user: UserInformation;
 
   constructor(
     private menuItemService: MenuItemService,
     private userInformation: UserInformationService,
     private ag: AuthenGuardService
-  ) { 
+  ) {
     this.ag.currentObservedUser().subscribe(u => {
-      this.isAuthenticated = this.ag.isAuthenticated()
-    })
+      this.isAuthenticated = this.ag.isAuthenticated();
+    });
   }
 
   ngOnInit() {
-    this.retrieveRegisteredItems()
-    this.authenticateCheck()
+    this.retrieveRegisteredItems();
+    this.authenticateCheck();
   }
 
   retrieveRegisteredItems() {
     this.menuItemService.menuItems()
-      .subscribe( items => this.items = items )
+      .subscribe( items => this.items = items );
   }
 
   authenticateCheck() {
     this.userInformation.isAuthenticate()
-      .subscribe( user => { 
+      .subscribe( user => {
         if (null != user) {
-          this.user = user
+          this.user = user;
         }
-      })
+      });
   }
 
   removeCurrentUser(e) {
-    e.preventDefault()
-    this.ag.signout()
+    e.preventDefault();
+    this.ag.signout();
   }
 
 }

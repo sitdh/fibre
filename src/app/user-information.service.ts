@@ -12,10 +12,10 @@ export class UserInformationService {
   ) { }
 
   public currentUser(): Observable<any> {
-    return this.http.get('/api/')
+    return this.http.get('/api/');
   }
 
   public isAuthenticate(): Observable<any> {
-    return this.http.get('/api/')
+    return this.http.get('/api/');
   }
 }

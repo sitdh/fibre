@@ -13,7 +13,7 @@ export class CredentialService {
   ) { }
 
   fetchCredential(service: string): Observable<any> {
-    return this.http.get('/api/auth/credential/' + service)
+    return this.http.get('/api/auth/credential/' + service);
   }
 
 }

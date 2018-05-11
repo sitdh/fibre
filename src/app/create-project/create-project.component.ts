@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
@@ -26,9 +26,9 @@ export class CreateProjectComponent implements OnInit {
 
   user: any;
 
-  repositoryCollection: any
-  repositories: Observable<Repository[]> 
-  selectedRepository: Repository
+  repositoryCollection: any;
+  repositories: Observable<Repository[]>;
+  selectedRepository: Repository;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -41,28 +41,28 @@ export class CreateProjectComponent implements OnInit {
   ) {
     this.ag.currentObservedUser().subscribe(u => {
       this.user = u;
-      this.fetchUserRepositories(u)
-    })
+      this.fetchUserRepositories(u);
+    });
   }
 
   ngOnInit() {
   }
 
   fetchUserRepositories(user) {
-    this.repositoryCollection = this.afs.collection('/repos')
-    this.repositories = this.repositoryCollection.valueChanges()
+    this.repositoryCollection = this.afs.collection('/repos');
+    this.repositories = this.repositoryCollection.valueChanges();
   }
 
   cancelProjectSubmit() {
-    this.route.navigate(['/'])
+    this.route.navigate(['/']);
   }
 
   createNewProject(projectInfo) {
-    var replaceSpaces = new RegExp(' ', 'g')
-    var uid = this.afs.createId()
-    var projectAlias = projectInfo.name.toLowerCase().replace(replaceSpaces, '-')
+    const replaceSpaces = new RegExp(' ', 'g');
+    const uid = this.afs.createId();
+    const projectAlias = projectInfo.name.toLowerCase().replace(replaceSpaces, '-');
 
-    var data: Project = {
+    const data: Project = {
       uid: uid,
       project_name: projectInfo.name,
       name: projectInfo.name,
@@ -77,17 +77,17 @@ export class CreateProjectComponent implements OnInit {
       project_location: '/p/' + projectAlias,
       owner: this.user.uid,
       branch: 'master',
-    }
+    };
 
     this.afs.collection('/projects')
       .doc(uid)
       .set(data)
       .then(() => {
-        this.route.navigate([data.project_location])
-    })
+        this.route.navigate([data.project_location]);
+    });
   }
 
   selectedRepositoryChanged(event: any) {
-    this.selectedRepository = event.value
+    this.selectedRepository = event.value;
   }
 }

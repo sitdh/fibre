@@ -42,14 +42,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.ag.currentObservedUser().subscribe(u => {
-      if (null == u) 
-        this.route.navigate(['/account/new'])
+      if (null == u) { this.route.navigate(['/account/new']); }
 
       this.projectCollection = this.db.collection('projects', ref => {
-        return ref.where('owner', '==', u.uid)
-      })
-      this.projects = this.projectCollection.valueChanges()
-    })
+        return ref.where('owner', '==', u.uid);
+      });
+      this.projects = this.projectCollection.valueChanges();
+    });
   }
 
   featureTour() {
@@ -57,11 +56,11 @@ export class DashboardComponent implements OnInit {
   }
 
   newProject() {
-    this.route.navigate(['/project/new'])
+    this.route.navigate(['/project/new']);
   }
 
   openProject(p) {
-    this.route.navigate([p])
+    this.route.navigate([p]);
   }
 
 }

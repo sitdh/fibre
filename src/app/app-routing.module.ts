@@ -10,8 +10,8 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
-import { 
-  ProjectSourcecodeStrutureAnalysisComponent 
+import {
+  ProjectSourcecodeStrutureAnalysisComponent
 } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
 
 const routes: Routes = [
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent },
   { path: 'account/:action', component: CreateUserAccountComponent },
-]
+];
 
 @NgModule({
   exports: [

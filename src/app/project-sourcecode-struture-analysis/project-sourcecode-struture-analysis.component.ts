@@ -11,7 +11,7 @@ import { SourceCodeTestPathsAnalyzerComponent } from '../source-code-test-paths-
 })
 export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
 
-  investigatedPackage = 'com.sitdh.thesis'
+  investigatedPackage = 'com.sitdh.thesis';
 
   @ViewChild(SourceCodeStructureAnalyzerComponent)
   sourceStructureAnalyzer: SourceCodeStructureAnalyzerComponent;

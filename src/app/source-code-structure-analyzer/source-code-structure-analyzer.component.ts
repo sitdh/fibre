@@ -13,7 +13,7 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit {
   }
 
   refreshSourceCodeStructure() {
-    console.log('Hello')
+    console.log('Hello');
   }
 
 }

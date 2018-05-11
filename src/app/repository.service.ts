@@ -22,14 +22,14 @@ export class RepositoryService {
 
   updateUserRepositories(userMeta: any): Observable<any> {
     return this.http.get(
-      userMeta.repos_url + "?per_page=" + userMeta.public_repos,
+      userMeta.repos_url + '?per_page=' + userMeta.public_repos,
       {
         headers: {
           'Accept': 'application/vnd.github.v3',
           'Authorization': 'token ' + userMeta.access_token
         }
       }
-    )
+    );
 
   }
 

@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SourceCodeConstantsCollectionComponent implements OnInit {
 
-  stringCollection: string[]
-  numberCollection: string[]
+  stringCollection: string[];
+  numberCollection: string[];
 
-  constructor() { 
-    this.stringCollection = ['a', 'b', 'c', 'd']
-    this.numberCollection = ['1', '3', '4', '7']
+  constructor() {
+    this.stringCollection = ['a', 'b', 'c', 'd'];
+    this.numberCollection = ['1', '3', '4', '7'];
   }
 
   ngOnInit() {

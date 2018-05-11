@@ -1,4 +1,4 @@
-import { 
+import {
   Component, ViewChild, OnInit, EventEmitter,
 } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { ProjectBuildInformationService, BuildInfo } from '../project-build-info
   templateUrl: './display-build-history.component.html',
   styleUrls: ['./display-build-history.component.scss']
 })
-export class DisplayBuildHistoryComponent implements OnInit {
+export class DisplayBuildHistoryComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   buildDataSource: MatTableDataSource<BuildInfo>;
@@ -25,8 +25,8 @@ export class DisplayBuildHistoryComponent implements OnInit {
     this.projectBuildInfoService
       .fetchProjectBuildInformation()
       .subscribe((buildHistory: BuildInfo[]) => {
-        this.buildDataSource= new MatTableDataSource<BuildInfo>(buildHistory)
-      })
+        this.buildDataSource = new MatTableDataSource<BuildInfo>(buildHistory);
+      });
   }
 
   ngAfterViewInit() {

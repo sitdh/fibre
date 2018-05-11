@@ -1,4 +1,4 @@
-import { 
+import {
   Component, OnInit, EventEmitter,
   Inject, Input, Output
 } from '@angular/core';
@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { JenkinsSettingsDialogComponent } from '../jenkins-settings-dialog/jenkins-settings-dialog.component';
@@ -25,75 +25,75 @@ import { Project } from '../project.entity';
 })
 export class ProjectDashboardComponent implements OnInit {
 
-  projectInfo: Project
-  _projectInfo = null
+  projectInfo: Project;
+  _projectInfo = null;
 
-  @Output('jenkinsconfig') jenkinsConfig = new EventEmitter<JenkinsConfiguration>();
+  @Output('jenkinsconfig') jenkinsconfig = new EventEmitter<JenkinsConfiguration>();
 
-	name: string;
+  name: string;
   message: string;
-	animal: string;
+  animal: string;
 
-  jenkinsStatus = 'jenkins-fire'
+  jenkinsStatus = 'jenkins-fire';
 
-  userConfigJenkins: JenkinsConfiguration
+  userConfigJenkins: JenkinsConfiguration;
 
   constructor(
     private route: Router,
     private http: HttpClient,
     private jenkins: JenkinsBuildService,
-		private settingDialog: MatDialog,
-		private projectFetcher: ProjectFetcherService,
-		private jenkinsConfService: JenkinsConfigurationService,
-		private sourceAnalyzerService: SourceCodeStructureAnalyzerService
+    private settingDialog: MatDialog,
+    private projectFetcher: ProjectFetcherService,
+    private jenkinsConfService: JenkinsConfigurationService,
+    private sourceAnalyzerService: SourceCodeStructureAnalyzerService
   ) { }
 
   ngOnInit() { }
 
-	openJenkinsSettingDialog(): void {
-		let dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
-			width: '550px',
-      data: { 
-        jenkins_jobs_uid: this.userConfigJenkins.uid, 
-        project_uid: this.projectInfo.uid, 
-        jenkins_config: this.userConfigJenkins, 
+  openJenkinsSettingDialog(): void {
+    const dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
+      width: '550px',
+      data: {
+        jenkins_jobs_uid: this.userConfigJenkins.uid,
+        project_uid: this.projectInfo.uid,
+        jenkins_config: this.userConfigJenkins,
         jenkins_build: this.jenkins,
         project_repo: this.projectInfo.repo_ssh
       }
-		})
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       this.jenkins.fetchJenkinsJobsTemplate().subscribe(template => {
         template = template
           .replace('[jenkins-user]', result.jenkins_config.username)
-          .replace('[project-git-remote]', result.project_repo)
+          .replace('[project-git-remote]', result.project_repo);
 
         this.jenkins
           .createJenkinsJobs(result.jenkins_config, template)
-          .subscribe(r => { 
-            if (null == r) console.log('Jobs was created') 
-            this.jenkins.firstBuildForJob(result.jenkins_config).subscribe(r => {
-              console.log('First build was fired')
-            })
-          })
-      })
-    })
-	}
+          .subscribe(r => {
+            if (null == r) { console.log('Jobs was created'); }
+            this.jenkins.firstBuildForJob(result.jenkins_config).subscribe(() => {
+              console.log('First build was fired');
+            });
+          });
+      });
+    });
+  }
 
   @Input('project')
   set projectInformation(project: Project) {
-    if (null != project) this.fetchJenkinsConnectionStatus( project )
+    if (null != project) { this.fetchJenkinsConnectionStatus( project ); }
   }
 
   fetchJenkinsConnectionStatus(projectInfo: Project) {
     this.jenkins.isJenkinsServerSetup(projectInfo).subscribe(p => {
-      this.projectInfo = projectInfo
+      this.projectInfo = projectInfo;
 
-      if(p.length == 1) {
-        this.jenkinsStatus = 'jenkins' 
-        this.userConfigJenkins = p.pop()
+      if (1 === p.length) {
+        this.jenkinsStatus = 'jenkins';
+        this.userConfigJenkins = p.pop();
       } else {
-        this.jenkinsStatus = 'jenkins-fire' 
+        this.jenkinsStatus = 'jenkins-fire';
         this.userConfigJenkins = {
           project: projectInfo.project_name,
           project_slug: projectInfo.slug,
@@ -101,52 +101,52 @@ export class ProjectDashboardComponent implements OnInit {
           username: '',
           password: '',
           jobsname: projectInfo.slug
-        }
+        };
       }
-    })
+    });
   }
 
   buildJenkinsProjectJob(event: any) {
     this.jenkinsConfService
       .findConfigurationForProjectId(this.projectInfo.uid)
       .subscribe(p => {
-        if (1 == p.length) {
-          let jenkinsConfig: JenkinsConfiguration = p.pop()
+        if (1 === p.length) {
+          const jenkinsConfig: JenkinsConfiguration = p.pop();
           this.jenkins
             .forceJenkinsToBuild(jenkinsConfig)
             .subscribe(
               build => console.log(build),
-              (error: any) => { console.error(error) }
-            )
+              (error: any) => { console.error(error); }
+            );
         }
-      })
+      });
   }
 
   // Code structure
   refreshCodeStructure(event: any) {
-    this.sourceAnalyzerService.analyzeSourceStructure()
+    this.sourceAnalyzerService.analyzeSourceStructure();
   }
 
   reviewSourceCodeStructure(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
   // Test case
   reviewAndCreateTestCases(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
   executionTestCase(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
   // Report
   fetchLastestExecutionsResult(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
   reviewExecutionResult(event: any) {
-    console.log(event)
+    console.log(event);
   }
 
   rebuildProject(event: any) {

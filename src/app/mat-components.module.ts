@@ -1,9 +1,9 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { 
+import {
   MatButtonModule,
-  MatToolbarModule, 
+  MatToolbarModule,
   MatIconModule,
   MatMenuModule,
   MatDividerModule,
@@ -28,7 +28,7 @@ import {
   MatSnackBarModule,
   MatTooltipModule,
   MatPaginatorModule,
-  MatTableModule 
+  MatTableModule
 } from '@angular/material';
 
 
@@ -37,19 +37,19 @@ import {
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatDividerModule,
     MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
-    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
-    MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule, 
+    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
+    MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule,
     MatCardModule, MatExpansionModule, MatGridListModule, MatListModule,
-    MatStepperModule, MatTabsModule, MatProgressSpinnerModule, 
+    MatStepperModule, MatTabsModule, MatProgressSpinnerModule,
     MatProgressBarModule, MatDialogModule, MatSnackBarModule,
     MatTooltipModule, MatPaginatorModule, MatTableModule,
   ],
   exports: [
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatDividerModule,
-    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, 
-    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, 
-    MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule, 
+    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule,
+    MatAutocompleteModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
+    MatSelectModule, MatSliderModule, MatSlideToggleModule, MatSidenavModule,
     MatCardModule, MatExpansionModule, MatGridListModule, MatListModule,
     MatStepperModule, MatTabsModule, MatProgressSpinnerModule,
     MatProgressBarModule, MatDialogModule, MatSnackBarModule,

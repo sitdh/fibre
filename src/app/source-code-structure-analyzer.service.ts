@@ -6,6 +6,6 @@ export class SourceCodeStructureAnalyzerService {
   constructor() { }
 
   analyzeSourceStructure() {
-    console.log('Getting start to analyze')
+    console.log('Getting start to analyze');
   }
 }
