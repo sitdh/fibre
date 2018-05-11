@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 
 import { AuthenGuardService } from '../authen-guard.service';
 import { JenkinsConfigurationService } from '../jenkins-configuration.service';
-import { JenkinsConfiguration } from './jenkins-configuration.entity';
+import { JenkinsConfiguration } from '../jenkins-configuration.entity';
 
 @Component({
   selector: 'app-settings',

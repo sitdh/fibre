@@ -7,5 +7,5 @@ export interface JenkinsConfiguration {
   username: string;
   password: string;
   jobsname: string;
-  owner: string;
+  owner?: string;
 }

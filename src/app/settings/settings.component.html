@@ -29,27 +29,22 @@
             </mat-expansion-panel-header>
 
             <form #jenkinsInfo="ngForm">
-              input[type=hidden value=hidden]
               <mat-form-field>
                 <mat-select placeholder="Jenkins configuration profile"
                   name="selectedRepository"
-                  (change)="jenkinsConfigurationChange($event)"
-                  [(ngModel)]="jenkinsInfo.selectedRepository">
+                  (change)="jenkinsConfigurationChange(jenkinsInfo.selectedRepository)"
                   <mat-option *ngFor="let j of jenkinsConfigCollection" value="{{ j }}">
                     {{ j.connection_name }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
-              .ddd
-              {{ jenkinsInfo.selectedRepository.connection_name | async || 'a' }}
-              ---
-
               <input type="hidden" value="jenkinsInfo.selectedRepository">
 
               <mat-form-field>
                 <input matInput placeholder="Server" 
                   name="server"
+                  value="hello"
                   [(ngModel)]="jenkinsInfo.selectedRepository">
                 <span matPrefix>http://</span>
               </mat-form-field>
