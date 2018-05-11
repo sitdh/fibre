@@ -1,5 +1,6 @@
 import {
   Component, ViewChild, OnInit, EventEmitter,
+  AfterViewInit,
 } from '@angular/core';
 
 import { MatPaginator, MatTableDataSource } from '@angular/material';

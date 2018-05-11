@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.ag.currentObservedUser().subscribe(u => {
       this.userInfo = u;
-      jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
+      this.jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
         this.existingConfPanelOpenedState = (null != q);
         this.jenkinsConfigCollection = q;
       });
