@@ -1,16 +1,16 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: ""
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
   },
   github: {
-    appId: "",
-    secret: ""
+    appId: '',
+    secret: ''
   },
   jenkins: {
     server: '',

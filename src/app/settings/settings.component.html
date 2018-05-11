@@ -32,7 +32,7 @@
               <mat-form-field>
                 <mat-select placeholder="Jenkins configuration profile"
                   name="selectedRepository"
-                  (change)="jenkinsConfigurationChange(jenkinsInfo.selectedRepository)"
+                  (change)="jenkinsConfigurationChange(jenkinsInfo.selectedRepository)">
                   <mat-option *ngFor="let j of jenkinsConfigCollection" value="{{ j }}">
                     {{ j.connection_name }}
                   </mat-option>
