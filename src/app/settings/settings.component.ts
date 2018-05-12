@@ -19,6 +19,7 @@ export class SettingsComponent implements OnInit {
   userInfo: firebase.UserInfo;
 
   jenkinsConfigCollection: JenkinsConfiguration[];
+  jenkinsInfo: JenkinsConfiguration;
 
   constructor(
     private ag: AuthenGuardService,
@@ -30,7 +31,7 @@ export class SettingsComponent implements OnInit {
       this.userInfo = u;
       this.jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
         this.existingConfPanelOpenedState = (null != q);
-        this.jenkinsConfigCollection = q;
+        this.jenkinsInfo = q.pop();
       });
     });
   }
