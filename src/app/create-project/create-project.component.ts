@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
@@ -10,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
+import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 
 import { UserMeta } from '../user-meta.entity';
 import { Repository } from '../repository.entity';
@@ -38,6 +41,7 @@ export class CreateProjectComponent implements OnInit {
     private repoService: RepositoryService,
     private http: HttpClient,
     private ag: AuthenGuardService,
+    private jenkinsConfig: JenkinsConfigurationService,
   ) {
     this.ag.currentObservedUser().subscribe(u => {
       this.user = u;
@@ -79,15 +83,25 @@ export class CreateProjectComponent implements OnInit {
       branch: 'master',
     };
 
-    this.afs.collection('/projects')
-      .doc(uid)
-      .set(data)
-      .then(() => {
-        this.route.navigate([data.project_location]);
-    });
+    consonle.log(data);
+    // this.afs.collection('/projects')
+    //   .doc(uid)
+    //   .set(data)
+    //   .then(() => {
+    //     this.performCreateJenkinsProject(data)
+    // });
   }
 
   selectedRepositoryChanged(event: any) {
     this.selectedRepository = event.value;
+  }
+
+  private performCreateJenkinsProject(projectInfo: any) {
+
+    this.performFireFistProjectBuild(projectInfo);
+  }
+
+  private performFireFistProjectBuild(projectInfo: any) {
+    // this.route.navigate([data.project_location]);
   }
 }
