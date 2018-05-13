@@ -1,82 +1,50 @@
 @import './src/styles.scss';
 
 :host {
-  display: block;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   max-width: 1280px;
-  margin: 20px auto 0px;
+  margin: 0 auto;
 }
 
-.content-wrapper {
-  margin: 5px;
-}
-
-.inside-panel {
+.content-fluid {
   display: flex;
-  position: absolute;
-  top: 0;
-  flex-basis: 100%;
-  flex-direction: column;
+  flex-wrap: wrap;
   width: 100%;
-  height: auto;
+  padding: 20px 0;
 }
 
-.data-title {
-  font-weight: bold;
+.wrapper {
+  flex: 1 1 calc(50% - 2em);
+  margin: 1em;
+}
+
+.content-body,
+.content-title {
+  padding: 20px;
+}
+
+.content-title {
   background-color: $secondary;
-  width: 100%;
-  padding: 5px 10px;
   color: white;
-  font-size: 1.2em;
+  font-weight: bold;
 }
 
-.data-container {
+.content-body {
   display: flex;
-  flex-basis: 100%;
   flex-direction: column;
-  padding: 0 20px;
 }
 
-.settings-panel {
-  width: 100%;
+.form-wrapper {
   display: flex;
-  flex-basis: 100%;
-  flex-flow: column;
+  flex-direction: column;
 }
 
-.settings-pane h2 {
-  width: 100%;
-}
-
-.form-field-wrapper {
-  display: block;
-  width: 100%;
-  margin: 15px auto;
-}
-
-mat-form-field { width: 100%; }
-
-.data-separate .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.panel-content {
+.controls-wrapper {
   display: flex;
-  fex-basis: 100%;
-  flex-flow: row;
-  margin-bottom: .5em;
+  flex-direction: row;
+  justify-content: space-around;
 }
-
-.data-separate {
-  margin-right: 12px;
-}
-
-.f7 {
-  width: 69.5%;
-}
- 
-.f5 {
-  width: 49.5%;
-}
-

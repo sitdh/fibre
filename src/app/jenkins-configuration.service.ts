@@ -24,9 +24,21 @@ export class JenkinsConfigurationService {
 
   findConfigurationForUserId(uid: string): Observable<JenkinsConfiguration[]> {
     const jenkinsConfRef = this.afs.collection<JenkinsConfiguration>('jenkinsconf', ref => {
-      return ref.where('owner', '==', uid);
+      return ref.where('owner', '==', uid).limit(1);
     });
     return jenkinsConfRef.valueChanges();
+  }
+
+  saveDocument(docId: string, documentCollection: any): Observable<any> {
+    return this.afs.collection(`jenkinsconf/${docId}`)
+      .save(documentCollection)
+      .valueChanges();
+  }
+
+  updateDocument(docId: string, documentCollection: any): Observable<any> {
+    return this.afs.collection('jenkinsconf')
+      .doc(`${docId}`)
+      .set(documentCollection);
   }
 
 }

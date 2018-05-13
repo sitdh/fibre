@@ -23,17 +23,12 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private ag: AuthenGuardService,
-    private jenkinConfService: JenkinsConfigurationService
+    private jenkinConfService: JenkinsConfigurationService,
+    private af: AngularFirestore
   ) { }
 
   ngOnInit() {
-    this.ag.currentObservedUser().subscribe(u => {
-      this.userInfo = u;
-      this.jenkinConfService.findConfigurationForUserId(u.uid).subscribe(q => {
-        this.existingConfPanelOpenedState = (null != q);
-        this.jenkinsInfo = q.pop();
-      });
-    });
+    this.fetchJenkinsConfig()
   }
 
   jenkinsConfigurationChange(event: any) {
@@ -45,7 +40,27 @@ export class SettingsComponent implements OnInit {
     return this.existingConfPanelOpenedState;
   }
 
-  fetchJenkinsConfig(p) {
-    console.log(p);
+  fetchJenkinsConfig() {
+    this.ag.currentObservedUser().subscribe(u => {
+      this.userInfo = u;
+      this.jenkinConfService.findConfigurationForUserId(u.uid).subscribe(data => {
+        this.jenkinsConfigCollection = data;
+        console.log(data)
+      });
+    });
+  }
+
+  performSaveConnection(form: any) {
+    console.log(event);
+    this.jenkinConfService
+      .updateDocument(form.value.uid, form.value)
+  }
+
+  performeTestJenkinsConnection(event: any) {
+    console.log(event);
+  }
+
+  performResetConfigInformation(event: any) {
+    console.log(event);
   }
 }

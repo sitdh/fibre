@@ -1,178 +1,57 @@
-<mat-grid-list cols="2" class="content-wrapper" gutterSize="20">
-  <mat-grid-tile class="mat-elevation-z4">
-    <div class="inside-panel">
-      <div class="data-title">
-        Profile
-      </div>
+<div class="content-fluid">
+
+  <div class="wrapper mat-elevation-z2">
+    <div class="content-title">Profile</div>
+  </div>
+
+  <div class="wrapper mat-elevation-z2">
+    <div class="content-title">Jenkins Connection</div>
+    <div class="content-body">
+      <form class="form-wrapper" #jenkinsConf="ngForm" *ngFor="let info of jenkinsConfigCollection">
+
+        <input type="hidden" name="uid" [(ngModel)]="info.uid">
+        <input type="hidden" name="owner" [(ngModel)]="info.owner">
+        
+        <mat-form-field>
+          <input matInput 
+            placeholder="Connection name" 
+            name="connection_name"
+            [(ngModel)]="info.connection_name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput 
+            placeholder="Server" 
+            name="server"
+            [(ngModel)]="info.server">
+          <span matPrefix>http://</span>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Username" 
+            name="username"
+            [(ngModel)]="info.username">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Password" 
+            name="password"
+            type="password"
+            [(ngModel)]="info.password">
+        </mat-form-field>
+
+        <div class="controls-wrapper">
+          <button mat-button mat-raised-button (click)="performResetConfigInformation(jenkinsConf)" i18n>
+            Cancel
+          </button>
+          <button mat-button mat-raised-button (click)="performeTestJenkinsConnection(jenkinsConf)" i18n>
+            Test connection
+          </button>
+          <button mat-button mat-raised-button color="primary" (click)="performSaveConnection(jenkinsConf)" i18n>
+            Save
+          </button>
+        </div>
+      </form>
     </div>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="mat-elevation-z4">
-    <div class="inside-panel">
-      <div class="data-title">
-        Connection
-      </div>
-      <div class="data-container">
-        <form>
-          <mat-form-field>
-            <input matInput placeholder="Connection name" 
-              name="connection_name"
-              [(ngModel)]="jenkinsInfo.connection_name">
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Server" 
-              name="server"
-              value="hello"
-              [(ngModel)]="jenkinsInfo.server">
-            <span matPrefix>http://</span>
-          </mat-form-field>
-          
-          <mat-form-field>
-            <input matInput placeholder="Username" 
-              name="username"
-              [(ngModel)]="jenkinsInfo.username">
-          </mat-form-field>
-          
-          <mat-form-field>
-            <input matInput placeholder="Password" 
-              name="password"
-              type="password"
-              [(ngModel)]="jenkinsInfo.password">
-          </mat-form-field>
-
-          <mat-checkbox name="setDefaultConnection" class="form-field-wrapper"
-            [(ngModel)]="jenkinsInfo.setDefaultConnection">
-            Set as default connection
-          </mat-checkbox>
-
-          <div>
-            <button mat-button color="secondary">Cancel</button>
-            <button mat-button>Test connection</button>
-            <button mat-button mat-raised-button color="primary">Save</button>
-          </div>
-        </form>
-      
-      </div>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
-<!--
-<div class="settings-panel">
-  <h2>Settings</h2>
-
-  <div class="panel-content">
-    <mat-card class="data-separate f7">
-      <mat-card-title>Personal information</mat-card-title>
-      <mat-card-content>
-        hello
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button mat-raised-button color="primary">Save</button>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="data-separate f5">
-      <mat-card-title>Jenkins connections</mat-card-title>
-      <mat-card-content>
-        <mat-accordion>
-          <mat-expansion-panel 
-            [expanded]="existingConfPanelOpenedState"
-            (closed)="switchedPanel()"
-            hideToggle="true">
-            <mat-expansion-panel-header>
-              <mat-panel-title>Exists</mat-panel-title>
-              <mat-panel-description>
-                Existing config
-                <mat-icon>build</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-
-            <form #jenkinsInfo="ngForm">
-              <mat-form-field>
-                <input matInput placeholder="Server" 
-                  name="server"
-                  [(ngModel)]="jenkinsInfo.selectedRepository">
-                <span matPrefix>http://</span>
-              </mat-form-field>
-              
-              <mat-form-field>
-                <input matInput placeholder="Username" 
-                  name="username"
-                  [(ngModel)]="jenkinsInfo.selectedRepository">
-              </mat-form-field>
-              
-              <mat-form-field>
-                <input matInput placeholder="Password" 
-                  name="password"
-                  type="password"
-                  [(ngModel)]="jenkinsInfo.selectedRepository">
-              </mat-form-field>
-
-              <mat-checkbox name="setDefaultConnection" class="form-field-wrapper"
-                [(ngModel)]="jenkinsInfo.setDefaultConnection">
-                Set as default connection
-              </mat-checkbox>
-
-              <div>
-                <button mat-button color="secondary">Cancel</button>
-                <button mat-button>Test connection</button>
-                <button mat-button mat-raised-button color="primary">Save</button>
-              </div>
-            </form>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel
-            [expanded]="! existingConfPanelOpenedState" 
-            (closed)="switchedPanel()">
-            <mat-expansion-panel-header>
-              <mat-panel-title>Create new</mat-panel-title>
-              <mat-panel-description>
-                New Configuration
-                <mat-icon>add</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-
-            <form #createNewConfig="ngForm">
-              <mat-form-field>
-                <input matInput placeholder="Connection name" 
-                  name="name"
-                  [(ngModel)]="createNewConfig.name">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Server" 
-                  name="server"
-                  [(ngModel)]="createNewConfig.server">
-                <span matPrefix>http://</span>
-              </mat-form-field>
-              
-              <mat-form-field>
-                <input matInput placeholder="Username" 
-                  name="username"
-                  [(ngModel)]="createNewConfig.username">
-              </mat-form-field>
-              
-              <mat-form-field>
-                <input matInput placeholder="Password" 
-                  name="password"
-                  type="password"
-                  [(ngModel)]="createNewConfig.password">
-              </mat-form-field>
-
-              <mat-checkbox name="setDefaultConnection" class="form-field-wrapper"
-                [(ngModel)]="createNewConfig.setDefaultConnection">
-                Set as default connection
-              </mat-checkbox>
-
-              <div>
-                <button mat-button color="secondary">Test connection</button>
-                <button mat-button mat-raised-button color="primary">Save</button>
-              </div>
-            </form>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </mat-card-content>
-    </mat-card>
   </div>
 </div>
--->
