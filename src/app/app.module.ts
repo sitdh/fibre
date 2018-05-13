@@ -48,6 +48,7 @@ import { ProjectBuildInformationService } from './project-build-information.serv
 import { SourceCodeStructureAnalyzerComponent } from './source-code-structure-analyzer/source-code-structure-analyzer.component';
 import { SourceCodeConstantsCollectionComponent } from './source-code-constants-collection/source-code-constants-collection.component';
 import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-analyzer/source-code-test-paths-analyzer.component';
+import { ProjectCreationProgressComponent } from './project-creation-progress/project-creation-progress.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-a
     SourceCodeStructureAnalyzerComponent,
     SourceCodeConstantsCollectionComponent,
     SourceCodeTestPathsAnalyzerComponent,
+    ProjectCreationProgressComponent,
   ],
   imports: [
     BrowserModule,
