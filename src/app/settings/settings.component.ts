@@ -45,7 +45,6 @@ export class SettingsComponent implements OnInit {
       this.userInfo = u;
       this.jenkinConfService.findConfigurationForUserId(u.uid).subscribe(data => {
         this.jenkinsConfigCollection = data;
-        console.log(data)
       });
     });
   }
