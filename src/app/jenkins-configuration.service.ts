@@ -29,16 +29,15 @@ export class JenkinsConfigurationService {
     return jenkinsConfRef.valueChanges();
   }
 
-  saveDocument(docId: string, documentCollection: any): Observable<any> {
+  saveDocument(docId: string, documentCollection: any) {
     return this.afs.collection('jenkinsconf')
       .doc(docId)
-      .save(documentCollection)
-      .valueChanges();
+      .set(documentCollection);
   }
 
-  updateDocument(docId: string, documentCollection: any): Observable<any> {
+  updateDocument(docId: string, documentCollection: any) {
     return this.afs.collection('jenkinsconf')
-      .doc(`${docId}`)
+      .doc(docId)
       .set(documentCollection);
   }
 

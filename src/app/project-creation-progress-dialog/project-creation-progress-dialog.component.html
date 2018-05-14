@@ -1,3 +1,16 @@
-<p>
-  project-creation-progress-dialog works!
-</p>
+<div class="project-status-container">
+  <div class="element progress-title">
+    {{ titleMessage }}
+  </div>
+  <div class="element progress-animation">
+    <div class="illustrator">
+    </div>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div class="element status-message">
+    {{ statusMessage }}
+  </div>
+  <div class="element actions">
+    <button mat-button mat-raised-button color="primary">Cancle</button>
+  </div>
+</div>

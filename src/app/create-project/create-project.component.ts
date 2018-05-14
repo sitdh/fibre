@@ -48,6 +48,7 @@ export class CreateProjectComponent implements OnInit {
     private ag: AuthenGuardService,
     private jenkinsConfig: JenkinsConfigurationService,
     private jekninsBuildService: JenkinsBuildService,
+    private progressDialog: MatDialog,
   ) {
     this.ag.currentObservedUser().subscribe(u => {
       this.user = u;
@@ -90,6 +91,7 @@ export class CreateProjectComponent implements OnInit {
     };
 
     console.log(data);
+    this.performCreateJenkinsProject();
     // this.afs.collection('/projects')
     //   .doc(uid)
     //   .set(data)
@@ -102,9 +104,19 @@ export class CreateProjectComponent implements OnInit {
     this.selectedRepository = event.value;
   }
 
-  private performCreateJenkinsProject(projectInfo: any) {
+  private performCreateJenkinsProject() {
+    const dialogRef = this.progressDialog.open(
+      ProjectCreationProgressDialogComponent,
+      {
+        width: '300px',
+        data: {
+        }
+      });
 
-    this.performFireFistProjectBuild(projectInfo);
+    dialogRef.afterClosed().subscribe(result => {
+      // this.performFireFistProjectBuild(projectInfo);
+    });
+
   }
 
   private performFireFistProjectBuild(projectInfo: any) {

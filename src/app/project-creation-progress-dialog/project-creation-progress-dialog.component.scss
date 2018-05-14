@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  flex: 1 1 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.element {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 8px;
+  height: 20%;
+}
+
+.progress-animation {
+  height: 60%;
+  flex-direction: column;
+}
+
+@keyframes animationfigure {
+  20% { background-image: url(/assets/image/project-process/trees.svg); }
+  40% { background-image: url(/assets/image/project-process/ecology.svg); }
+  60% { background-image: url(/assets/image/project-process/green-energy.svg); }
+  80% { background-image: url(/assets/image/project-process/windmill.svg); }
+}
+
+.illustrator {
+  width: 100%;
+  min-height: 100px;
+  margin: 10px auto;
+  background-image: url(/assets/image/project-process/charging.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: animationfigure 10s ease-in-out infinite;
+}
+
+.image-status {
+  padding: 10px;
+  min-height: 100px;
+}
+
+.actions {
+  flex: 1 1 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { JenkinsBuildService } from '../jenkins-build.service';
 
 @Component({
   selector: 'app-project-creation-progress-dialog',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectCreationProgressDialogComponent implements OnInit {
 
-  constructor() { }
+  titleMessage = 'Project creation status';
+  statusMessage = 'Project initializing';
+  constructor(
+    public dialogRef: MatDialogRef<ProjectCreationProgressDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private jenkinsBuilder: JenkinsBuildService
+  ) { }
 
   ngOnInit() {
+    this.performedStartProjectinitialization();
+  }
+
+  performedStartProjectinitialization() {
+    console.log('Init');
   }
 
 }
