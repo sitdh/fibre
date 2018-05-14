@@ -14,6 +14,10 @@ import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
 import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 
+import {
+  ProjectCreationProgressDialogComponent
+} from '../project-creation-progress-dialog/project-creation-progress-dialog.component';
+
 import { UserMeta } from '../user-meta.entity';
 import { Repository } from '../repository.entity';
 import { Project } from '../project.entity';
@@ -83,7 +87,7 @@ export class CreateProjectComponent implements OnInit {
       branch: 'master',
     };
 
-    consonle.log(data);
+    console.log(data);
     // this.afs.collection('/projects')
     //   .doc(uid)
     //   .set(data)

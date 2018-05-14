@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fetchJenkinsConfig()
+    this.fetchJenkinsConfig();
   }
 
   jenkinsConfigurationChange(event: any) {
@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit {
   performSaveConnection(form: any) {
     console.log(event);
     this.jenkinConfService
-      .updateDocument(form.value.uid, form.value)
+      .updateDocument(form.value.uid, form.value);
   }
 
   performeTestJenkinsConnection(event: any) {

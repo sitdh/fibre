@@ -30,7 +30,8 @@ export class JenkinsConfigurationService {
   }
 
   saveDocument(docId: string, documentCollection: any): Observable<any> {
-    return this.afs.collection(`jenkinsconf/${docId}`)
+    return this.afs.collection('jenkinsconf')
+      .doc(docId)
       .save(documentCollection)
       .valueChanges();
   }
