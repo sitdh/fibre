@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { RepositoryService } from '../repository.service';
 import { AuthenGuardService } from '../authen-guard.service';
 import { JenkinsConfigurationService } from '../jenkins-configuration.service';
+import { JenkinsBuildService } from '../jenkins-build.service';
 
 import {
   ProjectCreationProgressDialogComponent
@@ -46,6 +47,7 @@ export class CreateProjectComponent implements OnInit {
     private http: HttpClient,
     private ag: AuthenGuardService,
     private jenkinsConfig: JenkinsConfigurationService,
+    private jekninsBuildService: JenkinsBuildService,
   ) {
     this.ag.currentObservedUser().subscribe(u => {
       this.user = u;
