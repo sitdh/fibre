@@ -15,7 +15,7 @@ import {
 } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/hom', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'project/new', component: CreateProjectComponent },
