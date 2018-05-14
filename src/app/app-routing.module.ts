@@ -13,8 +13,13 @@ import { ProjectSettingComponent } from './project-setting/project-setting.compo
 import {
   ProjectSourcecodeStrutureAnalysisComponent
 } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
+import {
+  ProjectCreationProgressDialogComponent
+} from './project-creation-progress-dialog/project-creation-progress-dialog.component';
 
 const routes: Routes = [
+  { path: 'x', component: ProjectCreationProgressDialogComponent },
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
