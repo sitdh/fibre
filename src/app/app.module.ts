@@ -89,6 +89,7 @@ import { ProjectCreationProgressDialogComponent } from './project-creation-progr
   ],
   entryComponents: [
     JenkinsSettingsDialogComponent,
+    ProjectCreationProgressDialogComponent,
   ],
   providers: [
     MenuItemService,
