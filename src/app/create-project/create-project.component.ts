@@ -90,13 +90,12 @@ export class CreateProjectComponent implements OnInit {
       branch: 'master',
     };
 
-    this.performCreateJenkinsProject(data, this.user);
-    // this.afs.collection('/projects')
-    //   .doc(uid)
-    //   .set(data)
-    //   .then(() => {
-    //     this.performCreateJenkinsProject(data)
-    // });
+    this.afs.collection('/projects')
+      .doc(uid)
+      .set(data)
+      .then(() => {
+        this.performCreateJenkinsProject(data, this.user);
+    });
   }
 
   selectedRepositoryChanged(event: any) {
@@ -120,7 +119,4 @@ export class CreateProjectComponent implements OnInit {
 
   }
 
-  private performFireFistProjectBuild(projectInfo: any) {
-    // this.route.navigate([data.project_location]);
-  }
 }

@@ -11,6 +11,10 @@
     {{ statusMessage }}
   </div>
   <div class="element actions">
-    <button mat-button mat-raised-button color="primary">Cancle</button>
+    <button mat-button
+      mat-raised-button
+      [mat-dialog-close]=""
+      (click)="disableProjectCreation($event)"
+      color="primary">Cancle</button>
   </div>
 </div>

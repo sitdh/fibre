@@ -37,7 +37,8 @@
   background-image: url(/assets/image/project-process/charging.svg);
   background-repeat: no-repeat;
   background-position: center;
-  animation: animationfigure 10s ease-in-out infinite;
+  animation: animationfigure 30s ease-in-out infinite;
+  animation-fill-mode: forwards;
 }
 
 .image-status {

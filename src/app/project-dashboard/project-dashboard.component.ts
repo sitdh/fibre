@@ -68,14 +68,14 @@ export class ProjectDashboardComponent implements OnInit {
           .replace('[jenkins-user]', result.jenkins_config.username)
           .replace('[project-git-remote]', result.project_repo);
 
-        this.jenkins
-          .createJenkinsJobs(result.jenkins_config, template)
-          .subscribe(r => {
-            if (null == r) { console.log('Jobs was created'); }
-            this.jenkins.firstBuildForJob(result.jenkins_config).subscribe(() => {
-              console.log('First build was fired');
-            });
-          });
+        // this.jenkins
+        //   .createJenkinsJobs(result.jenkins_config, template)
+        //   .subscribe(r => {
+        //     if (null == r) { console.log('Jobs was created'); }
+        //     this.jenkins.firstBuildForJob(result.jenkins_config).subscribe(() => {
+        //       console.log('First build was fired');
+        //     });
+        //   });
       });
     });
   }
