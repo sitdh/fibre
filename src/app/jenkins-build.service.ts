@@ -58,7 +58,7 @@ export class JenkinsBuildService {
   createJobsTemplateFromProject(template: string, projectInfo: Project, jenkinsConfig: JenkinsConfiguration): string {
     return template
       .replace('[project-git-remote]', projectInfo.repo)
-      .replace('[jenkins-user]', jenkinsConfig.user_name);
+      .replace('[jenkins-user]', jenkinsConfig.username);
   }
 
   fetchJenkinsJobsTemplate(): Observable<string> {
@@ -79,9 +79,19 @@ export class JenkinsBuildService {
   firstBuildForJob(config: JenkinsConfiguration, project: Project): Observable<any> {
     const headerOptions = this.authenticationHeader(config);
     const buildUrl = `http://${config.server}/job/fibre-${project.slug}/build`;
-    return this.http.post<any>(
+    return this.http.post(
       buildUrl,
-      null,
+      "",
+      { headers: headerOptions }
+    );
+  }
+
+  jenkinsJobItemInformation(config: JenkinsConfiguration, project: Project): Observable<any> {
+    const headerOptions = this.authenticationHeader(config);
+    const buildUrl = `http://${config.server}/job/fibre-${project.slug}/api/json`;
+    return this.http.post(
+      buildUrl,
+      "",
       { headers: headerOptions }
     );
   }
@@ -96,6 +106,15 @@ export class JenkinsBuildService {
     );
   }
 
+  watchBuildStatus(watchBranch: string, project: Project, config: JenkinsConfiguration): Observable<any> {
+    const headerOptions = this.authenticationHeader(config);
+    const lastBuildUrl = `http://${config.server}/job/fibre-${project.slug}/job/${watchBranch}/lastBuild/api/json`;
+    return this.http.get(
+      lastBuildUrl,
+      { headers: headerOptions }
+    );
+  }
+
   private authenticationHeader(config: JenkinsConfiguration): HttpHeaders {
     const headersOptions = new HttpHeaders();
 
@@ -103,4 +122,5 @@ export class JenkinsBuildService {
       .append('Authorization', 'Basic ' + btoa(`${config.username}:${config.password}`))
       .append('Content-Type', 'application/xml');
   }
+
 }
