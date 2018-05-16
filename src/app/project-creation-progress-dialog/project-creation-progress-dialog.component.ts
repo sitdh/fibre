@@ -40,6 +40,7 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
     this.jenkinsBuilder.fetchJenkinsJobsTemplate()
       .subscribe(projectTemplate => {
         this.statusMessage = 'Configuration fetched';
+
         projectTemplate = this.jenkinsBuilder
           .createJobsTemplateFromProject(projectTemplate, this.data.project, jenkinsConfiguration);
 
@@ -54,17 +55,15 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
   }
 
   performedFireFirstBuild(jenkinsConfig: JenkinsConfiguration) {
-    console.log('Firing first build');
-    this.statusMessage = 'Firing Project Build';
-    console.log(this.data.project);
+    this.statusMessage = 'Building';
     this.jenkinsBuilder.firstBuildForJob(jenkinsConfig, this.data.project)
       .subscribe(message => {
-        this.statusMessage = 'Building';
         this.performConstantsCollection();
       });
   }
 
   private performConstantsCollection() {
+    console.log('Collecting info');
     // this.performedGraphAnalysis();
   }
 

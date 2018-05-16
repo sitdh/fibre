@@ -57,7 +57,7 @@ export class JenkinsBuildService {
 
   createJobsTemplateFromProject(template: string, projectInfo: Project, jenkinsConfig: JenkinsConfiguration): string {
     return template
-      .replace('[project-git-remote]', projectInfo.project_repo)
+      .replace('[project-git-remote]', projectInfo.repo)
       .replace('[jenkins-user]', jenkinsConfig.user_name);
   }
 
