@@ -46,13 +46,19 @@ export class JenkinsBuildService {
       .set(config);
   }
 
-  createJenkinsJobs(config: JenkinsConfiguration, template): Observable<any> {
-    const createItem = `http://${config.server}/createItem?name=fibre-${config.jobsname}`;
+  createJenkinsJobs(template: string, projectInfo: Project, config: JenkinsConfiguration): Observable<any> {
+    const createItem = `http://${config.server}/createItem?name=fibre-${projectInfo.slug}`;
     return this.http.post<any>(
       createItem,
       template,
       { headers: this.authenticationHeader(config) }
     );
+  }
+
+  createJobsTemplateFromProject(template: string, projectInfo: Project, jenkinsConfig: JenkinsConfiguration): string {
+    return template
+      .replace('[project-git-remote]', projectInfo.project_repo)
+      .replace('[jenkins-user]', jenkinsConfig.user_name);
   }
 
   fetchJenkinsJobsTemplate(): Observable<string> {
@@ -70,9 +76,9 @@ export class JenkinsBuildService {
     );
   }
 
-  firstBuildForJob(config: JenkinsConfiguration): Observable<any> {
+  firstBuildForJob(config: JenkinsConfiguration, project: Project): Observable<any> {
     const headerOptions = this.authenticationHeader(config);
-    const buildUrl = `http://${config.server}/job/fibre-${config.jobsname}/build`;
+    const buildUrl = `http://${config.server}/job/fibre-${project.slug}/build`;
     return this.http.post<any>(
       buildUrl,
       null,

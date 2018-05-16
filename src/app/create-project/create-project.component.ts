@@ -90,8 +90,7 @@ export class CreateProjectComponent implements OnInit {
       branch: 'master',
     };
 
-    console.log(data);
-    this.performCreateJenkinsProject();
+    this.performCreateJenkinsProject(data, this.user);
     // this.afs.collection('/projects')
     //   .doc(uid)
     //   .set(data)
@@ -104,12 +103,14 @@ export class CreateProjectComponent implements OnInit {
     this.selectedRepository = event.value;
   }
 
-  private performCreateJenkinsProject() {
+  private performCreateJenkinsProject(projectInfo, user) {
     const dialogRef = this.progressDialog.open(
       ProjectCreationProgressDialogComponent,
       {
         width: '300px',
         data: {
+          'project': projectInfo,
+          'user': user
         }
       });
 
