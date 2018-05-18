@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 
 import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 import { JenkinsBuildService } from '../jenkins-build.service';
+import { Project } from '../project.entity';
 
 @Component({
   selector: 'app-project-creation-progress-dialog',
@@ -60,7 +61,7 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
           }, error => {
             console.log(error);
           }, () => {
-            this.watchBuildStatus(jenkinsConfiguration);
+            this.watchBuildStatus(jenkinsConfiguration, this.data.project);
           });
       });
 
@@ -71,7 +72,7 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
     this.jenkinsBuilder.firstBuildForJob(jenkinsConfig, this.data.project)
       .subscribe(message => {
         this.performConstantsCollection();
-        this.watchBuildStatus(jenkinsConfig);
+        this.watchBuildStatus(jenkinsConfig, this.data.project);
       }, error => {
         this.performConstantsCollection();
         this.watchForJobsCreate(jenkinsConfig, this.data.project);
@@ -88,7 +89,7 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
   private performedGraphAnalysis() {
   }
 
-  private watchForJobsCreate(jenkinsConfig, projectInfo: Project): Observable<any> {
+  private watchForJobsCreate(jenkinsConfig, projectInfo: Project) {
     this.statusMessage = 'Preparing environment';
     this.jenkinsBuilder.jenkinsJobItemInformation(jenkinsConfig, projectInfo)
       .subscribe(result => {
