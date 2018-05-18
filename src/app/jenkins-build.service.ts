@@ -81,7 +81,7 @@ export class JenkinsBuildService {
     const buildUrl = `http://${config.server}/job/fibre-${project.slug}/build`;
     return this.http.post(
       buildUrl,
-      "",
+      '',
       { headers: headerOptions }
     );
   }
@@ -91,7 +91,7 @@ export class JenkinsBuildService {
     const buildUrl = `http://${config.server}/job/fibre-${project.slug}/api/json`;
     return this.http.post(
       buildUrl,
-      "",
+      '',
       { headers: headerOptions }
     );
   }

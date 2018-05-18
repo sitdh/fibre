@@ -40,7 +40,7 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
     this.statusMessage = 'Getting connection information';
     this.jenkinsConfig.findConfigurationForUserId(this.data.user.uid)
       .subscribe(jenkinConfigValue => {
-        this.performedFetchJenkinsConfiguration(jenkinConfigValue)
+        this.performedFetchJenkinsConfiguration(jenkinConfigValue);
       });
   }
 
@@ -108,20 +108,20 @@ export class ProjectCreationProgressDialogComponent implements OnInit {
       .watchBuildStatus('master', this.data.project, jenkinsConfig)
       .subscribe(buildConfig => {
         if (true === buildConfig.building) {
-          setTimeout(() => { 
+          setTimeout(() => {
             console.log('Still building');
             this.watchBuildStatus(jenkinsConfig, projectInfo);
           }, 5000);
         } else {
           this.statusMessage = 'Getting you to dashboard';
-          setTimeout(() => { 
+          setTimeout(() => {
             this.dialogRef.close();
             this.route.navigate(['p', projectInfo.slug, 'dashboard']);
             console.log('Redirecting');
           }, 2000);
         }
       }, error => {
-        console.log('error')
+        console.log('error');
         // t
         // his.watchBuildStatus(jenkinsConfig);
       });
