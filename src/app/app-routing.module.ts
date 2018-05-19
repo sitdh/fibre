@@ -10,6 +10,7 @@ import { CreateUserAccountComponent } from './create-user-account/create-user-ac
 import { ProjectManagementComponent } from './project-management/project-management.component';
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
+import { AuthenticationGuardService } from './authentication-guard.service';
 import {
   ProjectSourcecodeStrutureAnalysisComponent
 } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
@@ -17,15 +18,18 @@ import {
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'project/new', component: CreateProjectComponent },
-  { path: 'p/:pid/:section', component: ProjectManagementComponent},
-  { path: 'p/:pid/:section/structure', component: ProjectManagementComponent, children: [
-  ]},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuardService] },
+  { path: 'project/new', component: CreateProjectComponent, canActivate: [AuthenticationGuardService] },
+  { path: 'p/:pid/:section', component: ProjectManagementComponent, canActivate: [AuthenticationGuardService]},
+  { path: 'p/:pid/:section/structure',
+    component: ProjectManagementComponent,
+    canActivate: [AuthenticationGuardService],
+    children: []
+  },
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
-  { path: 'profile/:username', component: HomeComponent },
-  { path: 'account/:action', component: CreateUserAccountComponent },
+  { path: 'profile/:username', component: HomeComponent, canActivate: [AuthenticationGuardService] },
+  { path: 'account/:action', component: CreateUserAccountComponent, canActivate: [AuthenticationGuardService] },
 ];
 
 @NgModule({

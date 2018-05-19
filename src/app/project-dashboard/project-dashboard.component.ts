@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
@@ -48,7 +49,10 @@ export class ProjectDashboardComponent implements OnInit {
     private sourceAnalyzerService: SourceCodeStructureAnalyzerService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    var r = window.indexeddb.open('firebaseLocalStorage');
+    console.log(r);
+  }
 
   openJenkinsSettingDialog(): void {
     const dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
