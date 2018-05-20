@@ -49,10 +49,7 @@ export class ProjectDashboardComponent implements OnInit {
     private sourceAnalyzerService: SourceCodeStructureAnalyzerService
   ) { }
 
-  ngOnInit() { 
-    var r = window.indexeddb.open('firebaseLocalStorage');
-    console.log(r);
-  }
+  ngOnInit() { }
 
   openJenkinsSettingDialog(): void {
     const dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
