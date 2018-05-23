@@ -1,15 +1,18 @@
 :host {
   display: flex;
+  flex-basis: 100%;
   width: 100%;
   height: 100vhs;
   min-height: 400px;
-  flex-basis: 100%;
-  background-color: pink;
+  overflow: hidden;
+  padding: 2px;
+  border: solid 0.2px #ccc;
 }
 
-#graph {
+#graph_display {
   width: 100%;
-  height: 400;
+  min-height: 400;
+  overflow: hidden;
 }
 
 .data-card {

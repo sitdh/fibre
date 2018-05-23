@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit,
+  AfterViewInit, Input
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Module, render } from 'viz.js/full.render.js';
 import * as Viz from 'viz.js/viz.js';
+import * as SvgPanZoom from 'svg-pan-zoom';
 
 import { ProjectFetcherService } from '../project-fetcher.service';
 import { Project } from '../project.entity';
@@ -13,9 +17,7 @@ import { Project } from '../project.entity';
   templateUrl: './source-code-structure-analyzer.component.html',
   styleUrls: ['./source-code-structure-analyzer.component.scss']
 })
-export class SourceCodeStructureAnalyzerComponent implements OnInit {
-
-  imageSrc = "";
+export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewInit {
 
 	project: Project;
 
@@ -23,31 +25,36 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit {
     private projectFetchService: ProjectFetcherService,
     private http: HttpClient,
     private route: ActivatedRoute
-  ) { 
-    this.route.params.subscribe(e => {
-      this.fetchProjectInformation(e);
-    });
-  }
+  ) { }
 
   ngOnInit() { }
+
+  ngAfterViewInit() { }
 
   refreshSourceCodeStructure() {
     console.log('Hello');
   }
 
   renderGraph(graph: string) {
-    // let viz = new Viz({ workerURL: 'viz.js/full.render.js'});
     var viz = new Viz({ Module, render });
     viz.renderSVGElement(graph)
       .then(e => {
-        var canvas = document.getElementById('graph');
-        canvas.appendChild(e);
-      });
-  }
+        console.log(e.id);
+        e.id = 'graph_output';
+        var canvas = document.getElementById('graph_display');
 
-  set setProjectInformation(project: Project) {
-    this.project = project;
-    this.fetchInformation(project);
+        while(canvas.firstChild) { canvas.removeChild(canvas.firstChild); }
+
+        canvas.appendChild(e);
+        let svgPanZoom: SvgPanZoom.Instance = SvgPanZoom('#graph_output', {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+          minZoom: 0.1,
+          maxZoom: 10,
+        });
+      });
   }
 
 	fetchInformation(project: Project) {
@@ -57,11 +64,4 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit {
 		).subscribe(g => this.renderGraph(g));
 	}
 
-  fetchProjectInformation(pathParam) {
-    this.projectFetchService
-      .fetchProjectInformationWithSlug(pathParam.pid)
-      .subscribe(projects => {
-        this.fetchInformation(projects.pop());
-      });
-  }
 }
