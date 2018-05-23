@@ -22,7 +22,7 @@ export class ProjectFetcherService {
   }
 
   fetchProjectInformationWithSlug(slug: string): Observable<Project[]> {
-    return this.db.collection<Project>('projecct', ref => {
+    return this.db.collection<Project>('projects', ref => {
       return ref.where('slug', '==', slug);
     }).valueChanges();
   }

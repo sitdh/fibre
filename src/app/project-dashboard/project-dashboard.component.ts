@@ -1,6 +1,7 @@
 import {
   Component, OnInit, EventEmitter,
-  Inject, Input, Output
+  Inject, Input, Output,
+  ViewChild, AfterViewInit
 } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,7 +25,7 @@ import { Project } from '../project.entity';
   templateUrl: './project-dashboard.component.html',
   styleUrls: ['./project-dashboard.component.scss']
 })
-export class ProjectDashboardComponent implements OnInit {
+export class ProjectDashboardComponent implements OnInit, AfterViewInit {
 
   projectInfo: Project;
   _projectInfo = null;
@@ -50,6 +51,9 @@ export class ProjectDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  ngAfterViewInit() {
+  }
 
   openJenkinsSettingDialog(): void {
     const dialogRef = this.settingDialog.open(JenkinsSettingsDialogComponent, {
@@ -83,7 +87,9 @@ export class ProjectDashboardComponent implements OnInit {
 
   @Input('project')
   set projectInformation(project: Project) {
-    if (null != project) { this.fetchJenkinsConnectionStatus( project ); }
+    if (null != project) { 
+      this.fetchJenkinsConnectionStatus( project ); 
+    }
   }
 
   fetchJenkinsConnectionStatus(projectInfo: Project) {
