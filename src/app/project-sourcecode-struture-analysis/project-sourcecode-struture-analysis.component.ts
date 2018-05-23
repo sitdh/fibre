@@ -27,6 +27,8 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
   @ViewChild(SourceCodeTestPathsAnalyzerComponent)
   sourceTestPaths: SourceCodeTestPathsAnalyzerComponent;
 
+  project: Project;
+
   constructor(
     private projectFetchService: ProjectFetcherService,
     private route: ActivatedRoute
