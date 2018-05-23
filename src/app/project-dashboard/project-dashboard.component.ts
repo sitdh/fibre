@@ -87,8 +87,8 @@ export class ProjectDashboardComponent implements OnInit, AfterViewInit {
 
   @Input('project')
   set projectInformation(project: Project) {
-    if (null != project) { 
-      this.fetchJenkinsConnectionStatus( project ); 
+    if (null != project) {
+      this.fetchJenkinsConnectionStatus(project);
     }
   }
 

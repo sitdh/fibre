@@ -32,9 +32,9 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
   constructor(
     private projectFetchService: ProjectFetcherService,
     private route: ActivatedRoute
-  ) { 
+  ) {
     this.route.params.subscribe(e => {
-      this.fetchProjectInformation(e)
+      this.fetchProjectInformation(e);
     });
   }
 

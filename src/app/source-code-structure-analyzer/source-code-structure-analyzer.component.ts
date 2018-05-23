@@ -19,7 +19,7 @@ import { Project } from '../project.entity';
 })
 export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewInit {
 
-	project: Project;
+  project: Project;
 
   constructor(
     private projectFetchService: ProjectFetcherService,
@@ -36,17 +36,17 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
   }
 
   renderGraph(graph: string) {
-    var viz = new Viz({ Module, render });
+    const viz = new Viz({ Module, render });
     viz.renderSVGElement(graph)
       .then(e => {
         console.log(e.id);
         e.id = 'graph_output';
-        var canvas = document.getElementById('graph_display');
+        const canvas = document.getElementById('graph_display');
 
-        while(canvas.firstChild) { canvas.removeChild(canvas.firstChild); }
+        while (canvas.firstChild) { canvas.removeChild(canvas.firstChild); }
 
         canvas.appendChild(e);
-        let svgPanZoom: SvgPanZoom.Instance = SvgPanZoom('#graph_output', {
+        const svgPanZoom: SvgPanZoom.Instance = SvgPanZoom('#graph_output', {
           zoomEnabled: true,
           controlIconsEnabled: true,
           fit: true,
@@ -57,11 +57,11 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
       });
   }
 
-	fetchInformation(project: Project) {
-		this.http.get(
+  fetchInformation(project: Project) {
+    this.http.get(
       `http://localhost:8080/code/graph/fibre-${project.slug}/master/?p=${project.interested_package}`,
-			{ responseType: 'text' }
-		).subscribe(g => this.renderGraph(g));
-	}
+      { responseType: 'text' }
+    ).subscribe(g => this.renderGraph(g));
+  }
 
 }
