@@ -29,6 +29,10 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
 
   project: Project;
 
+  stringCollection = [];
+  numberCollection = [];
+  enumCollection = [];
+
   constructor(
     private projectFetchService: ProjectFetcherService,
     private route: ActivatedRoute
@@ -47,7 +51,7 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
       .subscribe(projects => {
         this.project = projects.pop();
         this.sourceStructureAnalyzer.fetchInformation(this.project);
+        this.sourceConstantsCollection.fetchInformation(this.project);
       });
   }
-
 }

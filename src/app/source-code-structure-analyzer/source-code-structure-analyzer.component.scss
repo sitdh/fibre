@@ -1,20 +1,44 @@
 :host {
   display: flex;
   flex-basis: 100%;
-  width: 100%;
-  height: 100vhs;
-  min-height: 400px;
-  overflow: hidden;
-  padding: 2px;
-  border: solid 0.2px #ccc;
-}
-
-#graph_display {
-  width: 100%;
-  min-height: 400;
-  overflow: hidden;
+  flex-flow: column;
+  justify-content: flex-start;
+  min-height: 500px;
+  overflow: auto;
 }
 
 .data-card {
   margin-bottom: 20px !important;
 }
+
+.canvas-wrapper {
+  display: flex;
+  flex-basis: 100%;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-content: center;
+  min-height: 500px;
+}
+
+.svg_canvas {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg_canvas svg {
+  display: flex;
+  flex: 1 1 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px !important;
+  min-height: 250px;
+}
+
+#class_canvas { }
+
+#method_canvas { }

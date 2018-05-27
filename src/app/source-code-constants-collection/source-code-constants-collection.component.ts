@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Project } from '../project.entity';
+import { ProjectAnalyzeConstantFetcherService } from '../project-analyze-constant-fetcher.service';
+import { ConstantPackage } from '../constant-package.entity';
 
 @Component({
   selector: 'app-source-code-constants-collection',
@@ -7,15 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SourceCodeConstantsCollectionComponent implements OnInit {
 
-  stringCollection: string[];
-  numberCollection: string[];
+  @Input()
+  project: Project;
 
-  constructor() {
-    this.stringCollection = ['a', 'b', 'c', 'd'];
-    this.numberCollection = ['1', '3', '4', '7'];
-  }
+  msg = 'hello';
+
+  constantCollection: ConstantPackage[];
+
+  constructor(
+    private projectAnalyzeConstantFetch: ProjectAnalyzeConstantFetcherService
+  ) { }
 
   ngOnInit() {
   }
 
+  fetchInformation(project: Project) {
+    this.projectAnalyzeConstantFetch
+      .fetchConstantForProject(project)
+      .subscribe(c => this.constantCollection = c);
+  }
 }

@@ -17,3 +17,29 @@
 .controls-wrapper {
   justify-content: flex-start !important;
 }
+
+.fibre-constants {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row;
+  justify-content: flex-start;
+}
+
+.constant-package {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+
+.constant-package h2 {
+  font-size: 1.2em;
+  color: #ccc;
+  text-align: center;
+  margin: 10px;
+}
+
+.constant-package .constant {
+  text-align: center;
+  margin: 10px;
+}

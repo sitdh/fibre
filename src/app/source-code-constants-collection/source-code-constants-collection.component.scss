@@ -11,7 +11,19 @@
 
 .fibre-data {
   display: flex;
+  flex: 1 1 auto;
   flex-basis: 100%;
+  flex-flow: row;
+  justify-content: flex-start;
+}
+
+.sub-header {
+  padding: 10px;
+  color: #ccc;
+}
+
+.data-package {
+  flex: 1 1 auto;
 }
 
 .fibre-data mat-list {

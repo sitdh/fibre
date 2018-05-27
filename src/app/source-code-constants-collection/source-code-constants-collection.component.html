@@ -1,16 +1,8 @@
 <div class="fibre-data">
-  <mat-list>
-    <h2 mat-subheader i18n>String</h2>
-    <mat-list-item *ngFor="let s of stringCollection">{{ s }}</mat-list-item>
-  </mat-list>
 
-  <mat-list>
-    <h2 mat-subheader i18n>Number</h2>
-    <mat-list-item *ngFor="let n of numberCollection">{{ n }}</mat-list-item>
-  </mat-list>
+  <mat-list-item class="data-package" *ngFor="let cp of constantCollection">
+    <h2 class="sub-header">{{ cp.type }}</h2>
+    <mat-list-item *ngFor="let s of cp.constants">{{ s }}</mat-list-item>
+  </mat-list-item>
 
-  <mat-list>
-    <h2 mat-subheader i18n>Boolean</h2>
-    <mat-list-item>ABC</mat-list-item>
-  </mat-list>
 </div>
