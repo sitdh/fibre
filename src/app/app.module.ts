@@ -29,6 +29,7 @@ import { AuthenGuardService } from './authen-guard.service';
 import { AppConfigService } from './app-config.service';
 import { CredentialService } from './credential.service';
 import { AuthenticationGuardService } from './authentication-guard.service';
+import { ProjectAnalyzeConstantFetcherService } from './project-analyze-constant-fetcher.service';
 
 import { environment } from './../environments/environment';
 import { RepositoryService } from './repository.service';
@@ -97,7 +98,7 @@ import { ProjectCreationProgressDialogComponent } from './project-creation-progr
     ProjectFetcherService, UserInformationService, AuthenGuardService,
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-    AuthenticationGuardService,
+    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService,
   ],
   bootstrap: [AppComponent]
 })
