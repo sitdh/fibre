@@ -22,12 +22,12 @@
 
 <mat-card class="data-card">
   <mat-card-title i18n>
-    Constants
+    Control Flow Graph
   </mat-card-title>
 
   <mat-card-content>
-    <app-source-code-constants-collection>
-    </app-source-code-constants-collection>
+    <app-source-code-control-flow-graph>
+    </app-source-code-control-flow-graph>
   </mat-card-content>
 
   <mat-card-actions>
@@ -44,6 +44,21 @@
     <!-- Test paths -->
     <app-source-code-test-paths-analyzer>
     </app-source-code-test-paths-analyzer>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()" i18n>Refresh</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="data-card">
+  <mat-card-title i18n>
+    Constants
+  </mat-card-title>
+
+  <mat-card-content>
+    <app-source-code-constants-collection>
+    </app-source-code-constants-collection>
   </mat-card-content>
 
   <mat-card-actions>

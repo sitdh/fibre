@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SourceCodeStructureAnalyzerComponent } from '../source-code-structure-analyzer/source-code-structure-analyzer.component';
 import { SourceCodeConstantsCollectionComponent } from '../source-code-constants-collection/source-code-constants-collection.component';
 import { SourceCodeTestPathsAnalyzerComponent } from '../source-code-test-paths-analyzer/source-code-test-paths-analyzer.component';
+import { SourceCodeControlFlowGraphComponent } from '../source-code-control-flow-graph/source-code-control-flow-graph.component';
 
 import { ProjectFetcherService } from '../project-fetcher.service';
 import { Project } from '../project.entity';
@@ -26,6 +27,9 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
 
   @ViewChild(SourceCodeTestPathsAnalyzerComponent)
   sourceTestPaths: SourceCodeTestPathsAnalyzerComponent;
+
+  @ViewChild(SourceCodeControlFlowGraphComponent)
+  sourceControlFlowGraph: SourceCodeControlFlowGraphComponent;
 
   project: Project;
 
