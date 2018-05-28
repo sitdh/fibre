@@ -21,8 +21,6 @@ export class SourceCodeControlFlowGraphComponent implements OnInit {
 
   graph_dot: string;
 
-  methodCFG: any;
-
   viz = new Viz({ Module, render });
 
   constructor(
