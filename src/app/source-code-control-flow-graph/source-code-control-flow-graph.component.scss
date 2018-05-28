@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.graph-content {
+  display: flex;
+  flex: 1 1 100%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.graph-controls {
+}
+
+.graph-display {
+  min-height: 600px;
+  position: relative;
+  overflow: auto;
+}
+

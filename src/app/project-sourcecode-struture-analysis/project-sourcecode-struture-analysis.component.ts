@@ -56,6 +56,7 @@ export class ProjectSourcecodeStrutureAnalysisComponent implements OnInit {
         this.project = projects.pop();
         this.sourceStructureAnalyzer.fetchInformation(this.project);
         this.sourceConstantsCollection.fetchInformation(this.project);
+        this.sourceControlFlowGraph.fetchInformation(this.project);
       });
   }
 }

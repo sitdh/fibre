@@ -1,3 +1,23 @@
-<p>
-  source-code-control-flow-graph works!
-</p>
+<div class="graph-controls graph-content">
+  <form #f="ngForm">
+    <mat-form-field>
+      <mat-select placeholder="Classes" [(value)]="methodCFG">
+        <mat-option *ngFor="let c of controlFlowChart" [value]="c.cfg_package">
+          {{ c.class_name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Methods" (change)="svgRender($event)">
+        <mat-option *ngFor="let m of methodCFG" [value]="m.graph">
+          {{ m.method_name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div id="cfg_graph_canvas" class="graph-display graph-content">
+  {{ graph_dot }}
+</div>
