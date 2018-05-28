@@ -52,6 +52,7 @@ import { SourceCodeConstantsCollectionComponent } from './source-code-constants-
 import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-analyzer/source-code-test-paths-analyzer.component';
 import { ProjectCreationProgressDialogComponent } from './project-creation-progress-dialog/project-creation-progress-dialog.component';
 import { SourceCodeControlFlowGraphComponent } from './source-code-control-flow-graph/source-code-control-flow-graph.component';
+import { ProjectControlFlowChartService } from './project-control-flow-chart.service';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,7 @@ import { SourceCodeControlFlowGraphComponent } from './source-code-control-flow-
     ProjectFetcherService, UserInformationService, AuthenGuardService,
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService,
+    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService,
   ],
   bootstrap: [AppComponent]
 })
