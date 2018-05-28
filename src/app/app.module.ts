@@ -51,6 +51,7 @@ import { SourceCodeStructureAnalyzerComponent } from './source-code-structure-an
 import { SourceCodeConstantsCollectionComponent } from './source-code-constants-collection/source-code-constants-collection.component';
 import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-analyzer/source-code-test-paths-analyzer.component';
 import { ProjectCreationProgressDialogComponent } from './project-creation-progress-dialog/project-creation-progress-dialog.component';
+import { SourceCodeControlFlowGraphComponent } from './source-code-control-flow-graph/source-code-control-flow-graph.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ProjectCreationProgressDialogComponent } from './project-creation-progr
     SourceCodeConstantsCollectionComponent,
     SourceCodeTestPathsAnalyzerComponent,
     ProjectCreationProgressDialogComponent,
+    SourceCodeControlFlowGraphComponent,
   ],
   imports: [
     BrowserModule,
