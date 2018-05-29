@@ -22,6 +22,8 @@ import { Project } from '../project.entity';
 })
 export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewInit {
 
+  progessBarMode = 'indeterminate';
+
   project: Project;
 
   svgPanZoomOption = {
@@ -81,6 +83,9 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
       minZoom: 0.1,
       maxZoom: 10,
     });
+
+    this.progessBarMode = 'query';
+
   }
 
   appendMethodGraph(e) {
