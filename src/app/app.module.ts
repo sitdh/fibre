@@ -53,6 +53,7 @@ import { SourceCodeTestPathsAnalyzerComponent } from './source-code-test-paths-a
 import { ProjectCreationProgressDialogComponent } from './project-creation-progress-dialog/project-creation-progress-dialog.component';
 import { SourceCodeControlFlowGraphComponent } from './source-code-control-flow-graph/source-code-control-flow-graph.component';
 import { ProjectControlFlowChartService } from './project-control-flow-chart.service';
+import { TestPathStepsService } from './test-path-steps.service';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,7 @@ import { ProjectControlFlowChartService } from './project-control-flow-chart.ser
     ProjectFetcherService, UserInformationService, AuthenGuardService,
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService,
+    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService,
   ],
   bootstrap: [AppComponent]
 })
