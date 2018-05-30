@@ -1,0 +1,25 @@
+<mat-toolbar class="fibre-breadcrumb">
+  <span>
+    <a [routerLink]="['../']">Dashboard</a>
+  </span>
+  <mat-icon>chevron_right</mat-icon>
+  <span i18n>Test case review</span>
+</mat-toolbar>
+
+<div class="breadcrumb ">
+  <span class="example-fill-remainin-space"></span>
+  <button mat-button (click)="performedGenerateTestcase()" [disabled]="isProjectExists()">Generate Test case</button>
+</div>
+<mat-progress-bar value="0" mode="{{ progressUI }}"></mat-progress-bar>
+
+<div class="content-wrapper">
+  <mat-card class="test-case" *ngFor="let i of testcases">
+    <mat-card-header>
+      <mat-card-title i18n>TC#{{ i }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button i18n>Review</button>
+    </mat-card-actions>
+  </mat-card>
+  <div class="empty" *ngIf="!testcases">{{ panelMessage }}</div>
+</div>

@@ -35,6 +35,11 @@
           *ngIf="isCurrentComponent('structure')">
         </app-project-sourcecode-struture-analysis>
 
+        <app-project-test-cases-dashboard
+          [project]="project"
+          *ngIf="isCurrentComponent('test-cases')">
+        </app-project-test-cases-dashboard>
+
       <app-project-setting 
          [project]="project"
         *ngIf="isCurrentComponent('settings')">

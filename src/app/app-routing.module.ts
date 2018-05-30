@@ -14,6 +14,9 @@ import { AuthenticationGuardService } from './authentication-guard.service';
 import {
   ProjectSourcecodeStrutureAnalysisComponent
 } from './project-sourcecode-struture-analysis/project-sourcecode-struture-analysis.component';
+import {
+  ProjectTestCasesDashboardComponent
+} from './project-test-cases-dashboard/project-test-cases-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +25,11 @@ const routes: Routes = [
   { path: 'project/new', component: CreateProjectComponent, canActivate: [AuthenticationGuardService] },
   { path: 'p/:pid/:section', component: ProjectManagementComponent, canActivate: [AuthenticationGuardService]},
   { path: 'p/:pid/:section/structure',
+    component: ProjectManagementComponent,
+    canActivate: [AuthenticationGuardService],
+    children: []
+  },
+  { path: 'p/:pid/:section/test-cases',
     component: ProjectManagementComponent,
     canActivate: [AuthenticationGuardService],
     children: []

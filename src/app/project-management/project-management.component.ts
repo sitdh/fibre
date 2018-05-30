@@ -11,7 +11,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import * as firebase from 'firebase/app';
 
+import { ProjectFetcherService } from '../project-fetcher.service';
 import { ProjectDashboardComponent } from '../project-dashboard/project-dashboard.component';
+import { ProjectTestCasesDashboardComponent } from '../project-test-cases-dashboard/project-test-cases-dashboard.component';
 import { ProjectSettingComponent } from '../project-setting/project-setting.component';
 import { Project } from '../project.entity';
 
@@ -36,12 +38,15 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
   currentSection: string;
 
   @ViewChildren(ProjectDashboardComponent) dashboardComponent: QueryList<ProjectDashboardComponent>;
+  @ViewChildren(ProjectTestCasesDashboardComponent) 
+  testcaseComponent: ProjectTestCasesDashboardComponent;
 
   constructor(
     private route: ActivatedRoute,
     private af: AngularFireAuth,
     private afs: AngularFirestore,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private projectFetcher: ProjectFetcherService
   ) {
     this.route.params.subscribe(p => {
       this.projectTitle = p.pid;

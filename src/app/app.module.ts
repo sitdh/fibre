@@ -54,6 +54,8 @@ import { ProjectCreationProgressDialogComponent } from './project-creation-progr
 import { SourceCodeControlFlowGraphComponent } from './source-code-control-flow-graph/source-code-control-flow-graph.component';
 import { ProjectControlFlowChartService } from './project-control-flow-chart.service';
 import { TestPathStepsService } from './test-path-steps.service';
+import { ProjectTestCasesDashboardComponent } from './project-test-cases-dashboard/project-test-cases-dashboard.component';
+import { TestCaseGenerationCatalizeService } from './test-case-generation-catalize.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { TestPathStepsService } from './test-path-steps.service';
     SourceCodeTestPathsAnalyzerComponent,
     ProjectCreationProgressDialogComponent,
     SourceCodeControlFlowGraphComponent,
+    ProjectTestCasesDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +105,7 @@ import { TestPathStepsService } from './test-path-steps.service';
     ProjectFetcherService, UserInformationService, AuthenGuardService,
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService,
+    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService, TestCaseGenerationCatalizeService,
   ],
   bootstrap: [AppComponent]
 })
