@@ -1,3 +1,23 @@
-<p>
-  source-code-test-paths-analyzer works!
-</p>
+<ol class="testcase-wrapper">
+  <li *ngFor="let tp of testInformation">
+    <div class="testpath-details">
+      <ul>
+        <li *ngFor="let step of tp.steps">{{ step }}</li>
+      </ul>
+    </div>
+  </li>
+</ol>
+
+<!--
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z5">
+  <ng-container matColumnDef="tid">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <th mat-cell *matCellDeff="let element"> {{ element.tid }} </th>
+  </ng-container>
+
+  <ng-container matColumnDef="testpath_detail">
+    <th mat-header-cell *matHeaderCellDef> Path </th>
+    <th mat-cell *matCellDeff="let element"> {{ element.path }} </th>
+  </ng-container>
+</table>
+-->

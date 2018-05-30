@@ -34,7 +34,6 @@ export class SourceCodeControlFlowGraphComponent implements OnInit {
     this.proejctCFGService
       .fetchControlFlowGraphFromProject(project)
       .subscribe(cfg => {
-        console.log(cfg);
         this.controlFlowChart = cfg;
       });
   }

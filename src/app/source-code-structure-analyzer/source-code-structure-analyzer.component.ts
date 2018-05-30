@@ -84,8 +84,6 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
       maxZoom: 10,
     });
 
-    this.progessBarMode = 'query';
-
   }
 
   appendMethodGraph(e) {

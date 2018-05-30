@@ -1,0 +1,38 @@
+:host {
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+}
+
+.testcase-wrapper {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+}
+
+.testpath-details {
+
+}
+
+.testpath-details ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-image: none;
+  list-style-type: none;
+  margin: 5px;
+  padding: 3px;
+}
+
+.testpath-details li+li:before {
+  padding: 3px;
+  margin: 5px;
+  color: black;
+  content: '\2192';
+}
+
+.testpath-details li {
+  margin: 3px;
+  padding: 2px;
+}

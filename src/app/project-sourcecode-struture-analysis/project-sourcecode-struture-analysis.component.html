@@ -22,21 +22,6 @@
 
 <mat-card class="data-card">
   <mat-card-title i18n>
-    Control Flow Graph
-  </mat-card-title>
-
-  <mat-card-content>
-    <app-source-code-control-flow-graph>
-    </app-source-code-control-flow-graph>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-button (click)="sourceStructureAnalyzer.refreshSourceCodeStructure()" i18n>Refresh</button>
-  </mat-card-actions>
-</mat-card>
-
-<mat-card class="data-card">
-  <mat-card-title i18n>
     Test paths
   </mat-card-title>
 
@@ -44,6 +29,21 @@
     <!-- Test paths -->
     <app-source-code-test-paths-analyzer>
     </app-source-code-test-paths-analyzer>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button (click)="sourceTestPaths.refreshTestPathInformation(project)" i18n>Refresh</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="data-card">
+  <mat-card-title i18n>
+    Control Flow Graph
+  </mat-card-title>
+
+  <mat-card-content>
+    <app-source-code-control-flow-graph>
+    </app-source-code-control-flow-graph>
   </mat-card-content>
 
   <mat-card-actions>
