@@ -33,8 +33,13 @@ export class ProjectTestCasesDashboardComponent implements OnInit {
 
   @Input('project')
   set projectAssigned(project: Project) {
-    if (typeof project !== undefined) {
+    if (typeof project != 'undefined') {
       this.project = project;
+      this.generatorService
+        .performedCheckTestSuiteGeneratedStatus(this.project)
+        .subscribe(res => {
+          if ('Done' === res.is_generated) this.performFetchTestcase();
+        })
     }
   }
 
@@ -52,13 +57,18 @@ export class ProjectTestCasesDashboardComponent implements OnInit {
       .performGenerateTestcaseForProject(this.project)
       .subscribe(res => {
         if ('Done' === res.is_generated)
-          this.testsuiteService.fetchTestSuiteForProject(this.project).subscribe(this.renderTestSuite);
-      }).add(() => {
-        this.progressUI = 'determinate';
+          this.performFetchTestcase(this.project)
       })
   }
 
-  renderTestSuite(testSuite: TestSuiteInformation[]) {
-    console.log(testSuite);
+  performFetchTestcase(project?: Project) {
+    const p = project || this.project;
+    this.testsuiteService.fetchTestSuiteForProject(p)
+      .subscribe(ts => {
+        this.testsuiteInformation = ts;
+        this.panelMessage = '';
+      }).add(() => {
+        this.progressUI = 'determinate';
+      });
   }
 }

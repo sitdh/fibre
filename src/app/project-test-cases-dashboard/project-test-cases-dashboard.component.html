@@ -10,7 +10,9 @@
   <span class="example-fill-remainin-space"></span>
   <button mat-button (click)="performedGenerateTestcase()" [disabled]="isProjectExists()">Generate Test case</button>
 </div>
-<mat-progress-bar value="0" mode="{{ progressUI }}"></mat-progress-bar>
+<div class="progressbar-wrapper">
+  <mat-progress-bar value="0" mode="{{ progressUI }}"></mat-progress-bar>
+</div>
 
 <div class="content-wrapper">
   <mat-card class="test-case" *ngFor="let ts of testsuiteInformation">

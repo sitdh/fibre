@@ -37,7 +37,7 @@
   display: flex;
   margin: 10px 0 0 2%;
   height: 100px;
-  background-color: lightcoral;
+  background-color: $secondary-light;
   flex: 1 0 10%;
   max-width: 100px;
   flex-flow: column;
@@ -71,4 +71,13 @@ mat-card-actions button {
   justify-content: center;
   height: 500px;
   font-size: 3em;
+}
+
+.progressbar-wrapper {
+  width: 100%;
+  margin: 5px 0 20px;
+}
+
+mat-card-title {
+  word-wrap: break-word;
 }
