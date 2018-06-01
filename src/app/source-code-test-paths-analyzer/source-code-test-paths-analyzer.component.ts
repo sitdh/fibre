@@ -29,7 +29,7 @@ export class SourceCodeTestPathsAnalyzerComponent implements OnInit {
     this.testpathService
       .fetchIntegrationTestPathForProject(project)
       .subscribe(tp => {
-        this.testInformation = tp
+        this.testInformation = tp;
       });
   }
 }

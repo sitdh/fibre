@@ -14,6 +14,6 @@ export class TestCaseGenerationCatalizeService {
   ) { }
 
   performGenerateTestcaseForProject(project: Project): Observable<TestCaseGeneratorResponse> {
-    return this.http.get<TestCaseGeneratorResponse>(`http://localhost:8080/testcase/generator/fibre-${project.slug}`);
+    return this.http.get<TestCaseGeneratorResponse>(`http://localhost:8080/test/generator/fibre-${project.slug}`);
   }
 }

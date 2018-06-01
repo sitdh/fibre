@@ -53,10 +53,10 @@ export class SourceCodeControlFlowGraphComponent implements OnInit {
   }
 
   graphRender(e) {
-    var parser = new DOMParser();
-    var svg = parser.parseFromString(e, 'image/svg+xml').documentElement;
+    const parser = new DOMParser();
+    const svg = parser.parseFromString(e, 'image/svg+xml').documentElement;
     svg.id = 'cfg_graph_output';
-    var graph = document.getElementById('cfg_graph_canvas');
+    const graph = document.getElementById('cfg_graph_canvas');
     while (graph.firstChild) { graph.removeChild(graph.firstChild); }
     graph.appendChild(svg);
     SvgPanZoom(svg, {

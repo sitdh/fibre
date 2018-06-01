@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {  TestCaseGenerationCatalizeService } from '../test-case-generation-catalize.service';
-import {  TestCaseGeneratorResponse } from '../test-case-generator-response.entity';
+import { TestSuiteInformation } from '../test-suite-information.entity'
+import { TestCaseGeneratorResponse } from '../test-case-generator-response.entity';
+import { TestSuiteFetcherService } from '../test-suite-fetcher.service'
+import { TestCaseGenerationCatalizeService } from '../test-case-generation-catalize.service';
 import { Project } from '../project.entity';
 
 @Component({
@@ -17,12 +19,14 @@ export class ProjectTestCasesDashboardComponent implements OnInit {
 
   project: Project;
 
-  testcases: string[];
+  testsuiteInformation: TestSuiteInformation[];
+
+  testSuiteGeteratedStatus = 'Failure';
 
   constructor(
     private generatorService: TestCaseGenerationCatalizeService,
-  ) { 
-  }
+    private testsuiteService: TestSuiteFetcherService,
+  ) { }
 
   ngOnInit() {
   }
@@ -31,7 +35,6 @@ export class ProjectTestCasesDashboardComponent implements OnInit {
   set projectAssigned(project: Project) {
     if (typeof project !== undefined) {
       this.project = project;
-      console.log(this.project);
     }
   }
 
@@ -40,16 +43,22 @@ export class ProjectTestCasesDashboardComponent implements OnInit {
   }
 
   performedGenerateTestcase() {
+    console.log('Create Signal received');
     this.progressUI = 'indeterminate';
 
-    this.panelMessage = 'Test case are generating...'
+    this.panelMessage = 'Test cases are generating...';
 
     this.generatorService
       .performGenerateTestcaseForProject(this.project)
-      .subscribe(this.testcaseGenerated);
+      .subscribe(res => {
+        if ('Done' === res.is_generated)
+          this.testsuiteService.fetchTestSuiteForProject(this.project).subscribe(this.renderTestSuite);
+      }).add(() => {
+        this.progressUI = 'determinate';
+      })
   }
 
-  testcaseGenerated(response: TestCaseGeneratorResponse) {
-    this.progressUI = 'determinate';
+  renderTestSuite(testSuite: TestSuiteInformation[]) {
+    console.log(testSuite);
   }
 }

@@ -33,7 +33,7 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
     center: true,
     minZoom: 0.1,
     maxZoom: 10,
-  }
+  };
 
   constructor(
     private projectFetchService: ProjectFetcherService,
@@ -69,10 +69,10 @@ export class SourceCodeStructureAnalyzerComponent implements OnInit, AfterViewIn
   }
 
   appendClassGraph(e) {
-    var parser = new DOMParser();
-    var svg = parser.parseFromString(e, 'image/svg+xml').documentElement;
+    const parser = new DOMParser();
+    const svg = parser.parseFromString(e, 'image/svg+xml').documentElement;
     svg.id = 'class_graph_output';
-    var graph = document.getElementById('class_canvas');
+    const graph = document.getElementById('class_canvas');
     while (graph.firstChild) { graph.removeChild(graph.firstChild); }
     graph.appendChild(svg);
     SvgPanZoom(svg, {

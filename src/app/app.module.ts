@@ -56,6 +56,8 @@ import { ProjectControlFlowChartService } from './project-control-flow-chart.ser
 import { TestPathStepsService } from './test-path-steps.service';
 import { ProjectTestCasesDashboardComponent } from './project-test-cases-dashboard/project-test-cases-dashboard.component';
 import { TestCaseGenerationCatalizeService } from './test-case-generation-catalize.service';
+import { TestCaseFetchInformationService } from './test-case-fetch-information.service';
+import { TestSuiteFetcherService } from './test-suite-fetcher.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import { TestCaseGenerationCatalizeService } from './test-case-generation-catali
     ProjectFetcherService, UserInformationService, AuthenGuardService,
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
-    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService, TestCaseGenerationCatalizeService,
+    AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService,
+    TestCaseGenerationCatalizeService, TestCaseFetchInformationService, TestSuiteFetcherService,
   ],
   bootstrap: [AppComponent]
 })

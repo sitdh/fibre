@@ -38,7 +38,7 @@ export class ProjectManagementComponent implements OnInit, AfterViewInit {
   currentSection: string;
 
   @ViewChildren(ProjectDashboardComponent) dashboardComponent: QueryList<ProjectDashboardComponent>;
-  @ViewChildren(ProjectTestCasesDashboardComponent) 
+  @ViewChildren(ProjectTestCasesDashboardComponent)
   testcaseComponent: ProjectTestCasesDashboardComponent;
 
   constructor(
