@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -19,6 +20,7 @@ import { JenkinsConfigurationService } from '../jenkins-configuration.service';
 import { ProjectFetcherService } from '../project-fetcher.service';
 import { JenkinsConfiguration } from '../jenkins-configuration.entity';
 import { Project } from '../project.entity';
+import { AuthenticationGuardService } from '../authentication-guard.service';
 
 @Component({
   selector: 'app-project-dashboard',
@@ -41,6 +43,7 @@ export class ProjectDashboardComponent implements OnInit, AfterViewInit {
   userConfigJenkins: JenkinsConfiguration;
 
   constructor(
+    ag: AuthenticationGuardService,
     private route: Router,
     private http: HttpClient,
     private jenkins: JenkinsBuildService,
@@ -48,7 +51,8 @@ export class ProjectDashboardComponent implements OnInit, AfterViewInit {
     private projectFetcher: ProjectFetcherService,
     private jenkinsConfService: JenkinsConfigurationService,
     private sourceAnalyzerService: SourceCodeStructureAnalyzerService
-  ) { }
+  ) {
+  }
 
   ngOnInit() { }
 

@@ -4,9 +4,9 @@
     <tr>
       <td>Test class</td>
       <td>Criterion</td>
-      <td>Coverate</td>
       <td>Test goal</td>
       <td>Covered goal</td>
+      <td>Coverate</td>
     </tr>
   </thead>
 
@@ -14,32 +14,9 @@
     <tr *ngFor="let report of testResult">
       <td class="cell">{{ report.targetClass }}</td>
       <td class="cell">{{ report.criterion }}</td>
-      <td class="cell">{{ report.coverate }}</td>
       <td class="cell">{{ report.testGoals }}</td>
       <td class="cell">{{ report.coveredGoals }}</td>
+      <td class="cell">{{ report.coverate }}</td>
     </tr>
   </tbody>
 </table>
-<!--
-<div class="table-wrapper">
-  <div class="table-header">
-    <div class="row">
-      <div class="cell">Test Class</div>
-      <div class="cell">Criterion</div>
-      <div class="cell">Coverate</div>
-      <div class="cell">Test goal</div>
-      <div class="cell">Covered goal</div>
-    </div>
-  </div>
-
-  <div class="table-content">
-    <div class="row" *ngFor="let report of testResult">
-      <div class="cell">{{ report.targetClass }}</div>
-      <div class="cell">{{ report.criterion }}</div>
-      <div class="cell">{{ report.coverate }}</div>
-      <div class="cell">{{ report.testGoals }}</div>
-      <div class="cell">{{ report.coveratedGoals }}</div>
-    </div>
-  </div>
-</div>
--->
