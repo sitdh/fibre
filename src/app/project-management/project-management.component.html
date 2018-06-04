@@ -45,6 +45,10 @@
         *ngIf="isCurrentComponent('settings')">
       </app-project-setting>
 
+      <app-project-report 
+         [project]="project"
+        *ngIf="isCurrentComponent('report')">
+      </app-project-setting>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

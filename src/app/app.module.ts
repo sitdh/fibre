@@ -58,6 +58,7 @@ import { ProjectTestCasesDashboardComponent } from './project-test-cases-dashboa
 import { TestCaseGenerationCatalizeService } from './test-case-generation-catalize.service';
 import { TestCaseFetchInformationService } from './test-case-fetch-information.service';
 import { TestSuiteFetcherService } from './test-suite-fetcher.service';
+import { ProjectTestReportComponent } from './project-test-report/project-test-report.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { TestSuiteFetcherService } from './test-suite-fetcher.service';
     ProjectCreationProgressDialogComponent,
     SourceCodeControlFlowGraphComponent,
     ProjectTestCasesDashboardComponent,
+    ProjectTestReportComponent,
   ],
   imports: [
     BrowserModule,

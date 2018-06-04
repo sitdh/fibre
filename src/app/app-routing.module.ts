@@ -34,6 +34,11 @@ const routes: Routes = [
     canActivate: [AuthenticationGuardService],
     children: []
   },
+  { path: 'p/:pid/:section/report',
+    component: ProjectManagementComponent,
+    canActivate: [AuthenticationGuardService],
+    children: []
+  },
   { path: 'settings', component: SettingsComponent },
   { path: 'quite', component: QuiteComponent },
   { path: 'profile/:username', component: HomeComponent, canActivate: [AuthenticationGuardService] },
