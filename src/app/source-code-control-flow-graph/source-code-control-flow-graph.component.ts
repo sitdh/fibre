@@ -33,9 +33,7 @@ export class SourceCodeControlFlowGraphComponent implements OnInit {
   fetchInformation(project: Project) {
     this.proejctCFGService
       .fetchControlFlowGraphFromProject(project)
-      .subscribe(cfg => {
-        this.controlFlowChart = cfg;
-      });
+      .subscribe(cfg => this.controlFlowChart = cfg );
   }
 
   updateSelectedPackage(e: any) {
