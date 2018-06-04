@@ -59,6 +59,7 @@ import { TestCaseGenerationCatalizeService } from './test-case-generation-catali
 import { TestCaseFetchInformationService } from './test-case-fetch-information.service';
 import { TestSuiteFetcherService } from './test-suite-fetcher.service';
 import { ProjectTestReportComponent } from './project-test-report/project-test-report.component';
+import { TestReportService } from './test-report.service';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,7 @@ import { ProjectTestReportComponent } from './project-test-report/project-test-r
     AppConfigService, CredentialService, RepositoryService,
     JenkinsBuildService, JenkinsConfigurationService, SourceCodeStructureAnalyzerService, ProjectBuildInformationService,
     AuthenticationGuardService, ProjectAnalyzeConstantFetcherService, ProjectControlFlowChartService, TestPathStepsService,
-    TestCaseGenerationCatalizeService, TestCaseFetchInformationService, TestSuiteFetcherService,
+    TestCaseGenerationCatalizeService, TestCaseFetchInformationService, TestSuiteFetcherService, TestReportService,
   ],
   bootstrap: [AppComponent]
 })

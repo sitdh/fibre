@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
+import { TestReportService } from '../test-report.service';
+import { TestReport } from '../test-report.entity';
+import { Project } from '../project.entity';
 @Component({
   selector: 'app-project-test-report',
   templateUrl: './project-test-report.component.html',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectTestReportComponent implements OnInit {
 
-  constructor() { }
+  project: Project;
+
+  testResult: TestReport[];
+
+  constructor(
+    private testReport: TestReportService
+  ) { }
 
   ngOnInit() {
+  }
+
+  @Input('project')
+  set setProjectInformation(project: Project) {
+    if (typeof project == 'undefined') return;
+    this.project = project;
+    this.testReport
+      .fetchReportForProject(this.project)
+      .subscribe(e => this.testResult = e);
   }
 
 }

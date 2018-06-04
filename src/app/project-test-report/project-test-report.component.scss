@@ -1,0 +1,14 @@
+:host {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: column;
+}
+
+.table-header,
+.table-content {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 100%;
+}
